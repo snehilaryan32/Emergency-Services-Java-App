@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utilPackage.SystemConstants;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,10 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    
+    SnowflakeConnection conn = new SnowflakeConnection("SNEHILARYAN", "Breakingbad@1", "MY_WH", "CRIMEPATROL", "PUBLIC");
+    Connection newConn; 
+    
     public Login() {
         initComponents();
     }
@@ -177,7 +182,7 @@ public class Login extends javax.swing.JFrame {
     private void jLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginActionPerformed
         // TODO add your handling code here:
         String userName = jUserId.getText();
-        String password = jPassword.getText();
+        String passWord = jPassword.getText();
         
         SnowflakeConnector conn = new SnowflakeConnector("SNEHILARYAN", "Breakingbad@1", "MY_WH", "CRIMEPATROL", "PUBLIC");
         Connection newConn; 
@@ -188,13 +193,24 @@ public class Login extends javax.swing.JFrame {
             Statement statement = newConn.createStatement();
             statement.executeQuery("ALTER SESSION SET JDBC_QUERY_RESULT_FORMAT='JSON'");
             ResultSet res = statement.executeQuery("select password from credentials where username='" + userName+"'");
-            while (res.next()) {
+            
+            while(res.next()){
                 String pass = res.getString(1);
-              }
+                System.out.println(pass);
+                if (pass.equals(passWord)) {
+                    JOptionPane.showMessageDialog(rootPane, "Correct Password");
+                
+                }
+
+                else{
+                    JOptionPane.showMessageDialog(rootPane, "Invalid Username or Password");
+                }
+                
+            }
           }
           
           catch(SQLException ex){
-              System.out.println("crimepatrolfinalproject.CrimePatrolFinalProject.main()");
+              System.out.println("Unable to fetch credential");
               
           }
         
