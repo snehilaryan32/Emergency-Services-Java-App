@@ -161,7 +161,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="jSsn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="jName" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="jName" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -195,7 +195,7 @@
                       <Component id="jSubmitInfo" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="jClear" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="83" max="32767" attributes="0"/>
+                  <EmptySpace pref="91" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
