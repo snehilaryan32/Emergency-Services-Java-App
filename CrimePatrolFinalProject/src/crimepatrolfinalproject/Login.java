@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import utilPackage.SystemConstants;
 import javax.swing.JOptionPane;
+import utilPackage.Helper;
 
 /**
  *
@@ -23,9 +24,6 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    
-//    SnowflakeConnector conn = new SnowflakeConnector(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD, "MY_WH", "CRIMEPATROL", "PUBLIC");
-//    Connection newConn; 
     
     public Login() {
         initComponents();
@@ -184,7 +182,7 @@ public class Login extends javax.swing.JFrame {
         String userName = jUserId.getText();
         String passWord = jPassword.getText();
         String pass = null;
-        ResultSet result = SnowflakeConnector.getData("select password from credentials where username='" + userName+"'");
+        ResultSet result = Helper.getData("select password from credentials where username='" + userName+"'");
         
         try {
             while(result.next()){
@@ -206,18 +204,6 @@ public class Login extends javax.swing.JFrame {
         catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-//        try {
-//            Statement statement = newConn.createStatement();
-//            statement.executeQuery("ALTER SESSION SET JDBC_QUERY_RESULT_FORMAT='JSON'");
-//            ResultSet res = statement.executeQuery("select password from mytable where username = '"+userName+"'");
-//            while (res.next()) {
-//                System.out.println(res.getString(1));
-//            }
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }//GEN-LAST:event_jLoginActionPerformed
 
     /**
