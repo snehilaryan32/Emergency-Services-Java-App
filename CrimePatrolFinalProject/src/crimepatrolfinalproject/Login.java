@@ -4,6 +4,13 @@
  */
 package crimepatrolfinalproject;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author sahilpadyal
@@ -31,7 +38,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPasswrd = new javax.swing.JTextField();
+        jPassword = new javax.swing.JTextField();
         jUserId = new javax.swing.JTextField();
         jLogin = new javax.swing.JButton();
         jCancel = new javax.swing.JButton();
@@ -70,6 +77,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLogin.setText("Login");
+        jLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLoginActionPerformed(evt);
+            }
+        });
 
         jCancel.setText("Cancel");
         jCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -90,14 +102,16 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addComponent(jLabel3)
-                        .addGap(69, 69, 69)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
                                 .addComponent(jLogin)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(26, 26, 26)
                                 .addComponent(jCancel))
-                            .addComponent(jPasswrd, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(271, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(225, Short.MAX_VALUE)
@@ -112,12 +126,12 @@ public class Login extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswrd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(61, 61, 61)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLogin)
                     .addComponent(jCancel))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(92, 92, 92)
@@ -158,10 +172,51 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jUserIdActionPerformed
 
+    private void jLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginActionPerformed
+        // TODO add your handling code here:
+        String userName = jUserId.getText();
+        String password = jPassword.getText();
+        
+        SnowflakeConnection conn = new SnowflakeConnection("SNEHILARYAN", "Breakingbad@1", "MY_WH", "CRIMEPATROL", "PUBLIC");
+        Connection newConn; 
+        
+        newConn = conn.connect();
+        System.err.println(newConn);
+        try{
+            Statement statement = newConn.createStatement();
+            statement.executeQuery("ALTER SESSION SET JDBC_QUERY_RESULT_FORMAT='JSON'");
+            ResultSet res = statement.executeQuery("select password from credentials where username='" + userName+"'");
+            while (res.next()) {
+                String pass = res.getString(1);
+              }
+            
+            
+
+          }
+          
+          catch(SQLException ex){
+              System.out.println("crimepatrolfinalproject.CrimePatrolFinalProject.main()");
+              
+          }
+        
+        
+//        try {
+//            Statement statement = newConn.createStatement();
+//            statement.executeQuery("ALTER SESSION SET JDBC_QUERY_RESULT_FORMAT='JSON'");
+//            ResultSet res = statement.executeQuery("select password from mytable where username = '"+userName+"'");
+//            while (res.next()) {
+//                System.out.println(res.getString(1));
+//            }
+//            
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_jLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -201,7 +256,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jLogin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jPasswrd;
+    private javax.swing.JTextField jPassword;
     private javax.swing.JTextField jUserId;
     // End of variables declaration//GEN-END:variables
 }
