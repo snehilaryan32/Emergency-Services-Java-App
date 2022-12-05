@@ -4,17 +4,21 @@
  */
 package main;
 
+import java.util.Date;
+
 /**
  *
  * @author aryan
  */
-public class Citizen {
+public class Citizen extends Person{
     
     int wantedLevel; 
     boolean suspect; 
     boolean victim; 
 
-    public Citizen(int wantedLevel, boolean suspect, boolean victim) {
+    public Citizen(String name, Location address, String email, long phoneNo, Date dateOfBirth, int id, String bloodGroup, String role, String gender, int wantedLevel, boolean suspect, boolean victim) {
+        
+        super(name, address, email, phoneNo, dateOfBirth, id, bloodGroup, role, gender); 
         this.wantedLevel = wantedLevel;
         this.suspect = suspect;
         this.victim = victim;
@@ -43,6 +47,9 @@ public class Citizen {
     public void setVictim(boolean victim) {
         this.victim = victim;
     }
+    
+    
+ 
     
     
     

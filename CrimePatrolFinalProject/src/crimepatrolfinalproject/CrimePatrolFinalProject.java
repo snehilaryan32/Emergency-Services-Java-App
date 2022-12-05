@@ -39,6 +39,12 @@ public class CrimePatrolFinalProject {
 //              System.out.println("crimepatrolfinalproject.CrimePatrolFinalProject.main()");
 //              
 //          }
+//          
+//          try {
+//                newConn.close();
+//            } catch (SQLException ex) {
+//           //     Logger.getLogger(CrimePatrolFinalProject.class.getName()).log(Level.SEVERE, null, ex);
+//            }
 //        
 //        Statement statement = newConn.createStatement();
 //        statement.executeUpdate("insert into mytable values ('69999999999999999999999999')");

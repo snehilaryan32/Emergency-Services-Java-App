@@ -9,27 +9,27 @@ package main;
  * @author aryan
  */
 public class Location {
-    float[] longtude;
-    Comminity comminity; 
+    float[] coordinates;
+    Community comminity; 
 
-    public Location(float[] longtude, Comminity comminity) {
-        this.longtude = longtude;
+    public Location(float[] longtude, Community comminity) {
+        this.coordinates = coordinates;
         this.comminity = comminity;
     }
 
     public float[] getLongtude() {
-        return longtude;
+        return coordinates;
     }
 
-    public Comminity getComminity() {
+    public Community getComminity() {
         return comminity;
     }
 
-    public void setLongtude(float[] longtude) {
-        this.longtude = longtude;
+    public void setcoordinates(float[] coordinates) {
+        this.coordinates = coordinates;
     }
 
-    public void setComminity(Comminity comminity) {
+    public void setComminity(Community comminity) {
         this.comminity = comminity;
     }
     
