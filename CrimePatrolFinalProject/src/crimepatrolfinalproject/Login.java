@@ -24,7 +24,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     
-    SnowflakeConnection conn = new SnowflakeConnection("SNEHILARYAN", "Breakingbad@1", "MY_WH", "CRIMEPATROL", "PUBLIC");
+    SnowflakeConnector conn = new SnowflakeConnector("SNEHILARYAN", "Breakingbad@1", "MY_WH", "CRIMEPATROL", "PUBLIC");
     Connection newConn; 
     
     public Login() {
