@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Properties;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  *
@@ -17,31 +19,11 @@ import java.util.Properties;
  */
 public class SnowflakeConnector {
     
-    //    String user;
-//    String password;
-//    String warehouse; 
-//    String db; 
-//    String schema; 
-//    String connectStr = "jdbc:snowflake://cfukojb-pm07945.snowflakecomputing.com"; 
-//    Connection conn; 
-//    
-//    
-//
-//    public SnowflakeConnection (String user, String password, String warehouse, String db, String schema) {
-//        this.user = user;
-//        this.password = password;
-//        this.warehouse = warehouse;
-//        this.db = db;
-//        this.schema = schema;
-//    }
-    
-    
-    
     public static Connection connect(String userName, String password) {
         
         Properties properties = new Properties();
-        properties.put("user", "SNEHILARYAN"); 
-        properties.put("password", "Breakingbad@1");
+        properties.put("user", userName); 
+        properties.put("password", password);
         properties.put("warehouse", "MY_WH");
         properties.put("db", "CRIMEPATROL"); 
         properties.put("schema", "PUBLIC"); 
@@ -53,7 +35,7 @@ public class SnowflakeConnector {
         }
         
         catch (SQLException ex) {
-            System.out.println("connection failed");
+            Logger.getLogger(SnowflakeConnector.class.getName()).log(Level.SEVERE, "unable to connect to SnowFlake", ex);
         }
         
         return conn;
@@ -73,7 +55,7 @@ public class SnowflakeConnector {
         catch(SQLException ex){
               System.out.println("Unable to fetch data");
               
-          }
+        }
      
         return res;
     }
