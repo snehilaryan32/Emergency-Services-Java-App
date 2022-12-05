@@ -7,8 +7,6 @@ package utilPackage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Properties;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -40,23 +38,5 @@ public class SnowflakeConnector {
         
         return conn;
     
-    }
-    
-    public static ResultSet getData(String query){
-        Connection connectToSnow = SnowflakeConnector.connect(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD);
-        ResultSet res = null;
-        try{
-            Statement statement = connectToSnow.createStatement();
-            statement.executeQuery("ALTER SESSION SET JDBC_QUERY_RESULT_FORMAT='JSON'");
-            res = statement.executeQuery(query);
-            
-        }
-        
-        catch(SQLException ex){
-              System.out.println("Unable to fetch data");
-              
-        }
-     
-        return res;
     }
 }

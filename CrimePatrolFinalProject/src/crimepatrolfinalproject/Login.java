@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import utilPackage.SystemConstants;
 import javax.swing.JOptionPane;
+import utilPackage.Helper;
 
 /**
  *
@@ -184,7 +185,7 @@ public class Login extends javax.swing.JFrame {
         String userName = jUserId.getText();
         String passWord = jPassword.getText();
         String pass = null;
-        ResultSet result = SnowflakeConnector.getData("select password from credentials where username='" + userName+"'");
+        ResultSet result = Helper.getData("select password from credentials where username='" + userName+"'");
         
         try {
             while(result.next()){
