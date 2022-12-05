@@ -25,7 +25,7 @@ public class CrimePatrolFinalProject {
         
         SnowflakeConnector conn = new SnowflakeConnector(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD, "MY_WH", "CRIMEPATROL", "PUBLIC");
           
-          Connection newConn = conn.connect(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD);
+          Connection newConn = conn.connect();
           System.err.println(newConn);
           
           try{

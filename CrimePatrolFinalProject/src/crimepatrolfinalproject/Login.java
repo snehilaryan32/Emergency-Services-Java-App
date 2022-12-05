@@ -24,8 +24,8 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     
-    SnowflakeConnector conn = new SnowflakeConnector("SNEHILARYAN", "Breakingbad@1", "MY_WH", "CRIMEPATROL", "PUBLIC");
-    Connection newConn; 
+//    SnowflakeConnector conn = new SnowflakeConnector(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD, "MY_WH", "CRIMEPATROL", "PUBLIC");
+//    Connection newConn; 
     
     public Login() {
         initComponents();
@@ -184,10 +184,10 @@ public class Login extends javax.swing.JFrame {
         String userName = jUserId.getText();
         String passWord = jPassword.getText();
         
-        SnowflakeConnector conn = new SnowflakeConnector("SNEHILARYAN", "Breakingbad@1", "MY_WH", "CRIMEPATROL", "PUBLIC");
-        Connection newConn; 
+        SnowflakeConnector conn = new SnowflakeConnector(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD, "MY_WH", "CRIMEPATROL", "PUBLIC");
+        Connection newConn;
         
-        newConn = conn.connect(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD);
+        newConn = conn.connect();
         System.err.println(newConn);
         try{
             Statement statement = newConn.createStatement();

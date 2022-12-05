@@ -35,18 +35,17 @@ public class SnowflakeConnector {
     
     
     
-    public Connection connect(String userName, String password) {
+    public Connection connect() {
         
         Properties properties = new Properties();
-        properties.put("user", userName); 
-        properties.put("password", password);
-        properties.put("warehouse", "MY_WH");
-        properties.put("db", "CRIMEPATROL"); 
-        properties.put("schema", "PUBLIC"); 
+        properties.put("user", this.user); 
+        properties.put("password", this.password);
+        properties.put("warehouse", this.warehouse);
+        properties.put("db", this.db); 
+        properties.put("schema", this.schema); 
         
         try{
-            String connectStr = "jdbc:snowflake://cfukojb-pm07945.snowflakecomputing.com"; 
-            Connection conn = DriverManager.getConnection(connectStr, properties);
+            conn = DriverManager.getConnection(connectStr, properties);
             return conn;
         }
         
