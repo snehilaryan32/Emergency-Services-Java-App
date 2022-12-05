@@ -183,36 +183,29 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String userName = jUserId.getText();
         String passWord = jPassword.getText();
+        String pass = null;
+        ResultSet result = SnowflakeConnector.getData("select password from credentials where username='" + userName+"'");
         
-        SnowflakeConnector conn = new SnowflakeConnector(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD, "MY_WH", "CRIMEPATROL", "PUBLIC");
-        Connection newConn;
-        
-        newConn = conn.connect();
-        System.err.println(newConn);
-        try{
-            Statement statement = newConn.createStatement();
-            statement.executeQuery("ALTER SESSION SET JDBC_QUERY_RESULT_FORMAT='JSON'");
-            ResultSet res = statement.executeQuery("select password from credentials where username='" + userName+"'");
+        try {
+            while(result.next()){
+                pass = result.getString(1);
+                System.out.println(pass); 
+            }
             
-            while(res.next()){
-                String pass = res.getString(1);
-                System.out.println(pass);
-                if (pass.equals(passWord)) {
+            if (pass.equals(passWord)) {
                     JOptionPane.showMessageDialog(rootPane, "Correct Password");
-                
+                    
                 }
-
+                
                 else{
                     JOptionPane.showMessageDialog(rootPane, "Invalid Username or Password");
-                }
-                
-            }
-          }
-          
-          catch(SQLException ex){
-              System.out.println("Unable to fetch credential");
-              
-          }
+                }            
+            
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
 //        try {
 //            Statement statement = newConn.createStatement();
