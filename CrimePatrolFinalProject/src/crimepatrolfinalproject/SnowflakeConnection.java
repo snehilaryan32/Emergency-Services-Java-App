@@ -20,8 +20,12 @@ public class SnowflakeConnection {
     String warehouse; 
     String db; 
     String schema; 
+    String connectStr = "jdbc:snowflake://cfukojb-pm07945.snowflakecomputing.com"; 
+    Connection conn; 
+    
+    
 
-    public SnowflakeConnection(String user, String password, String warehouse, String db, String schema) {
+    public SnowflakeConnection (String user, String password, String warehouse, String db, String schema) {
         this.user = user;
         this.password = password;
         this.warehouse = warehouse;
@@ -29,20 +33,29 @@ public class SnowflakeConnection {
         this.schema = schema;
     }
     
-    public Connection connect() throws SQLException{
+    
+    
+    public Connection connect() {
         
         Properties properties = new Properties();
-        properties.put("user", user); 
-        properties.put("password", password);
-        properties.put("warehouse", warehouse);
-        properties.put("db", db); 
-        properties.put("schema", schema); 
+        properties.put("user", "SNEHILARYAN"); 
+        properties.put("password", "Breakingbad@1");
+        properties.put("warehouse", "MY_WH");
+        properties.put("db", "CRIMEPATROL"); 
+        properties.put("schema", "PUBLIC"); 
         
-        String connectStr = "jdbc:snowflake://cfukojb-pm07945.snowflakecomputing.com"; 
-        return DriverManager.getConnection(connectStr, properties);
+        try{
+            String connectStr = "jdbc:snowflake://cfukojb-pm07945.snowflakecomputing.com"; 
+            Connection conn = DriverManager.getConnection(connectStr, properties);
+            return conn;
+        }
         
+        catch (SQLException ex) {
+            System.out.println("connection failed");
+        }
         
-        
+        return conn;
+    
     }
         
     
