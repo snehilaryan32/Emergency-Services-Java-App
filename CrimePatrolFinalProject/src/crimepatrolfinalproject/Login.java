@@ -4,12 +4,14 @@
  */
 package crimepatrolfinalproject;
 
+import utilPackage.SnowflakeConnector;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utilPackage.SystemConstants;
 
 /**
  *
@@ -177,10 +179,10 @@ public class Login extends javax.swing.JFrame {
         String userName = jUserId.getText();
         String password = jPassword.getText();
         
-        SnowflakeConnection conn = new SnowflakeConnection("SNEHILARYAN", "Breakingbad@1", "MY_WH", "CRIMEPATROL", "PUBLIC");
+        SnowflakeConnector conn = new SnowflakeConnector("SNEHILARYAN", "Breakingbad@1", "MY_WH", "CRIMEPATROL", "PUBLIC");
         Connection newConn; 
         
-        newConn = conn.connect();
+        newConn = conn.connect(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD);
         System.err.println(newConn);
         try{
             Statement statement = newConn.createStatement();
@@ -189,16 +191,12 @@ public class Login extends javax.swing.JFrame {
             while (res.next()) {
                 String pass = res.getString(1);
               }
-            
-            
-
           }
           
           catch(SQLException ex){
               System.out.println("crimepatrolfinalproject.CrimePatrolFinalProject.main()");
               
           }
-        
         
 //        try {
 //            Statement statement = newConn.createStatement();
