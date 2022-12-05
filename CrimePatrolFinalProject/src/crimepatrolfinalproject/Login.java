@@ -4,12 +4,14 @@
  */
 package crimepatrolfinalproject;
 
+import utilPackage.SnowflakeConnector;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utilPackage.SystemConstants;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,8 +24,8 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     
-    SnowflakeConnection conn = new SnowflakeConnection("SNEHILARYAN", "Breakingbad@1", "MY_WH", "CRIMEPATROL", "PUBLIC");
-    Connection newConn; 
+//    SnowflakeConnector conn = new SnowflakeConnector(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD, "MY_WH", "CRIMEPATROL", "PUBLIC");
+//    Connection newConn; 
     
     public Login() {
         initComponents();
@@ -182,8 +184,8 @@ public class Login extends javax.swing.JFrame {
         String userName = jUserId.getText();
         String passWord = jPassword.getText();
         
-        SnowflakeConnection conn = new SnowflakeConnection("SNEHILARYAN", "Breakingbad@1", "MY_WH", "CRIMEPATROL", "PUBLIC");
-        Connection newConn; 
+        SnowflakeConnector conn = new SnowflakeConnector(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD, "MY_WH", "CRIMEPATROL", "PUBLIC");
+        Connection newConn;
         
         newConn = conn.connect();
         System.err.println(newConn);
@@ -205,15 +207,12 @@ public class Login extends javax.swing.JFrame {
                 }
                 
             }
-            
-            
           }
           
           catch(SQLException ex){
               System.out.println("Unable to fetch credential");
               
           }
-        
         
 //        try {
 //            Statement statement = newConn.createStatement();

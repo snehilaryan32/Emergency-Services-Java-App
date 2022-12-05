@@ -4,8 +4,6 @@
  */
 package LegalDepartment;
 
-import FireDepartment.*;
-
 /**
  *
  * @author sahilpadyal

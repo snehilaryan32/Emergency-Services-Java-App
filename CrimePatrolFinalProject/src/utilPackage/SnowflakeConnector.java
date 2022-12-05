@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package crimepatrolfinalproject;
+package utilPackage;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ import java.util.Properties;
  *
  * @author aryan
  */
-public class SnowflakeConnection {
+public class SnowflakeConnector {
     
     String user;
     String password;
@@ -25,7 +25,7 @@ public class SnowflakeConnection {
     
     
 
-    public SnowflakeConnection (String user, String password, String warehouse, String db, String schema) {
+    public SnowflakeConnector (String user, String password, String warehouse, String db, String schema) {
         this.user = user;
         this.password = password;
         this.warehouse = warehouse;
@@ -38,15 +38,14 @@ public class SnowflakeConnection {
     public Connection connect() {
         
         Properties properties = new Properties();
-        properties.put("user", "SNEHILARYAN"); 
-        properties.put("password", "Breakingbad@1");
-        properties.put("warehouse", "MY_WH");
-        properties.put("db", "CRIMEPATROL"); 
-        properties.put("schema", "PUBLIC"); 
+        properties.put("user", this.user); 
+        properties.put("password", this.password);
+        properties.put("warehouse", this.warehouse);
+        properties.put("db", this.db); 
+        properties.put("schema", this.schema); 
         
         try{
-            String connectStr = "jdbc:snowflake://cfukojb-pm07945.snowflakecomputing.com"; 
-            Connection conn = DriverManager.getConnection(connectStr, properties);
+            conn = DriverManager.getConnection(connectStr, properties);
             return conn;
         }
         
