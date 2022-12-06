@@ -9,10 +9,15 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utilPackage.Helper;
+import utilPackage.ResultSetMapper;
 import utilPackage.SystemConstants;
+import utilPackage.SendNotification;
+
 
 /**
  *
@@ -25,7 +30,25 @@ public class CrimePatrolFinalProject {
      */
     public static void main(String[] args){
         
-        new Login().setVisible(true);
+//        ResultSetMapper<Credentials> credentialsResultSetMapper = new ResultSetMapper<Credentials>();
+//        
+//        ResultSet resultSet = null;
+//        
+//        resultSet = Helper.getData("select * from credentials");
+//        
+//        List<Credentials> credList = credentialsResultSetMapper.mapResultSetToObject(resultSet, Credentials.class);
+//        
+//        for(Credentials cred: credList) {
+//            System.out.println("UserName: " + cred.getUserName() + " and Password: " + cred.getPassword());
+//        }
+//        
+//  
+//        new Login().setVisible(true);
+        
+        SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "aryan.s@northeastern.edu");
+    //    SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "bisht.b@northeastern.edu");
+    //    SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "padyal.s@northeastern.edu");
+        
         
 //       Properties properties = new Properties();
 //        properties.put("user", "SNEHILARYAN"); 
