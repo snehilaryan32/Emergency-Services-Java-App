@@ -8,14 +8,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.activation.*;
+
 /**
  *
  * @author aryan
  */
 public class SendNotification {
     
-    public static void sendEmailNotification(String subject, String body, String recipient){
+    public static String sendEmailNotification(String subject, String body, String recipient){
+        
+        String status = null;
         Properties properties = new Properties();
         
         properties.put("mail.smtp.auth", "true"); 
@@ -24,7 +26,7 @@ public class SendNotification {
         properties.put("mail.smtp.port", "587"); 
         
         String myAccountEmail = SystemConstants.SENDER_EMAIL_ADDRESS; 
-        String recepient = "snehil.aryan7823@gmail.com"; 
+        String recepient = recipient; 
         String password = SystemConstants.EMAIL_ADDRESS_PASSWORD; 
         
         Session session = Session.getInstance(properties, new Authenticator() {
@@ -45,6 +47,8 @@ public class SendNotification {
             message.setSubject(subject);
             message.setText(body);
             Transport.send(message);
+            status = "Notification Sent";
+            
          //   return  message; 
             
         }
@@ -52,6 +56,10 @@ public class SendNotification {
         catch(Exception ex){
             Logger.getLogger(SendNotification.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        System.out.println(status);
+        
+        return status; 
         
         
     }
