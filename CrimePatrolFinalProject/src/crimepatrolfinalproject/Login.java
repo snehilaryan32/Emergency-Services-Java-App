@@ -9,11 +9,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utilPackage.SystemConstants;
 import javax.swing.JOptionPane;
 import utilPackage.Helper;
+import utilPackage.ResultSetMapper;
 
 /**
  *
@@ -182,27 +184,15 @@ public class Login extends javax.swing.JFrame {
         String userName = jUserId.getText();
         String passWord = jPassword.getText();
         String pass = null;
-        ResultSet result = Helper.getData("select password from credentials where username='" + userName+"'");
+        ResultSet result = Helper.getData("select * from credentials where username='" + userName+"'");
         
-        try {
-            while(result.next()){
-                pass = result.getString(1);
-                System.out.println(pass); 
-            }
-            
-            if (pass.equals(passWord)) {
-                    JOptionPane.showMessageDialog(rootPane, "Correct Password");
-                    
-                }
-                
-                else{
-                    JOptionPane.showMessageDialog(rootPane, "Invalid Username or Password");
-                }            
-            
-        }
+        ResultSetMapper<Credentials> credsRSMapper = new ResultSetMapper<Credentials>();
+        List<Credentials> credList = credsRSMapper.mapResultSetToObject(result, Credentials.class);
         
-        catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        if(credList.size() == 1 && credList.get(0).getPassword().equals(passWord)) {
+            JOptionPane.showMessageDialog(rootPane, "Correct Password");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Invalid Username or Password");
         }
     }//GEN-LAST:event_jLoginActionPerformed
 
