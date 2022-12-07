@@ -10,9 +10,9 @@ package model;
  */
 public class Location {
     float[] longtude;
-    Comminity comminity; 
+    Community comminity; 
 
-    public Location(float[] longtude, Comminity comminity) {
+    public Location(float[] longtude, Community comminity) {
         this.longtude = longtude;
         this.comminity = comminity;
     }
@@ -21,7 +21,7 @@ public class Location {
         return longtude;
     }
 
-    public Comminity getComminity() {
+    public Community getComminity() {
         return comminity;
     }
 
@@ -29,7 +29,7 @@ public class Location {
         this.longtude = longtude;
     }
 
-    public void setComminity(Comminity comminity) {
+    public void setComminity(Community comminity) {
         this.comminity = comminity;
     }
     
