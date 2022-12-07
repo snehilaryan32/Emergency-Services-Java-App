@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utilPackage.S3BucketOperations; 
 import utilPackage.Helper;
 import utilPackage.ResultSetMapper;
 import utilPackage.SystemConstants;
@@ -45,7 +46,7 @@ public class CrimePatrolFinalProject {
 //  
 //        new Login().setVisible(true);
         
-        SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "aryan.s@northeastern.edu");
+    //    SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "aryan.s@northeastern.edu");
     //    SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "bisht.b@northeastern.edu");
     //    SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "padyal.s@northeastern.edu");
         
@@ -67,6 +68,13 @@ public class CrimePatrolFinalProject {
 //        catch (SQLException ex) {
 //            System.out.println("connection failed");
 //        }
+
+//**************************CODE TO TEST AWS***************************************************
+
+
+        S3BucketOperations.putObject("crime-patrol-evidence", "C:/Users/aryan/Desktop/Capture.JPG", "tested-from-final-froject.JPG");
+
+        
 
         }
 
