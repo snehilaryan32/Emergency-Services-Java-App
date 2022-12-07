@@ -8,13 +8,13 @@ package model;
  *
  * @author aryan
  */
-public class Comminity {
+public class Community {
     String name; 
     String city; 
     int zipcode; 
     int heatLevel; 
 
-    public Comminity(String name, String city, int zipcode, int heatLevel) {
+    public Community(String name, String city, int zipcode, int heatLevel) {
         this.name = name;
         this.city = city;
         this.zipcode = zipcode;

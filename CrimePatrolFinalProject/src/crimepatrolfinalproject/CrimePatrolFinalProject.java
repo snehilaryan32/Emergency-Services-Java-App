@@ -13,6 +13,11 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Citizen;
+import model.Community;
+import model.Location;
+import utilPackage.S3BucketOperations;
+import utilPackage.Helper; 
 import utilPackage.Helper;
 import utilPackage.ResultSetMapper;
 import utilPackage.SystemConstants;
@@ -45,7 +50,7 @@ public class CrimePatrolFinalProject {
 //  
 //        new Login().setVisible(true);
         
-        SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "aryan.s@northeastern.edu");
+    //    SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "aryan.s@northeastern.edu");
     //    SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "bisht.b@northeastern.edu");
     //    SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "padyal.s@northeastern.edu");
         
@@ -67,6 +72,27 @@ public class CrimePatrolFinalProject {
 //        catch (SQLException ex) {
 //            System.out.println("connection failed");
 //        }
+
+//**************************CODE TO TEST AWS***************************************************
+
+
+
+
+    //    S3BucketOperations.putObjectToS3("crime-patrol-evidence", "C:/Users/aryan/Desktop/Capture.JPG", "tested-from-final-froject.JPG");
+    //    S3BucketOperations.getObjectFromS3("crime-patrol-evidence", "CaptureFromAws.JPG", "tested-from-final-froject.JPG"); 
+    
+        Helper.insertData("insert into credentials values('12334', 'Breakingbad@1')");
+        String query = "insert into person values(12345, 'bashu', 1234, 'aryan.s@northeastern.edu', 9334117595, to_date('03-02-1998', 'mm-dd-yyyy'), 'A+', 'Male', 'Citizen')";
+        Helper.insertData(query);
+        
+        Community comm = new Community("Roxbury", "Boston", 0, 10202);
+        
+   
+        
+        Location location = new Location(1000, 12.5, 12.5, comm);
+        Citizen cit = new Citizen(0, false, false, "Sahil", location, "helloEmail", Long.parseLong("9334117595"), null, 12349876, "A+", "Citizen", "Male");
+        cit.addToPersonTable(cit);
+        
 
         }
 
