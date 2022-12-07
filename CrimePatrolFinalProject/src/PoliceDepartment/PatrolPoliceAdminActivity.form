@@ -199,7 +199,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="View"/>
+            <Property name="text" type="java.lang.String" value="View Case"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField1">
