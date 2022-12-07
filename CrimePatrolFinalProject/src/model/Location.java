@@ -49,7 +49,7 @@ public class Location {
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
-
+    
     public void setComminity(Community comminity) {
         this.comminity = comminity;
     }
