@@ -72,7 +72,8 @@ public class CrimePatrolFinalProject {
 //**************************CODE TO TEST AWS***************************************************
 
 
-        S3BucketOperations.putObject("crime-patrol-evidence", "C:/Users/aryan/Desktop/Capture.JPG", "tested-from-final-froject.JPG");
+    //    S3BucketOperations.putObjectToS3("crime-patrol-evidence", "C:/Users/aryan/Desktop/Capture.JPG", "tested-from-final-froject.JPG");
+        S3BucketOperations.getObjectFromS3("crime-patrol-evidence", "CaptureFromAws.JPG", "tested-from-final-froject.JPG"); 
 
         
 

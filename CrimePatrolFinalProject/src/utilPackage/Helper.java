@@ -29,4 +29,20 @@ public class Helper {
         return res;
     }
     
+    public static int insertData(String query){
+        Connection connectToSnow = SnowflakeConnector.connect(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD);
+        int rowsInserted = 0; 
+        
+        try{
+            Statement statement = connectToSnow.createStatement();
+            rowsInserted = statement.executeUpdate(query); 
+        }
+        
+        catch(SQLException ex){
+            System.out.println("Unable to fetch data");
+        }
+        
+        return rowsInserted;
+    }
+    
 }
