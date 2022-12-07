@@ -90,7 +90,7 @@ public class PatrolPoliceAdminActivity extends javax.swing.JFrame {
 
         jLabel5.setText("Case ID");
 
-        jButton1.setText("View");
+        jButton1.setText("View Case");
 
         jTextField1.setText("Search");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
