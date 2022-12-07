@@ -15,8 +15,10 @@ import java.sql.Statement;
  */
 public class Helper {
     
+    public static Connection connect = SnowflakeConnector.connect(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD);
+    
     public static ResultSet getData(String query){
-        Connection connectToSnow = SnowflakeConnector.connect(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD);
+        Connection connectToSnow = Helper.connect;
         ResultSet res = null;
         try{
             Statement statement = connectToSnow.createStatement();
@@ -30,7 +32,7 @@ public class Helper {
     }
     
     public static int insertData(String query){
-        Connection connectToSnow = SnowflakeConnector.connect(SystemConstants.SNOWFLAKE_ADMIN_UNAME, SystemConstants.SNOWFLAKE_ADMIN_PASSWORD);
+        Connection connectToSnow = Helper.connect;
         int rowsInserted = 0; 
         
         try{
@@ -39,7 +41,8 @@ public class Helper {
         }
         
         catch(SQLException ex){
-            System.out.println("Unable to fetch data");
+            ex.printStackTrace();
+            
         }
         
         return rowsInserted;
