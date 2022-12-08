@@ -117,7 +117,6 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jDateOfBirth" min="-2" pref="129" max="-2" attributes="0"/>
                               <Component id="jContact" min="-2" pref="129" max="-2" attributes="0"/>
                               <Component id="jAddress" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
                           </Group>
@@ -175,12 +174,9 @@
                   </Group>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jLabel11" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jPassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jDateOfBirth" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="jLabel11" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
@@ -288,8 +284,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Clear"/>
           </Properties>
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateOfBirth">
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPassword">
           <Properties>

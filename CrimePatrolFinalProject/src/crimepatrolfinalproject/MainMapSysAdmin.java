@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputListener;
+import model.Community;
+import model.Location;
 import org.jxmapviewer.OSMTileFactoryInfo;
 import org.jxmapviewer.VirtualEarthTileFactoryInfo;
 import org.jxmapviewer.input.PanMouseInputListener;
@@ -87,7 +89,7 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         jCommName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLattitude = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jAddLocation = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -167,15 +169,15 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
 
         jLabel5.setText("Lattitude");
 
-        jButton1.setText("Add Location");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jAddLocation.setText("Add Location");
+        jAddLocation.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jAddLocationMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jAddLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jAddLocationActionPerformed(evt);
             }
         });
 
@@ -193,6 +195,11 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         jLabel4.setText("Community");
 
         homeBtn.setText("Home");
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("Back");
 
@@ -248,7 +255,7 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
                             .addComponent(jButton2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(53, 53, 53)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jAddLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel3)
@@ -286,7 +293,7 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLongitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jAddLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homeBtn)
@@ -359,22 +366,36 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCommNameActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jAddLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddLocationMouseClicked
         // TODO add your handling code here:
-        String name = jCommName.getText();
+        String latitude = jLattitude.getText();
+        String longitude = jLongitude.getText();
         
-    }//GEN-LAST:event_jButton1MouseClicked
+        Location loc = new Location(latitude,longitude);
+        
+        
+    }//GEN-LAST:event_jAddLocationMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jAddLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddLocationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jAddLocationActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
+        String name = jCommName.getText();
+        int id = GenerateId.newCommunityId();
+        
+        Community comm = new Community(name, id, 0);
+        
+        comm.addToCommunityTable(comm);
 
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,7 +441,7 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
     private javax.swing.JButton cmdClear;
     private javax.swing.JComboBox<String> comboMapType;
     private javax.swing.JButton homeBtn;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jAddLocation;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JTextField jCommName;
