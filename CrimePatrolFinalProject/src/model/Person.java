@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Person {
     String name; 
-    Location address; 
+    int address; 
     String email; 
     long phoneNo; 
     Date dateOfBirth; 
@@ -22,7 +22,7 @@ public class Person {
     String role; 
     String gender; 
 
-    public Person(String name, Location address, String email, long phoneNo, Date dateOfBirth, int id, String bloodGroup, String role, String gender) {
+    public Person(String name, int address, String email, long phoneNo, Date dateOfBirth, int id, String bloodGroup, String role, String gender) {
         this.name = name;
         this.address = address;
         this.email = email;
@@ -38,7 +38,7 @@ public class Person {
         return name;
     }
 
-    public Location getAddress() {
+    public int getAddress() {
         return address;
     }
 
@@ -74,7 +74,7 @@ public class Person {
         this.name = name;
     }
 
-    public void setAddress(Location address) {
+    public void setAddress(int address) {
         this.address = address;
     }
 
