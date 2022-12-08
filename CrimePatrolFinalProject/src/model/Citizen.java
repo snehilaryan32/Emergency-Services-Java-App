@@ -19,7 +19,7 @@ public class Citizen extends Person{
     boolean victim; 
 
 
-    public Citizen(int wantedLevel, boolean suspect, boolean victim, String name, Location address, String email, long phoneNo, Date dateOfBirth, int id, String bloodGroup, String role, String gender) {
+    public Citizen(int wantedLevel, boolean suspect, boolean victim, String name, int address, String email, long phoneNo, Date dateOfBirth, int id, String bloodGroup, String role, String gender) {
         super(name, address, email, phoneNo, dateOfBirth, id, bloodGroup, role, gender);
         this.wantedLevel = wantedLevel;
         this.suspect = suspect;
@@ -52,7 +52,7 @@ public class Citizen extends Person{
     
     public void addToPersonTable(Citizen cit){
         
-        String insertQuery = "insert into person values ( " + cit.getId() + ", '" + cit.getName() + "'," + cit.getAddress().getLocationId()+ ",'" + cit.getEmail() + "'," + cit.getPhoneNo() + ", to_date('03-02-1998', 'dd-mm-yyyy'),'" + cit.getBloodGroup() + "', '" + cit.getGender() + "', '" + cit.getRole() + "')"; 
+        String insertQuery = "insert into person values ( " + cit.getId() + ", '" + cit.getName() + "'," + cit.getAddress() + ",'" + cit.getEmail() + "'," + cit.getPhoneNo() + ", to_date('03-02-1998', 'dd-mm-yyyy'),'" + cit.getBloodGroup() + "', '" + cit.getGender() + "', '" + cit.getRole() + "')"; 
         Helper.insertData(insertQuery); 
         
         
