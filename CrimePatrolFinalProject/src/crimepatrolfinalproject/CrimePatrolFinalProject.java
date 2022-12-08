@@ -85,11 +85,11 @@ public class CrimePatrolFinalProject {
         String query = "insert into person values(12345, 'bashu', 1234, 'aryan.s@northeastern.edu', 9334117595, to_date('03-02-1998', 'mm-dd-yyyy'), 'A+', 'Male', 'Citizen')";
         Helper.insertData(query);
         
-        Community comm = new Community("Roxbury", "Boston", 0, 10202);
+        Community comm = new Community("Roxbury", 0, 10202);
         
    
         
-        Location location = new Location(1000, 12.5, 12.5, comm);
+        Location location = new Location(1000, 12.5);
         Citizen cit = new Citizen(0, false, false, "Sahil", location, "helloEmail", Long.parseLong("9334117595"), null, 12349876, "A+", "Citizen", "Male");
         cit.addToPersonTable(cit);
         

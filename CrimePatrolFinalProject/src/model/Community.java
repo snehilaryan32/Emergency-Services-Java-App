@@ -4,17 +4,19 @@
  */
 package model;
 
+
 /**
  *
  * @author aryan
  */
+import utilPackage.Helper;
 public class Community {
     String name; 
     String city; 
     int zipcode; 
     int heatLevel; 
 
-    public Community(String name, String city, int zipcode, int heatLevel) {
+    public Community(String name, int zipcode, int heatLevel) {
         this.name = name;
         this.city = city;
         this.zipcode = zipcode;
@@ -37,6 +39,9 @@ public class Community {
         return heatLevel;
     }
     
-    
+    public void addToCommunityTable(Community comm){
+        String query = "insert into community values(" + comm.getZipcode() + ", '" + comm.getName() + "', " + comm.getHeatLevel() + ")";
+        Helper.insertData(query);
+    }
     
 }
