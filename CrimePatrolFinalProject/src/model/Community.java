@@ -13,7 +13,7 @@ import utilPackage.Helper;
 public class Community {
     String name; 
     String city; 
-    int zipcode; 
+    int zipcode;   
     int heatLevel; 
 
     public Community(String name, int zipcode, int heatLevel) {
