@@ -11,7 +11,7 @@ package model;
 public class Community {
     String name; 
     String city; 
-    int zipcode; 
+    int zipcode;   
     int heatLevel; 
 
     public Community(String name, String city, int zipcode, int heatLevel) {
