@@ -35,8 +35,17 @@ public class CrimePatrolFinalProject {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException{
+    public static void main(String[] args) throws SQLException, InstantiationException{
         
+        
+        
+          List<Credentials> credList = Helper.getResultSet(Credentials.class, "credentials");
+          
+          for (Credentials cred : credList){
+              System.out.println(String.valueOf(cred.getId()) + ":" + cred.getUserName());
+              
+          }
+          
 //        ResultSetMapper<Community> credentialsResultSetMapper = new ResultSetMapper<Community>();
 //        
 //        ResultSet resultSet = null;

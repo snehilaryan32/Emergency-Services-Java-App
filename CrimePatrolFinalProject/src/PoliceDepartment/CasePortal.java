@@ -6,8 +6,10 @@ package PoliceDepartment;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import model.Location;
 import utilPackage.GenerateId;
 import utilPackage.Helper;
@@ -36,7 +38,7 @@ public class CasePortal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        jBackButton = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -55,7 +57,7 @@ public class CasePortal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jCaseMasterTable = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         jPoliceId = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -75,9 +77,19 @@ public class CasePortal extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Case Records");
 
-        jButton5.setText("Back");
+        jBackButton.setText("Back");
+        jBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackButtonActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Home");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,7 +103,7 @@ public class CasePortal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addComponent(jBackButton)
                 .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,7 +111,7 @@ public class CasePortal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                    .addComponent(jBackButton)
                     .addComponent(jButton6))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
@@ -139,12 +151,17 @@ public class CasePortal extends javax.swing.JFrame {
         });
 
         jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Delete");
 
         jButton4.setText("Reset");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jCaseMasterTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -152,10 +169,10 @@ public class CasePortal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Date", "Case ID", "Precinct ID", "Police ID", "Lawyer ID", "Detective ID", "Case Status", "Description"
+                "Case ID", "Date", "Precinct ID", "Police ID", "Lawyer ID", "Detective ID", "Case Status", "Description"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jCaseMasterTable);
 
         jLabel9.setText("Police ID");
 
@@ -167,6 +184,11 @@ public class CasePortal extends javax.swing.JFrame {
         jTextField8.setText("jTextField8");
 
         jButton7.setText("View Evidence");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Location");
 
@@ -196,7 +218,6 @@ public class CasePortal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8)
@@ -233,18 +254,24 @@ public class CasePortal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCaseType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jButton7)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jCaseType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addGap(188, 188, 188)
-                        .addComponent(jButton7)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton4)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -347,6 +374,9 @@ public class CasePortal extends javax.swing.JFrame {
         int location = Integer.parseInt(jLocation.getText());
         int caseId = GenerateId.newCaseId();
         
+        DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
+        Object[] obj = {caseId, dateOfCase, precinctId, policeId, lawyerId, detectiveId, caseStatus, description};
+        tblModel.addRow(obj);
         
         try { 
             
@@ -359,8 +389,8 @@ public class CasePortal extends javax.swing.JFrame {
             Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        
+
+   
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -375,6 +405,48 @@ public class CasePortal extends javax.swing.JFrame {
     private void jCaseStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCaseStatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCaseStatusActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+        
+        try {
+          
+            List<Case> objList = Helper.getResultSet(Case.class, "case");
+            
+            for(Case i : objList){
+                Integer iD = i.getCaseID(); 
+                Date date = i.getDateTime(); 
+                Integer precinct = 1234;
+                Integer policeId = i.getPoliceId(); 
+                Integer lawyerId = i.getLawyerId(); 
+                Integer detectiveId = i.getDetectiveId();
+                String caseStatus = i.getCaseStatus(); 
+                String description = i.getDescription();
+                
+                DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
+                Object[] obj = {iD, date, precinct, policeId, lawyerId, detectiveId, caseStatus, description};
+                tblModel.addRow(obj);
+                   
+            }
+            
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
+        PoliceDept obj = new PoliceDept(); 
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jBackButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -413,13 +485,14 @@ public class CasePortal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBackButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JTable jCaseMasterTable;
     private javax.swing.JComboBox<String> jCaseStatus;
     private javax.swing.JComboBox<String> jCaseType;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -444,7 +517,6 @@ public class CasePortal extends javax.swing.JFrame {
     private javax.swing.JTextField jPoliceId;
     private javax.swing.JTextField jPrecinctId;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }

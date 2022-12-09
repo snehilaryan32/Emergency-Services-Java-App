@@ -14,6 +14,7 @@ import utilPackage.Helper;
  */
 public class Case {
     
+    
     Integer CaseID;
     String description;
     Location location; 

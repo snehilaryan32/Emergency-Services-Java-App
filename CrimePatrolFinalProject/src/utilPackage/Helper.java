@@ -5,6 +5,8 @@
 package utilPackage;
 
 import PoliceDepartment.Precinct;
+import com.amazonaws.services.s3.model.ObjectListing;
+import crimepatrolfinalproject.Credentials;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +14,9 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Community;
 import model.Location;
 
@@ -132,6 +137,30 @@ public class Helper {
         
         
         return pre;
+    }
+        
+    //Function to fetch data from
+        
+        public static <T> List<T> getResultSet(Class<T> c, String table) throws InstantiationException{
+        Object obj = null;  
+        List<T> objList = null;
+        try {
+            
+            
+            obj = c.newInstance();
+            ResultSet result = Helper.getData("select * from " + table);
+            ResultSetMapper<T> credsRSMapper = new ResultSetMapper<T>();
+            objList = credsRSMapper.mapResultSetToObject(result, c);
+            
+            
+        } 
+        
+        catch (IllegalAccessException ex) {
+            Logger.getLogger(Helper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return objList;
+            
     }
     
     
