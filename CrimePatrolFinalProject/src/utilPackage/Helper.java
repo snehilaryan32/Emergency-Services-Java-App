@@ -119,7 +119,7 @@ public class Helper {
         
         if(locationId != 0){
             Location loc = Helper.fetchLocation(locationId);
-            pre = new Precinct(locationId, loc, locationId);   
+            pre = new Precinct(Id, loc, locationId);   
         }
         
         
