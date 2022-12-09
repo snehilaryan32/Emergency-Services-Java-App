@@ -53,5 +53,6 @@ public class Location {
     public void setComminity(Community comminity) {
         this.comminity = comminity;
     }
+    
 
 }
