@@ -55,9 +55,8 @@ public class Location {
     public void setComminity(Community comminity) {
         this.comminity = comminity;
     }
-    
+   
     public void addToLocationTable(Location loc){
         String query = "insert into location values(" + loc.getLatitude() + ", " + loc.getLongtude() + ")";
         Helper.insertData(query);
-
 }

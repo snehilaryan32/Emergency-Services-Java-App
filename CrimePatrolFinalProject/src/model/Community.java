@@ -12,23 +12,19 @@ package model;
 import utilPackage.Helper;
 public class Community {
     String name; 
-    String city; 
+   // String city; 
     int zipcode;   
     int heatLevel; 
 
     public Community(String name, int zipcode, int heatLevel) {
         this.name = name;
-        this.city = city;
+      //  this.city = city;
         this.zipcode = zipcode;
         this.heatLevel = heatLevel;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getCity() {
-        return city;
     }
 
     public int getZipcode() {
@@ -43,5 +39,4 @@ public class Community {
         String query = "insert into community values(" + comm.getZipcode() + ", '" + comm.getName() + "', " + comm.getHeatLevel() + ")";
         Helper.insertData(query);
     }
-    
 }
