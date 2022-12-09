@@ -56,6 +56,7 @@ public class SignUp extends javax.swing.JFrame {
         jSubmitInfo = new javax.swing.JButton();
         backToLogin = new javax.swing.JButton();
         jDateOfBirth = new com.toedter.calendar.JDateChooser();
+        jClear = new javax.swing.JButton();
         jPassword = new javax.swing.JPasswordField();
         jClear1 = new javax.swing.JButton();
 
@@ -168,6 +169,20 @@ public class SignUp extends javax.swing.JFrame {
                                             .addGap(18, 18, 18)
                                             .addComponent(jName, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(54, 54, 54)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jContact, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(54, 54, 54)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jClear)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,6 +228,7 @@ public class SignUp extends javax.swing.JFrame {
                             .addGap(11, 11, 11)))
                     .addComponent(jDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
+
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -262,14 +278,11 @@ public class SignUp extends javax.swing.JFrame {
         String address = jAddress.getText(); 
         int personID = GenerateId.newPersonId();
         
-
         Citizen cit = new Citizen(0, false, false, name, Integer.parseInt(address), email, Long.parseLong(phoneNo), dateOfBirth, personID, bloodGroup, "Citizen", gender);
         cit.addToPersonTable(cit);
         
         Credentials cred = new Credentials(String.valueOf(personID), password);
         cred.addToCredentialTable(cred);
-      
-        
      
         //Helper.insertData("insert into values('" + personID + "','" 
         //        + name + "','" + address + "','" + email + "','" + "','" 
@@ -331,7 +344,6 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JTextField jBloodGroup;
     private javax.swing.JButton jClear1;
     private javax.swing.JTextField jContact;
-    private com.toedter.calendar.JDateChooser jDateOfBirth;
     private javax.swing.JTextField jEmail;
     private javax.swing.JComboBox<String> jGender;
     private javax.swing.JLabel jLabel1;

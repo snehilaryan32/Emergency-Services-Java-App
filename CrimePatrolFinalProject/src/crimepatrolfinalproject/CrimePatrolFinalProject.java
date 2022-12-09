@@ -75,10 +75,6 @@ public class CrimePatrolFinalProject {
 //            System.out.println("connection failed");
 //        }
 
-//**************************CODE TO TEST AWS***************************************************
-
-
-
 
     //    S3BucketOperations.putObjectToS3("crime-patrol-evidence", "C:/Users/aryan/Desktop/Capture.JPG", "tested-from-final-froject.JPG");
     //    S3BucketOperations.getObjectFromS3("crime-patrol-evidence", "CaptureFromAws.JPG", "tested-from-final-froject.JPG"); 
@@ -101,7 +97,18 @@ public class CrimePatrolFinalProject {
 //        Citizen cit = new Citizen(0, false, false, "Sahil", location, "helloEmail", Long.parseLong("9334117595"), null, 12349876, "A+", "Citizen", "Male");
 //        cit.addToPersonTable(cit);8000001
 
-        //*************TestFetchCommunity**************************
+    
+        Helper.insertData("insert into credentials values('12334', 'Breakingbad@1')");
+        String query = "insert into person values(12345, 'bashu', 1234, 'aryan.s@northeastern.edu', 9334117595, to_date('03-02-1998', 'mm-dd-yyyy'), 'A+', 'Male', 'Citizen')";
+        Helper.insertData(query);
+        
+        Community comm = new Community("Roxbury", 0, 10202);
+        
+   
+        
+        Location location = new Location(1000, 12.5);
+        Citizen cit = new Citizen(0, false, false, "Sahil", location, "helloEmail", Long.parseLong("9334117595"), null, 12349876, "A+", "Citizen", "Male");
+        cit.addToPersonTable(cit);
         
 //        Community comm = Helper.fetchCommunity(8000001);
 //        System.out.println(comm.getName());

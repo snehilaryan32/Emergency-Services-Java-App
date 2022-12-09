@@ -4,6 +4,8 @@
  */
 package model;
 
+import utilPackage.Helper;
+
 /**
  *
  * @author aryan
@@ -15,7 +17,7 @@ public class Location {
     double latitude; 
     Community comminity; 
 
-    public Location(int locationId, double longtude, double latitude, Community comminity) {
+    public Location(String locationId, String longtude) {
         this.locationId = locationId;
         this.longtude = longtude;
         this.latitude = latitude;
@@ -49,10 +51,12 @@ public class Location {
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
-
+    
     public void setComminity(Community comminity) {
         this.comminity = comminity;
     }
-    
-
+   
+    public void addToLocationTable(Location loc){
+        String query = "insert into location values(" + loc.getLatitude() + ", " + loc.getLongtude() + ")";
+        Helper.insertData(query);
 }
