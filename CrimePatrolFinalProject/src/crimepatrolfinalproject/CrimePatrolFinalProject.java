@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 import model.Citizen;
 import model.Community;
 import model.Location;
-import utilPackage.S3BucketOperations;
+//import utilPackage.S3BucketOperations;
 import utilPackage.Helper; 
 import utilPackage.Helper;
 import utilPackage.ResultSetMapper;
@@ -106,9 +106,9 @@ public class CrimePatrolFinalProject {
         
    
         
-        Location location = new Location(1000, 12.5);
-        Citizen cit = new Citizen(0, false, false, "Sahil", location, "helloEmail", Long.parseLong("9334117595"), null, 12349876, "A+", "Citizen", "Male");
-        cit.addToPersonTable(cit);
+//        Location location = new Location(1000, 12.5);
+//        Citizen cit = new Citizen(0, false, false, "Sahil", location, "helloEmail", Long.parseLong("9334117595"), null, 12349876, "A+", "Citizen", "Male");
+//        cit.addToPersonTable(cit);
         
 //        Community comm = Helper.fetchCommunity(8000001);
 //        System.out.println(comm.getName());
