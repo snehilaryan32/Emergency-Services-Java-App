@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import model.Community;
 import model.Location;
 
@@ -50,6 +53,11 @@ public class Helper {
         }
         
         return rowsInserted;
+    }
+    
+    public static String getValidSnowFlkDate(Date inputDate) {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");  
+        return dateFormat.format(inputDate);
     }
     
     public static Community fetchCommunity(int communityId){

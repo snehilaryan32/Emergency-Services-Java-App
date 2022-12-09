@@ -123,7 +123,7 @@ public class Case {
     }
 
     public void addToCaseTable(Case cas){
-        String query = "insert into case values(" + cas.getCaseID() + ", '" + cas.getDescription()+ "', " + cas.getLocation().getLocationId() +  ", " + cas.getLawyerId() + ", " + cas.getPrecinct().getPrecinctId() + ", " + cas.getPoliceId() + ", '" + getEmerStringType() + "', to_date('03-02-1998', 'dd-mm-yyyy') ,'" + cas.getCaseStatus() + "'," + cas.getDetectiveId() + ")";
+        String query = "insert into case values(" + cas.getCaseID() + ", '" + cas.getDescription()+ "', " + cas.getLocation().getLocationId() +  ", " + cas.getLawyerId() + ", " + cas.getPrecinct().getPrecinctId() + ", " + cas.getPoliceId() + ", '" + getEmerStringType() + "','" + Helper.getValidSnowFlkDate(cas.getDateTime()) + "','" + cas.getCaseStatus() + "'," + cas.getDetectiveId() + ")";
         Helper.getData(query);
     }
     
