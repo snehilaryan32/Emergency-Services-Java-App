@@ -68,8 +68,10 @@ public class Police extends Person{
     }
     
     public void addToPoliceTable(Police police){
-        String query = "insert into location values(" + police.getCaseid() +",'" + police.getName() +",'" + police.getPrecinctid() + ", " + police.getId() + ", '" + police.getRank() + ",'"+ police.getGender() + ",'" + police.getEmail() + ",'" + police.getBloodGroup()+ ",'"+ police.getDateOfBirth()+ ",'" + police.getPerformance() + ","+ police.getAddress() + "," + police.getPhoneNo() + ")";
+        String insertQuery = "insert into person values ( " + police.getId() + ", '" + police.getName() + "'," + police.getAddress() + ",'" + police.getEmail() + "'," + police.getPhoneNo() + ", to_date('03-02-1998', 'dd-mm-yyyy'),'" + police.getBloodGroup() + "', '" + police.getGender() + "', '" + police.getRole() + "')";
+        String query = "insert into police values(" + police.getId() + ",'" + police.getName() + "','" + police.getRank() + "'," + police.getPrecinctid() + ",'" + police.getPerformance() + "')";
         Helper.insertData(query);
+        Helper.insertData(insertQuery);
     
     
 }

@@ -19,8 +19,8 @@ public class GenerateId {
     public static int locationID = 7000000;
     public static int communityID = 8000000;
     public static int hospitalID  = 9000000;
-    public static int precinctID = 10000000; 
-    public static int fireStationID = 20000000;
+    public static int precinctID = 77000000; 
+    public static int fireStationID = 88000000;
   
     public static int newPersonId(){
         GenerateId.personId = GenerateId.personId + 1;
