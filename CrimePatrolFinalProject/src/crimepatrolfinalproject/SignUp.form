@@ -207,6 +207,7 @@
                               <Component id="jLabel5" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           </Group>
+                      </Group>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jPassword" alignment="3" min="-2" max="-2" attributes="0"/>
