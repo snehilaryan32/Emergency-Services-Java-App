@@ -195,11 +195,12 @@ public class Login extends javax.swing.JFrame {
         if(credList.size() == 1 && credList.get(0).getPassword().equals(passWord)) {
             JOptionPane.showMessageDialog(rootPane, "Correct Password");
             
-//            if(Integer.parseInt(userName) < 2000000){
-//                CitizenMenu obj = new CitizenMenu(); 
-//                obj.setVisible(true);
-//                obj.dispose();
-//            }
+            if(Integer.parseInt(userName) < 2000000){
+                CitizenMenu obj = new CitizenMenu(); 
+                System.out.println("Citezen Logged in");
+                obj.setVisible(true);
+                dispose();
+            }
             
             
         } else {
