@@ -3,25 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package crimepatrolfinalproject;
-import utilPackage.SnowflakeConnector;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.Citizen;
-import model.Community;
-import model.Location;
-import utilPackage.S3BucketOperations;
-import utilPackage.Helper; 
-import utilPackage.Helper;
-import utilPackage.ResultSetMapper;
-import utilPackage.SystemConstants;
-import utilPackage.SendNotification;
+//import utilPackage.SnowflakeConnector;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
+//import java.sql.Statement;
+//import java.util.List;
+//import java.util.Properties;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
+//import model.Citizen;
+//import model.Community;
+//import model.Location;
+///import utilPackage.S3BucketOperations;
+//import utilPackage.Helper; 
+//import utilPackage.Helper;
+//import utilPackage.ResultSetMapper;
+//import utilPackage.SystemConstants;
+//import utilPackage.SendNotification;/
 
 
 /**

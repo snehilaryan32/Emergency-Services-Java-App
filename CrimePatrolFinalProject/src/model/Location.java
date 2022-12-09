@@ -15,14 +15,18 @@ public class Location {
     int locationId;
     double longtude;
     double latitude; 
-    Community comminity; 
+    int community; 
 
-    public Location(String locationId, String longtude) {
+    public Location(int locationId, double longtude, double latitude, int community) {
         this.locationId = locationId;
         this.longtude = longtude;
         this.latitude = latitude;
-        this.comminity = comminity;
+        this.community = community;
     }
+
+    
+
+
 
     public int getLocationId() {
         return locationId;
@@ -36,9 +40,11 @@ public class Location {
         return latitude;
     }
 
-    public Community getComminity() {
-        return comminity;
+    public int getCommunity() {
+        return community;
     }
+
+    
 
     public void setLocationId(int locationId) {
         this.locationId = locationId;
@@ -53,11 +59,12 @@ public class Location {
     }
     
     public void setComminity(Community comminity) {
-        this.comminity = comminity;
+        this.community = community;
     }
     
     public void addToLocationTable(Location loc){
-        String query = "insert into location values(" + loc.getLatitude() + ", " + loc.getLongtude() + ")";
+        String query = "insert into location values(" + loc.getLocationId() +"," + loc.getLatitude() + ", " + loc.getLongtude() + ", " + loc.getCommunity() + ")";
         Helper.insertData(query);
 
+}
 }

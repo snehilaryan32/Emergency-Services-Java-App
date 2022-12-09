@@ -3,6 +3,7 @@ package crimepatrolfinalproject;
 import utilPackage.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputListener;
 import model.Community;
@@ -204,6 +205,11 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         backBtn.setText("Back");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Helvetica", 1, 25)); // NOI18N
         jLabel12.setText("Add Community");
@@ -370,11 +376,21 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String latitude = jLattitude.getText();
         String longitude = jLongitude.getText();
+        int communityid = 123;
+        int id = GenerateId.newLocationId();
         
-        Location loc = new Location(latitude,longitude);
+        
+        
+        
+        
+        
+        Location loc = new Location(id,Double.parseDouble(longitude),Double.parseDouble(latitude), communityid);
+        
+        loc.addToLocationTable(loc);
         
         
     }//GEN-LAST:event_jAddLocationMouseClicked
+    
 
     private void jAddLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddLocationActionPerformed
         // TODO add your handling code here:
@@ -396,6 +412,10 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
