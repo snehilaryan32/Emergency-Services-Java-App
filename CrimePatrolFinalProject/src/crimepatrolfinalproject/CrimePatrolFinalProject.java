@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package crimepatrolfinalproject;
+
 import PoliceDepartment.Case;
 import PoliceDepartment.Precinct;
 import utilPackage.SnowflakeConnector;
@@ -24,7 +25,6 @@ import utilPackage.Helper;
 import utilPackage.ResultSetMapper;
 import utilPackage.SystemConstants;
 import utilPackage.SendNotification;
-
 
 /**
  *
