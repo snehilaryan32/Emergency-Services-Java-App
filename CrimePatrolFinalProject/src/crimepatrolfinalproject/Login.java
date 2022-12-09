@@ -4,6 +4,7 @@
  */
 package crimepatrolfinalproject;
 
+import citizenApp.CitizenMenu;
 import utilPackage.SnowflakeConnector;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -184,13 +185,23 @@ public class Login extends javax.swing.JFrame {
         String userName = jUserId.getText();
         String passWord = jPassword.getText();
         String pass = null;
-        ResultSet result = Helper.getData("select * from credentials where username='" + userName+"'");
+        ResultSet result = Helper.getData("select * from credentials where username='" + userName +"'");
         
+
+           
         ResultSetMapper<Credentials> credsRSMapper = new ResultSetMapper<Credentials>();
         List<Credentials> credList = credsRSMapper.mapResultSetToObject(result, Credentials.class);
         
         if(credList.size() == 1 && credList.get(0).getPassword().equals(passWord)) {
             JOptionPane.showMessageDialog(rootPane, "Correct Password");
+            
+//            if(Integer.parseInt(userName) < 2000000){
+//                CitizenMenu obj = new CitizenMenu(); 
+//                obj.setVisible(true);
+//                obj.dispose();
+//            }
+            
+            
         } else {
             JOptionPane.showMessageDialog(rootPane, "Invalid Username or Password");
         }

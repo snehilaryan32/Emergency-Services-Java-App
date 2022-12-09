@@ -181,6 +181,11 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
                 jAddLocationActionPerformed(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Helvetica", 1, 25)); // NOI18N
         jLabel10.setText("Welcome To System Admin");
