@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.Table;
 import model.Community;
 import model.Location;
 
@@ -139,7 +140,7 @@ public class Helper {
         return pre;
     }
         
-    //Function to fetch data from
+        //Function to fetch data from
         
         public static <T> List<T> getResultSet(Class<T> c, String table) throws InstantiationException{
         Object obj = null;  
@@ -162,6 +163,19 @@ public class Helper {
         return objList;
             
     }
+        
+        public static int getMaxId(String table, String columnName) throws SQLException{
+            String query = "select max(" + columnName + ") + 1 from " + table; 
+            ResultSet res = Helper.getData(query); 
+            Integer maxId = null;
+            while(res.next()){
+                maxId = res.getInt(1);
+                
+            }
+            
+            return maxId;
+            
+        }
     
     
     

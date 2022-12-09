@@ -4,6 +4,8 @@
  */
 package utilPackage;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author aryan
@@ -33,9 +35,8 @@ public class GenerateId {
         return GenerateId.policeID; 
     }
     
-    public static int newDoctorId(){
-        GenerateId.doctorID = GenerateId.doctorID + 1;
-        return GenerateId.doctorID; 
+    public static int newDoctorId() throws SQLException{
+        return Helper.getMaxId("doctor", "doctor_id"); 
     }
     
     public static int newEmrgencyDispatcherID(){

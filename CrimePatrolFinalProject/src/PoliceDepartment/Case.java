@@ -4,7 +4,11 @@
  */
 package PoliceDepartment;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import model.Location;
 import utilPackage.Helper;
 
@@ -12,11 +16,20 @@ import utilPackage.Helper;
  *
  * @author aryan
  */
-public class Case {
+@Entity
+public class Case implements Serializable{
     
+    @Id
+    private int id;
+
+  
     
+    @Column(name="CASE_ID")
     Integer CaseID;
+    
+    @Column(name="DESCRIPTION")
     String description;
+    //@Column(name="LOCATION")
     Location location; 
     Precinct precinct;
     Integer policeId;
@@ -42,6 +55,11 @@ public class Case {
         this.caseStatus = caseStatus;
         this.detectiveId = detectiveId;
     }
+    
+    public Case() {
+    }
+    
+ 
 
     public void setDetectiveId(Integer detectiveId) {
         this.detectiveId = detectiveId;
