@@ -274,7 +274,7 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(jDob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(12, 12, 12))))
+                                                        .addGap(6, 6, 6))))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(jLabel6)
                                                 .addGap(0, 0, Short.MAX_VALUE)))

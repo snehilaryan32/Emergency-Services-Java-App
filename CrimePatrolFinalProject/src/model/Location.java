@@ -15,18 +15,14 @@ public class Location {
     int locationId;
     double longtude;
     double latitude; 
-    int community; 
+    Community community; 
 
-    public Location(int locationId, double longtude, double latitude, int community) {
+    public Location(int locationId, double longtude, double latitude, Community community) {
         this.locationId = locationId;
         this.longtude = longtude;
         this.latitude = latitude;
         this.community = community;
     }
-
-    
-
-
 
     public int getLocationId() {
         return locationId;
@@ -40,7 +36,7 @@ public class Location {
         return latitude;
     }
 
-    public int getCommunity() {
+    public Community getCommunity() {
         return community;
     }
 

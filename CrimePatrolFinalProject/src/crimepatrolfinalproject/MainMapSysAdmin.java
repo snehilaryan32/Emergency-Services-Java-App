@@ -383,13 +383,9 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         String longitude = jLongitude.getText();
         int communityid = 123;
         int id = GenerateId.newLocationId();
+        Community comm = Helper.fetchCommunity(communityid);
         
-        
-        
-        
-        
-        
-        Location loc = new Location(id,Double.parseDouble(longitude),Double.parseDouble(latitude), communityid);
+        Location loc = new Location(id,Double.parseDouble(longitude),Double.parseDouble(latitude), comm);
         
         loc.addToLocationTable(loc);
         
