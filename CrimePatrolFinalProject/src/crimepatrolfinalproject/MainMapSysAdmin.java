@@ -381,12 +381,11 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String latitude = jLattitude.getText();
         String longitude = jLongitude.getText();
-        int communityid = 123;
+        int communityid = 123; //add drop box code 
         int id = GenerateId.newLocationId();
+        
         Community comm = Helper.fetchCommunity(communityid);
-        
         Location loc = new Location(id,Double.parseDouble(longitude),Double.parseDouble(latitude), comm);
-        
         loc.addToLocationTable(loc);
         
         

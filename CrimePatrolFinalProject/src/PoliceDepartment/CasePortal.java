@@ -39,8 +39,6 @@ public class CasePortal extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPrecinctId = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -107,8 +105,6 @@ public class CasePortal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
-
-        jLabel2.setText("Case ID");
 
         jLabel3.setText("Precinct ID");
 
@@ -205,12 +201,10 @@ public class CasePortal extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel7)
                             .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jName)
                             .addComponent(jPrecinctId)
                             .addComponent(jLawyerId)
                             .addComponent(jDetectiveId, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
@@ -258,8 +252,6 @@ public class CasePortal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jCaseStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
@@ -336,8 +328,18 @@ public class CasePortal extends javax.swing.JFrame {
         
         int precinctId = Integer.parseInt(jPrecinctId.getText()); 
         int policeId = Integer.parseInt(jPoliceId.getText());
-        int lawyerId = Integer.getInteger(jLawyerId.getText());
-        int detectiveId = Integer.parseInt(jDetectiveId.getText());
+        Integer lawyerId = null;
+        Integer detectiveId = null;
+        
+        if(!jLawyerId.getText().equals("")) {
+            lawyerId = Integer.parseInt(jLawyerId.getText());
+        }
+        
+        if(!jDetectiveId.getText().equals("")) {
+            detectiveId = Integer.parseInt(jDetectiveId.getText());
+        }
+       
+        
         String caseStatus = jCaseStatus.getSelectedItem().toString();
         String caseType = jCaseType.getSelectedItem().toString();
         Date dateOfCase = jDate.getDate();
@@ -350,7 +352,7 @@ public class CasePortal extends javax.swing.JFrame {
             
             Location loc = Helper.fetchLocation(location);
             Precinct pre = Helper.fetchPrecinct(precinctId);
-            Case cas = new Case(caseId, description, loc, pre, policeId, lawyerId, caseType, dateOfCase, caseStatus);
+            Case cas = new Case(caseId, description, loc, pre, policeId, lawyerId, caseType, dateOfCase, caseStatus, detectiveId);
             cas.addToCaseTable(cas);
             
         } catch (SQLException ex) {
@@ -428,7 +430,6 @@ public class CasePortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -438,7 +439,6 @@ public class CasePortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jLawyerId;
     private javax.swing.JTextField jLocation;
-    private javax.swing.JTextField jName;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jPoliceId;

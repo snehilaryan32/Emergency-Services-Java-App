@@ -14,21 +14,22 @@ import utilPackage.Helper;
  */
 public class Case {
     
-    int CaseID;
+    Integer CaseID;
     String description;
     Location location; 
     Precinct precinct;
-    int policeId;
-    int LawyerId;
+    Integer policeId;
+    Integer LawyerId;
     String EmerStringType;
     Date dateTime;
     String caseStatus;
+    Integer detectiveId;
 
     public String getCaseStatus() {
         return caseStatus;
     }
 
-    public Case(int CaseID, String description, Location location, Precinct precinct, int policeId, int LawyerId, String EmerStringType, Date dateTime, String caseStatus) {
+    public Case(Integer CaseID, String description, Location location, Precinct precinct, Integer policeId, Integer LawyerId, String EmerStringType, Date dateTime, String caseStatus, Integer detectiveId) {
         this.CaseID = CaseID;
         this.description = description;
         this.location = location;
@@ -38,6 +39,15 @@ public class Case {
         this.EmerStringType = EmerStringType;
         this.dateTime = dateTime;
         this.caseStatus = caseStatus;
+        this.detectiveId = detectiveId;
+    }
+
+    public void setDetectiveId(Integer detectiveId) {
+        this.detectiveId = detectiveId;
+    }
+
+    public Integer getDetectiveId() {
+        return detectiveId;
     }
 
 
@@ -45,7 +55,7 @@ public class Case {
         return dateTime;
     }
 
-    public void setLawyerId(int LawyerId) {
+    public void setLawyerId(Integer LawyerId) {
         this.LawyerId = LawyerId;
     }
 
@@ -53,13 +63,12 @@ public class Case {
         this.dateTime = dateTime;
     }
 
- 
 
     public Precinct getPrecinct() {
         return precinct;
     }
 
-    public int getLawyerId() {
+    public Integer getLawyerId() {
         return LawyerId;
     }
 
@@ -67,7 +76,7 @@ public class Case {
         this.precinct = precinct;
     }
     
-    public void setCaseID(int CaseID) {
+    public void setCaseID(Integer CaseID) {
         this.CaseID = CaseID;
     }
 
@@ -81,7 +90,7 @@ public class Case {
 
 
 
-    public void setPoliceId(int policeId) {
+    public void setPoliceId(Integer policeId) {
         this.policeId = policeId;
     }
 
@@ -89,7 +98,7 @@ public class Case {
         this.EmerStringType = EmerStringType;
     }
 
-    public int getCaseID() {
+    public Integer getCaseID() {
         return CaseID;
     }
 
@@ -101,9 +110,12 @@ public class Case {
         return location;
     }
 
-    
-    public int getPoliceId() {
+    public Integer getPoliceId() {
         return policeId;
+    }
+
+    public void setCaseStatus(String caseStatus) {
+        this.caseStatus = caseStatus;
     }
 
     public String getEmerStringType() {
@@ -111,7 +123,7 @@ public class Case {
     }
 
     public void addToCaseTable(Case cas){
-        String query = "insert into case values(" + cas.getCaseID() + ", '" + cas.getDescription()+ "', " + cas.getLocation().getLocationId() + ", " + ", " + cas.getLawyerId() + ", " + cas.getPrecinct().getPrecinctId() + ", " + cas.getPoliceId() + "', '" + getEmerStringType() + "', to_date('03-02-1998', 'dd-mm-yyyy') ,'" + cas.getCaseStatus() + ")";
+        String query = "insert into case values(" + cas.getCaseID() + ", '" + cas.getDescription()+ "', " + cas.getLocation().getLocationId() +  ", " + cas.getLawyerId() + ", " + cas.getPrecinct().getPrecinctId() + ", " + cas.getPoliceId() + ", '" + getEmerStringType() + "','" + Helper.getValidSnowFlkDate(cas.getDateTime()) + "','" + cas.getCaseStatus() + "'," + cas.getDetectiveId() + ")";
         Helper.getData(query);
     }
     
