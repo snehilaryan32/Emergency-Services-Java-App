@@ -4,12 +4,20 @@
  */
 package PoliceDepartment;
 
+import java.sql.SQLException;
 import model.Police;
 import utilPackage.GenerateId;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import model.Location;
+import utilPackage.Helper;
 
 /**
  *
@@ -37,26 +45,27 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jSearchButton = new javax.swing.JTextField();
+        jSearchBy = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jSearchField = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jRank = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jPoliceTable = new javax.swing.JTable();
+        jCreate = new javax.swing.JButton();
+        jUpdate = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jDelete = new javax.swing.JButton();
         jOfficerName = new javax.swing.JTextField();
         jOfficerID = new javax.swing.JTextField();
         jPrecinctID = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jPerformance = new javax.swing.JComboBox<>();
-        jButton7 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jEmail = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -68,7 +77,6 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         jBloodGroup = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jGender = new javax.swing.JComboBox<>();
-        jCaseId = new javax.swing.JTextField();
         jDob = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,18 +90,50 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
 
         jButton6.setText("Home");
 
+        jSearchButton.setText("Search");
+        jSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSearchButtonActionPerformed(evt);
+            }
+        });
+
+        jSearchBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rank", "Id", "Precinct" }));
+        jSearchBy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSearchByActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Search By");
+
+        jSearchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSearchFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(190, 190, 190)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
                 .addGap(21, 21, 21))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSearchBy, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +147,12 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton5)
                             .addComponent(jButton6))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSearchBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jLabel2.setText("Officer ID");
@@ -116,39 +161,61 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
 
         jLabel4.setText("Precinct ID");
 
-        jLabel5.setText("Case ID");
-
         jLabel6.setText("Rank");
 
         jRank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patrol", "Corporal", "Sergeant", "Detective", "Captain" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPoliceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Officer ID", "Officer Name", "Rank", "Case ID", "Precinct ID", "Performancel"
+                "Officer ID", "Officer Name", "Rank", "Precinct ID", "Performancel"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jButton1.setText("Create");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPoliceTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jPoliceTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jPoliceTable);
+
+        jCreate.setText("Create");
+        jCreate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCreateMouseClicked(evt);
+            }
+        });
+        jCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCreateActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Update");
+        jUpdate.setText("Update");
+        jUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUpdateActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Reset");
 
-        jButton4.setText("Delete");
+        jDelete.setText("Delete");
+        jDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDeleteActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setText("Search");
+        jOfficerName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jOfficerNameActionPerformed(evt);
+            }
+        });
 
         jPrecinctID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,8 +226,6 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         jLabel7.setText("Performance");
 
         jPerformance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Excellent", "Good", "Average", "Poor" }));
-
-        jButton7.setText("View Case");
 
         jLabel8.setText("Email");
 
@@ -200,12 +265,6 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
 
         jGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
-        jCaseId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCaseIdActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -216,18 +275,14 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                         .addGap(62, 62, 62)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(jCreate)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2))
+                                .addComponent(jUpdate))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton4)
+                                .addComponent(jDelete)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jButton3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(94, 94, 94)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,8 +290,7 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
+                                    .addComponent(jLabel4))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel10)
                                     .addGap(31, 31, 31)))
@@ -251,8 +305,7 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                                     .addComponent(jOfficerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jOfficerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jPrecinctID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCaseId, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(32, 32, 32)
@@ -265,15 +318,12 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                                         .addGap(18, 18, 18)
-                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(jPhone)
-                                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                                .addGap(0, 1, Short.MAX_VALUE)
-                                                                .addComponent(jGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(23, 23, 23))))
+                                                        .addComponent(jPhone))
                                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jDob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(jGender, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(jDob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGap(6, 6, 6))))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(jLabel6)
@@ -323,10 +373,8 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                     .addComponent(jEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
                     .addComponent(jLabel9)
-                    .addComponent(jPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCaseId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
@@ -342,14 +390,12 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                     .addComponent(jGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jCreate)
+                    .addComponent(jUpdate))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDelete)
+                    .addComponent(jButton3))
                 .addGap(43, 43, 43))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -399,32 +445,145 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBloodGroupActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        String name = jOfficerName.getText();
-        int id = GenerateId.newPoliceId();
-        int precinctid = GenerateId.newPrecinctId();
-        String caseid = jCaseId.getText();
-        String address = jAddress.getText();
-        String blood = jBloodGroup.getText();
-        String rank = jRank.getSelectedItem().toString();
-        String performance = jPerformance.getSelectedItem().toString();
-        String email = jEmail.getText();
-        String phone = jPhone.getText();
-        Date dob = jDob.getDate();
-        String gender = jGender.getSelectedItem().toString();
-        String role = "police";
-        
-        
-        
-        Police pol = new Police(precinctid, Integer.parseInt(caseid),rank,performance,name,Integer.parseInt(address),email,123,dob,id,blood,role,gender);
-        
-        pol.addToPoliceTable(pol);
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void jCreateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCreateMouseClicked
+//        // TODO add your handling code here:
+//        String name = jOfficerName.getText();
+//        int id = GenerateId.newPoliceId();
+//        int precinctid = GenerateId.newPrecinctId();
+//        String caseid = jCaseId.getText();
+//        String address = jAddress.getText();
+//        String blood = jBloodGroup.getText();
+//        String rank = jRank.getSelectedItem().toString();
+//        String performance = jPerformance.getSelectedItem().toString();
+//        String email = jEmail.getText();
+//        String phone = jPhone.getText();
+//        Date dob = jDob.getDate();
+//        String gender = jGender.getSelectedItem().toString();
+//        String role = "police";
+//        
+//        
+//        
+//        Police pol = new Police(precinctid, Integer.parseInt(caseid),rank,performance,name,Integer.parseInt(address),email,123,dob,id,blood,role,gender);
+//        
+//        pol.addToPoliceTable(pol);
+    }//GEN-LAST:event_jCreateMouseClicked
 
-    private void jCaseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCaseIdActionPerformed
+    private void jCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCreateActionPerformed
+        
+        String name = jOfficerName.getText(); 
+        Integer precinctId = Integer.parseInt(jPrecinctID.getText());
+        
+        Integer address = Integer.parseInt(jAddress.getText()); 
+        String bloodGroup = jAddress.getText();
+        String rank = jAddress.getText();
+        String performance = jAddress.getText();
+        String email = jEmail.getText();
+        Integer phoneNo = Integer.parseInt(jPhone.getText());
+        Date dateOfBirth = jDob.getDate(); 
+        String gender = jGender.getSelectedItem().toString();
+        
+        Integer policeId = null;
+        
+        try {
+            policeId = Helper.getMaxId("police", "police_id", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        DefaultTableModel tblModel = (DefaultTableModel)jPoliceTable.getModel();
+        Object[] obj = {policeId, name, rank, precinctId, performance};
+        tblModel.addRow(obj);
+        
+        
+         
+        try { 
+            
+            Location loc = Helper.fetchLocation(address);
+            Precinct pre = Helper.fetchPrecinct(precinctId);
+            Police police = new Police(pre, rank, performance, name, address, email, phoneNo, dateOfBirth, policeId, bloodGroup, rank, gender);
+            police.addToPoliceTable(police);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jCreateActionPerformed
+
+    private void jOfficerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOfficerNameActionPerformed
+        
+    }//GEN-LAST:event_jOfficerNameActionPerformed
+
+    private void jUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateActionPerformed
+//        DefaultTableModel tblModel = (DefaultTableModel)jPoliceTable.getModel();
+//        
+//        if(jPoliceTable.getSelectedRowCount() == 1){
+//            Integer policeId = Integer.valueOf(tblModel.getValueAt(jPoliceTable.getSelectedRow(), 0).toString());
+//            Integer precinctId = Integer.valueOf(tblModel.getValueAt(0, 0));
+//            
+//        }
+//        Integer policeId = Integer.parseInt(tblModel.getValueAt(jPoliceTable.getSelectedRow(), 0).toString());
+//        
+    }//GEN-LAST:event_jUpdateActionPerformed
+
+    private void jPoliceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPoliceTableMouseClicked
+        DefaultTableModel tblModel = (DefaultTableModel)jPoliceTable.getModel();
+        int policeId = Integer.parseInt(tblModel.getValueAt(jPoliceTable.getSelectedRow(), 0).toString());
+        
+        if(jPoliceTable.getSelectedRowCount() == 1){
+            String name = tblModel.getValueAt(jPoliceTable.getSelectedRow(), 1).toString();
+            
+            //jRank.setText(tblModel.getValueAt(jPoliceTable.getSelectedRow(),2).toString());
+            jPrecinctID.setText(tblModel.getValueAt(jPoliceTable.getSelectedRow(),3).toString());
+            //jPerformance.setText(tblModel.getValueAt(jPoliceTable.getSelectedRow(),4).toString());
+        }
+    }//GEN-LAST:event_jPoliceTableMouseClicked
+
+    private void jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteActionPerformed
+        DefaultTableModel tblModel = (DefaultTableModel)jPoliceTable.getModel();
+        if(jPoliceTable.getSelectedRowCount() == 1){
+            int policeId = Integer.parseInt(tblModel.getValueAt(jPoliceTable.getSelectedRow(), 0).toString());
+            tblModel.removeRow(jPoliceTable.getSelectedColumnCount());
+            
+            Helper.insertDeleteData("delete from police where police_id = " + policeId);
+            Helper.insertDeleteData("delete from person where person_id = " + policeId);
+        }
+    }//GEN-LAST:event_jDeleteActionPerformed
+
+    private void jSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSearchButtonActionPerformed
+        DefaultTableModel tblModel = (DefaultTableModel)jPoliceTable.getModel();
+        
+        
+        String searchString = jSearchField.getText();
+        String searchField = (String) jSearchBy.getSelectedItem();
+
+        int tblHeaderIndex = 1;
+        
+        switch(searchField) {
+            case "Rank":
+            tblHeaderIndex = 2;
+            break;
+            case "Id":
+            tblHeaderIndex = 0;
+            default:
+            tblHeaderIndex = 4;
+        }
+
+        TableRowSorter<DefaultTableModel> tSorter = new TableRowSorter(tblModel);
+        jPoliceTable.setRowSorter(tSorter);
+        tSorter.setRowFilter(RowFilter.regexFilter(searchString.trim(), tblHeaderIndex));
+    }//GEN-LAST:event_jSearchButtonActionPerformed
+
+    private void jSearchByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSearchByActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCaseIdActionPerformed
+    }//GEN-LAST:event_jSearchByActionPerformed
+
+    private void jSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSearchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSearchFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -464,14 +623,11 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField jAddress;
     private javax.swing.JTextField jBloodGroup;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JTextField jCaseId;
+    private javax.swing.JButton jCreate;
+    private javax.swing.JButton jDelete;
     private com.toedter.calendar.JDateChooser jDob;
     private javax.swing.JTextField jEmail;
     private javax.swing.JComboBox<String> jGender;
@@ -494,10 +650,13 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JComboBox<String> jPerformance;
     private javax.swing.JTextField jPhone;
+    private javax.swing.JTable jPoliceTable;
     private javax.swing.JTextField jPrecinctID;
     private javax.swing.JComboBox<String> jRank;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jSearchButton;
+    private javax.swing.JComboBox<String> jSearchBy;
+    private javax.swing.JTextField jSearchField;
+    private javax.swing.JButton jUpdate;
     // End of variables declaration//GEN-END:variables
 }
