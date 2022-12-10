@@ -161,7 +161,7 @@ public class Helper {
         
 
         Person person = null;
-        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");  
+        DateFormat dateFormat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");  
         ResultSet res = Helper.getData("select * from person where person_id = " + Id);
         while(res.next()){
             name = res.getString(2);
@@ -219,7 +219,7 @@ public class Helper {
             }
             
             else{
-                String query = "select max(" + columnName + ") + 1 from " + table + "where " + condition;
+                String query = "select max(" + columnName + ") + 1 from " + table + " where " + condition;
                 ResultSet res = Helper.getData(query); 
                 
                 while(res.next()){

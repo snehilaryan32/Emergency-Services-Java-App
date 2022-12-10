@@ -220,6 +220,7 @@ public class Login extends javax.swing.JFrame {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 CurrentSession.setCurrentUser(person);
+                System.out.println(CurrentSession.currentUser.getId()); 
                 CitizenMenu obj = new CitizenMenu(); 
                 System.out.println("Citezen Logged in");
                 obj.setVisible(true);

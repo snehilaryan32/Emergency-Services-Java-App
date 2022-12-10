@@ -44,6 +44,11 @@ public class CrimePatrolFinalProject {
         
         S3BucketOperations.downloadS3Object("TestImage.png");
         
+        Login obj = new Login(); 
+        obj.setVisible(true);
+        
+
+        
 //          List<Case> credList = Helper.getResultSet(Case.class, "CASE");
 //          
 //          for (Case cred : credList){
@@ -123,11 +128,11 @@ public class CrimePatrolFinalProject {
 //        cit.addToPersonTable(cit);8000001
 
     
-        Helper.insertDeleteData("insert into credentials values('12334', 'Breakingbad@1')");
-        String query = "insert into person values(12345, 'bashu', 1234, 'aryan.s@northeastern.edu', 9334117595, to_date('03-02-1998', 'mm-dd-yyyy'), 'A+', 'Male', 'Citizen')";
-        Helper.insertDeleteData(query);
-        
-        Community comm = new Community("Roxbury", 0, 10202);
+//        Helper.insertDeleteData("insert into credentials values('12334', 'Breakingbad@1')");
+//        String query = "insert into person values(12345, 'bashu', 1234, 'aryan.s@northeastern.edu', 9334117595, to_date('03-02-1998', 'mm-dd-yyyy'), 'A+', 'Male', 'Citizen')";
+//        Helper.insertDeleteData(query);
+//        
+//        Community comm = new Community("Roxbury", 0, 10202);
         
    
         
