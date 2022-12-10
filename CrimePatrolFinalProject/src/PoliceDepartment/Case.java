@@ -31,13 +31,33 @@ public class Case implements Serializable{
     String description;
     //@Column(name="LOCATION")
     Location location; 
+    
+    @Column(name="LOCATION_ID")
+    Integer location_id;
+    
     Precinct precinct;
+    
+    @Column(name="PRECINCT_ID")
+    Integer precinctId;
+    
+    @Column(name="POLICE_ID")
     Integer policeId;
+    
+    @Column(name="LAWYERID")
     Integer LawyerId;
+    
+    @Column(name="EMERGENCYTYPE")
     String EmerStringType;
+    
+    @Column(name = "DATETIME")
     Date dateTime;
+    
+    @Column(name="CASESTATUS")
     String caseStatus;
+    
+    @Column(name="DETECTIVE_ID")
     Integer detectiveId;
+    
 
     public String getCaseStatus() {
         return caseStatus;
@@ -141,10 +161,25 @@ public class Case implements Serializable{
         return EmerStringType;
     }
 
+    public void setLocation_id(Integer location_id) {
+        this.location_id = location_id;
+    }
+
+    public void setPrecinctId(Integer precinctId) {
+        this.precinctId = precinctId;
+    }
+
+    public Integer getLocationid() {
+        return location_id;
+    }
+
+    public Integer getPrecinctId() {
+        return precinctId;
+    }
+
     public void addToCaseTable(Case cas){
         String query = "insert into case values(" + cas.getCaseID() + ", '" + cas.getDescription()+ "', " + cas.getLocation().getLocationId() +  ", " + cas.getLawyerId() + ", " + cas.getPrecinct().getPrecinctId() + ", " + cas.getPoliceId() + ", '" + getEmerStringType() + "','" + Helper.getValidSnowFlkDate(cas.getDateTime()) + "','" + cas.getCaseStatus() + "'," + cas.getDetectiveId() + ")";
         Helper.getData(query);
     }
-    
     
 }

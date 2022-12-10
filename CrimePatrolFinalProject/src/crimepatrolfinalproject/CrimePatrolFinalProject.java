@@ -13,7 +13,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,6 +52,12 @@ public class CrimePatrolFinalProject {
           
           System.out.println(GenerateId.newDoctorId());
           
+          Map<String, String> mp = new HashMap<>();
+          mp.put("description", "UPDATED DESC");
+          
+          
+          Helper.updateColumns("case", mp, "case_id = 30000011");
+          
 //        ResultSetMapper<Community> credentialsResultSetMapper = new ResultSetMapper<Community>();
 //        
 //        ResultSet resultSet = null;
@@ -63,7 +71,7 @@ public class CrimePatrolFinalProject {
 //        }
 //        
 //  
-       new Login().setVisible(true);
+       //new Login().setVisible(true);
         
     //    SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "aryan.s@northeastern.edu");
     //    SendNotification.sendEmailNotification("Good Morning From Java", "Testing the code", "bisht.b@northeastern.edu");
@@ -111,9 +119,9 @@ public class CrimePatrolFinalProject {
 //        cit.addToPersonTable(cit);8000001
 
     
-        Helper.insertData("insert into credentials values('12334', 'Breakingbad@1')");
+        Helper.insertDeleteData("insert into credentials values('12334', 'Breakingbad@1')");
         String query = "insert into person values(12345, 'bashu', 1234, 'aryan.s@northeastern.edu', 9334117595, to_date('03-02-1998', 'mm-dd-yyyy'), 'A+', 'Male', 'Citizen')";
-        Helper.insertData(query);
+        Helper.insertDeleteData(query);
         
         Community comm = new Community("Roxbury", 0, 10202);
         

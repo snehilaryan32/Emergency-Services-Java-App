@@ -25,6 +25,11 @@ public class Credentials implements Serializable {
     @Column(name="USERNAME")
     String userName;
 
+    public Credentials(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
     @Column(name="PASSWORD")
     String password;
 
@@ -50,6 +55,11 @@ public class Credentials implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public void addToCredentialTable(Credentials cred){
+        String query = "insert into credentials values('" + cred.getUserName() + "', '" + cred.getPassword() + "')";
+        Helper.insertDeleteData(query);
     }
     
 }

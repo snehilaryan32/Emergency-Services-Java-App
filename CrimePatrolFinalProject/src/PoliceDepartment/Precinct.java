@@ -49,7 +49,7 @@ public class Precinct {
     
     public void addToPrecinctTable(Precinct pre){
         String query = "insert into precinct values(" + pre.getPrecinctId() + ", " + pre.getLocation().getLocationId() + ", " + pre.getPrecinctId() + ")";
-        Helper.insertData(query);
+        Helper.insertDeleteData(query);
     }
     
     

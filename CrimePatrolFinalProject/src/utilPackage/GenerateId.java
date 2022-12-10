@@ -36,7 +36,7 @@ public class GenerateId {
     }
     
     public static int newDoctorId() throws SQLException{
-        return Helper.getMaxId("doctor", "doctor_id"); 
+        return Helper.getMaxId("doctor", "doctor_id", null); 
     }
     
     public static int newEmrgencyDispatcherID(){

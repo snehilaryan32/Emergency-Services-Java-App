@@ -70,8 +70,8 @@ public class Police extends Person{
     public void addToPoliceTable(Police police){
         String insertQuery = "insert into person values ( " + police.getId() + ", '" + police.getName() + "'," + police.getAddress() + ",'" + police.getEmail() + "'," + police.getPhoneNo() + ", to_date('03-02-1998', 'dd-mm-yyyy'),'" + police.getBloodGroup() + "', '" + police.getGender() + "', '" + police.getRole() + "')";
         String query = "insert into police values(" + police.getId() + ",'" + police.getName() + "','" + police.getRank() + "'," + police.getPrecinctid() + ",'" + police.getPerformance() + "')";
-        Helper.insertData(query);
-        Helper.insertData(insertQuery);
+        Helper.insertDeleteData(query);
+        Helper.insertDeleteData(insertQuery);
     
     
 }

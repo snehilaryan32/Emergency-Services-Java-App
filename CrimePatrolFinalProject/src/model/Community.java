@@ -37,6 +37,6 @@ public class Community {
     
     public void addToCommunityTable(Community comm){
         String query = "insert into community values(" + comm.getZipcode() + ", '" + comm.getName() + "', " + comm.getHeatLevel() + ")";
-        Helper.insertData(query);
+        Helper.insertDeleteData(query);
     }
 }

@@ -6,7 +6,9 @@ package PoliceDepartment;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -53,8 +55,8 @@ public class CasePortal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jDetectiveId = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jUpdateButton = new javax.swing.JButton();
+        jDelete = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jCaseMasterTable = new javax.swing.JTable();
@@ -150,14 +152,19 @@ public class CasePortal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Update");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jUpdateButton.setText("Update");
+        jUpdateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jUpdateButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Delete");
+        jDelete.setText("Delete");
+        jDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDeleteActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Reset");
 
@@ -172,6 +179,11 @@ public class CasePortal extends javax.swing.JFrame {
                 "Case ID", "Date", "Precinct ID", "Police ID", "Lawyer ID", "Detective ID", "Case Status", "Description"
             }
         ));
+        jCaseMasterTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCaseMasterTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jCaseMasterTable);
 
         jLabel9.setText("Police ID");
@@ -266,9 +278,9 @@ public class CasePortal extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2)
+                                .addComponent(jUpdateButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3)
+                                .addComponent(jDelete)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton4)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -319,8 +331,8 @@ public class CasePortal extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
+                    .addComponent(jUpdateButton)
+                    .addComponent(jDelete)
                     .addComponent(jButton4)
                     .addComponent(jButton7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -372,11 +384,20 @@ public class CasePortal extends javax.swing.JFrame {
         Date dateOfCase = jDate.getDate();
         String description = jDescription.getText();
         int location = Integer.parseInt(jLocation.getText());
-        int caseId = GenerateId.newCaseId();
         
+        Integer caseId = null;
+        try {
+            caseId = Helper.getMaxId("case", "case_id", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    
         DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
         Object[] obj = {caseId, dateOfCase, precinctId, policeId, lawyerId, detectiveId, caseStatus, description};
         tblModel.addRow(obj);
+       
         
         try { 
             
@@ -406,12 +427,61 @@ public class CasePortal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCaseStatusActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateButtonActionPerformed
+        DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+        if (jCaseMasterTable.getSelectedRowCount() == 1){
+            
+            Integer caseId = Integer.valueOf(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString()); 
+            Integer precinctId = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 2).toString());
+            Integer policeId = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 3).toString());
+            Integer lawyerId = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4).toString());
+            Integer detectiveId = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 5).toString());
+            String description = tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 7).toString(); 
+            String caseStatus = jCaseStatus.getSelectedItem().toString();
+           
+            System.out.println(description);
+            System.out.println(caseId);
+            
+            tblModel.setValueAt(precinctId, jCaseMasterTable.getSelectedRow(), 2);
+            tblModel.setValueAt(policeId, jCaseMasterTable.getSelectedRow(), 3);
+            tblModel.setValueAt(lawyerId, jCaseMasterTable.getSelectedRow(), 4);
+            tblModel.setValueAt(detectiveId, jCaseMasterTable.getSelectedRow(), 5);
+            tblModel.setValueAt(caseStatus, jCaseMasterTable.getSelectedRow(), 6);
+            tblModel.setValueAt(description, jCaseMasterTable.getSelectedRow(), 7);
+            
+            Map<String, String> mp = new HashMap<>();
+            mp.put("description", description);
+            mp.put("lawyerid", String.valueOf(lawyerId));
+            mp.put("precinct_id", String.valueOf(precinctId));
+            mp.put("police_id", String.valueOf(policeId));
+            mp.put("casestatus", caseStatus);
+            mp.put("detective_id", String.valueOf(lawyerId));
+            
+            try {
+                Helper.updateColumns("case", mp, "case_id = " + caseId);
+            } 
+            
+            catch (SQLException ex) {
+                System.out.println("Failed");
+                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            
+            
+            
+        
+        
+        }
+        
+        
+        
+    }//GEN-LAST:event_jUpdateButtonActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -424,15 +494,21 @@ public class CasePortal extends javax.swing.JFrame {
             for(Case i : objList){
                 Integer iD = i.getCaseID(); 
                 Date date = i.getDateTime(); 
-                Integer precinct = 1234;
+                Integer precinct = i.getPrecinctId();
                 Integer policeId = i.getPoliceId(); 
                 Integer lawyerId = i.getLawyerId(); 
                 Integer detectiveId = i.getDetectiveId();
                 String caseStatus = i.getCaseStatus(); 
                 String description = i.getDescription();
-                
+                Location location = null;
+//                try {
+//                    location = Helper.fetchLocation(i.getLocationid());
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                
                 DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
-                Object[] obj = {iD, date, precinct, policeId, lawyerId, detectiveId, caseStatus, description};
+                Object[] obj = {iD, date, i.getPrecinctId(), policeId, lawyerId, detectiveId, caseStatus, description};
                 tblModel.addRow(obj);
                    
             }
@@ -447,6 +523,36 @@ public class CasePortal extends javax.swing.JFrame {
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_jBackButtonActionPerformed
+
+    private void jCaseMasterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCaseMasterTableMouseClicked
+        DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
+        int caseIdUpdate = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
+        
+        if(jCaseMasterTable.getSelectedRowCount() == 1){
+            jPrecinctId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 2).toString());
+            jPoliceId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 3).toString());
+            jLawyerId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4).toString());
+            jDetectiveId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 5).toString());
+            //jCaseStatus.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 6).toString()); 
+            jDescription.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 7).toString()); 
+        }
+    }//GEN-LAST:event_jCaseMasterTableMouseClicked
+
+    private void jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteActionPerformed
+        
+        DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
+        if(jCaseMasterTable.getSelectedRowCount() == 1){
+            
+            Integer caseId = Integer.valueOf(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString()); 
+            
+            int patientID = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
+            tblModel.removeRow(jCaseMasterTable.getSelectedRow());
+            
+            Helper.insertDeleteData("delete from case where case_id = " + caseId);
+            
+          }
+        
+    }//GEN-LAST:event_jDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -487,8 +593,6 @@ public class CasePortal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBackButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -497,6 +601,7 @@ public class CasePortal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCaseType;
     private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDate;
+    private javax.swing.JButton jDelete;
     private javax.swing.JTextField jDescription;
     private javax.swing.JTextField jDetectiveId;
     private javax.swing.JLabel jLabel1;
@@ -518,5 +623,6 @@ public class CasePortal extends javax.swing.JFrame {
     private javax.swing.JTextField jPrecinctId;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JButton jUpdateButton;
     // End of variables declaration//GEN-END:variables
 }
