@@ -161,9 +161,10 @@ public class Helper {
         
 
         Person person = null;
-        DateFormat dateFormat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");  
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
         ResultSet res = Helper.getData("select * from person where person_id = " + Id);
         while(res.next()){
+            String dateStr = res.getString(6);
             name = res.getString(2);
             locationId = Integer.parseInt(res.getString(3));
             email = res.getString(4); 

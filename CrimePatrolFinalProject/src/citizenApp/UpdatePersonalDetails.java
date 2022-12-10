@@ -235,7 +235,7 @@ public class UpdatePersonalDetails extends javax.swing.JFrame {
         
          Map<String, String> mp = new HashMap<>();
          mp.put("name", name);
-         mp.put("phone", contact); 
+         mp.put("phone_no", contact); 
          mp.put("location_id", address); 
          try{
               Helper.updateColumns("person", mp, "person_id = " + personId);
