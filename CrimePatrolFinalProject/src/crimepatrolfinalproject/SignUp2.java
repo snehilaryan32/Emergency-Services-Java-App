@@ -4,9 +4,11 @@
  */
 package crimepatrolfinalproject;
 
+import com.amazonaws.services.ec2.model.PrincipalType;
 import java.util.Date;
 import model.Citizen;
 import utilPackage.GenerateId;
+import utilPackage.Helper;
 
 /**
  *
@@ -127,6 +129,11 @@ public class SignUp2 extends javax.swing.JFrame {
         jButton2.setText("Clear");
 
         jButton3.setText("Go To Login");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -256,7 +263,7 @@ public class SignUp2 extends javax.swing.JFrame {
         String gender = jGender.getSelectedItem().toString(); 
         String bloodGroup = jBloodGroup.getText(); 
         String address = jAddress.getText(); 
-        int personID = GenerateId.newPersonId();
+        int personID = Helper.getMaxId(person, "person_id", "role = citizen");
         
         Citizen cit = new Citizen(0, false, false, name, Integer.parseInt(address), email, Long.parseLong(phoneNo), dateOfBirth, personID, bloodGroup, "Citizen", gender);
         cit.addToPersonTable(cit);
@@ -270,6 +277,12 @@ public class SignUp2 extends javax.swing.JFrame {
         
         System.out.println(name);
     }//GEN-LAST:event_jSubmitActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Login obj = new Login(); 
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

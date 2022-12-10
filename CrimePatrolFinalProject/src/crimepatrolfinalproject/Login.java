@@ -10,11 +10,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utilPackage.SystemConstants;
 import javax.swing.JOptionPane;
+import model.Person;
+import utilPackage.CurrentSession;
 import utilPackage.Helper;
 import utilPackage.ResultSetMapper;
 
@@ -50,6 +53,7 @@ public class Login extends javax.swing.JFrame {
         jUserId = new javax.swing.JTextField();
         jLogin = new javax.swing.JButton();
         jCancel = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +102,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Sign Up");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -115,11 +126,13 @@ public class Login extends javax.swing.JFrame {
                                 .addGap(69, 69, 69)
                                 .addComponent(jLogin)
                                 .addGap(26, 26, 26)
-                                .addComponent(jCancel))
+                                .addComponent(jCancel)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(78, 78, 78)
                                 .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(225, Short.MAX_VALUE)
@@ -138,7 +151,8 @@ public class Login extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLogin)
-                    .addComponent(jCancel))
+                    .addComponent(jCancel)
+                    .addComponent(jButton1))
                 .addContainerGap(148, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -196,6 +210,16 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Correct Password");
             
             if(Integer.parseInt(userName) < 2000000){
+                
+                Person person = null;
+                try {
+                    person = Helper.fetchPerson(Integer.parseInt(userName));
+                } catch (SQLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                CurrentSession.setCurrentUser(person);
                 CitizenMenu obj = new CitizenMenu(); 
                 System.out.println("Citezen Logged in");
                 obj.setVisible(true);
@@ -209,6 +233,14 @@ public class Login extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jLoginActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        SignUp2 obj = new SignUp2(); 
+        obj.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,6 +278,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jCancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

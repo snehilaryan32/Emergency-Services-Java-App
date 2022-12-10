@@ -105,18 +105,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton1" max="32767" attributes="0"/>
+                      <Component id="jViewNearbyCases" max="32767" attributes="0"/>
                       <Component id="jButton3" pref="180" max="32767" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
-                          <Component id="jButton2" pref="193" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jCitizenPersonalDetailsButton" pref="193" max="32767" attributes="0"/>
+                      <Component id="jButton4" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
               </Group>
@@ -127,8 +122,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" pref="62" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="jViewNearbyCases" alignment="3" min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="jCitizenPersonalDetailsButton" alignment="3" min="-2" pref="62" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -141,20 +136,22 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jViewNearbyCases">
           <Properties>
             <Property name="text" type="java.lang.String" value="View Nearby Case"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jViewNearbyCasesMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jViewNearbyCasesActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="jCitizenPersonalDetailsButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Update Personal Details"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCitizenPersonalDetailsButtonMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCitizenPersonalDetailsButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
@@ -171,6 +168,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton4MouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

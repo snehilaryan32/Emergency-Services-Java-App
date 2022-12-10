@@ -7,6 +7,7 @@ package utilPackage;
 import PoliceDepartment.Precinct;
 import com.amazonaws.services.s3.model.ObjectListing;
 import crimepatrolfinalproject.Credentials;
+import static java.lang.String.format;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +23,8 @@ import javax.persistence.Table;
 import model.Community;
 import model.Location;
 import java.sql.PreparedStatement;
+import java.text.ParseException;
+import model.Person;
 
 /**
  *
@@ -140,6 +143,42 @@ public class Helper {
         
         
         return pre;
+    }
+        
+        public static Person fetchPerson(int Id) throws SQLException, ParseException{
+        Connection connectToSnow = Helper.connect;
+        
+        
+        String name = null; 
+        Integer locationId = null;
+        String email = null;
+        Long phoneNo = null; 
+        Date dateOfBirth = null;
+        String bloodGroup = null; 
+        String gender = null; 
+        String role = null; 
+        
+        
+
+        Person person = null;
+        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");  
+        ResultSet res = Helper.getData("select * from person where person_id = " + Id);
+        while(res.next()){
+            name = res.getString(2);
+            locationId = Integer.parseInt(res.getString(3));
+            email = res.getString(4); 
+            phoneNo = Long.parseLong(res.getString(5)); 
+            dateOfBirth = dateFormat.parse(res.getString(6)); 
+            bloodGroup = res.getString(7); 
+            gender = res.getString(8); 
+            role = res.getString(9); 
+            
+            person = new Person(name, locationId, email, phoneNo, dateOfBirth, Id, bloodGroup, role, gender);
+ 
+        }
+       
+        return person;
+        
     }
         
         //Function to fetch data from
