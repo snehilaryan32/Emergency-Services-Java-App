@@ -116,6 +116,8 @@ public class EvidencePortal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton6 = new javax.swing.JButton();
+        jBackButton = new javax.swing.JButton();
         uploadEvidence = new javax.swing.JButton();
         imageLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -137,15 +139,39 @@ public class EvidencePortal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jButton6.setText("Home");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jBackButton.setText("Back");
+        jBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 365, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(112, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(18, 18, 18)
+                .addComponent(jBackButton)
+                .addGap(91, 91, 91))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBackButton)
+                    .addComponent(jButton6))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         uploadEvidence.setText("Upload/Replace Evidence");
@@ -487,6 +513,22 @@ public class EvidencePortal extends javax.swing.JFrame {
         resetAllFields();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
+        if(currentCaseId != null) {
+            CasePortal casePortal = new CasePortal();
+            casePortal.setVisible(true);
+            dispose();
+            return;
+        }
+        PoliceDept obj = new PoliceDept();
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jBackButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -528,7 +570,9 @@ public class EvidencePortal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createEvidence;
     private javax.swing.JLabel imageLabel;
+    private javax.swing.JButton jBackButton;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JTextField jCaseId;
     private javax.swing.JButton jDelete;
     private javax.swing.JTextField jDescription;
