@@ -53,7 +53,7 @@ public class Citizen extends Person{
     public void addToPersonTable(Citizen cit){
         
         String insertQuery = "insert into person values ( " + cit.getId() + ", '" + cit.getName() + "'," + cit.getAddress() + ",'" + cit.getEmail() + "'," + cit.getPhoneNo() + ", to_date('03-02-1998', 'dd-mm-yyyy'),'" + cit.getBloodGroup() + "', '" + cit.getGender() + "', '" + cit.getRole() + "')"; 
-        Helper.insertData(insertQuery); 
+        Helper.insertDeleteData(insertQuery); 
         
         
     }

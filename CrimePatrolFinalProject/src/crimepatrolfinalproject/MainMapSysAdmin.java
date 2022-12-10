@@ -404,6 +404,8 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         Community comm = new Community(name, id, 0);
         
         comm.addToCommunityTable(comm);
+        
+        jComboBox1.setSelectedItem(ABORT);
 
 
         // TODO add your handling code here:

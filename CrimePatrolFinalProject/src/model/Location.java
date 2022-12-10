@@ -60,6 +60,6 @@ public class Location {
    
     public void addToLocationTable(Location loc){
         String query = "insert into location values(" + loc.getLocationId() +"," + loc.getLatitude() + ", " + loc.getLongtude() + ", " + loc.getCommunity().getZipcode() + ")";
-        Helper.insertData(query);
-}
+        Helper.insertDeleteData(query);
+    }
 }

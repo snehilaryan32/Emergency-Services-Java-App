@@ -48,7 +48,7 @@ public class FireStation {
     
     public void InsertToFireTable(FireStation fir){
         String query = "insert into fireStation values(" + fir.getStationId() + ",'" + fir.getLocationId() + "')";
-        Helper.insertData(query);
+        Helper.insertDeleteData(query);
     }
     
 }

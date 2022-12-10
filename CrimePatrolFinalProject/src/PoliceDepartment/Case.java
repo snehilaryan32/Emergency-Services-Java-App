@@ -4,7 +4,11 @@
  */
 package PoliceDepartment;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import model.Location;
 import utilPackage.Helper;
 
@@ -12,36 +16,83 @@ import utilPackage.Helper;
  *
  * @author aryan
  */
-public class Case {
+@Entity
+public class Case implements Serializable{
     
-    Integer CaseID;
+    @Id
+    private int id;
+
+    @Column(name="CASE_ID")
+    Integer caseId;
+    
+    @Column(name="DESCRIPTION")
     String description;
+
     Location location; 
+    
+    @Column(name="LOCATION_ID")
+    Integer location_id;
+    
     Precinct precinct;
+    
+    @Column(name="PRECINCT_ID")
+    Integer precinctId;
+    
+    @Column(name="POLICE_ID")
     Integer policeId;
-    Integer LawyerId;
+    
+    @Column(name="LAWYERID")
+    Integer lawyerId;
+    
+    @Column(name="EMERGENCYTYPE")
     String EmerStringType;
+    
+    @Column(name = "DATETIME")
     Date dateTime;
+    
+    @Column(name="CASESTATUS")
     String caseStatus;
+    
+    @Column(name="DETECTIVE_ID")
     Integer detectiveId;
+    
 
     public String getCaseStatus() {
         return caseStatus;
     }
 
     public Case(Integer CaseID, String description, Location location, Precinct precinct, Integer policeId, Integer LawyerId, String EmerStringType, Date dateTime, String caseStatus, Integer detectiveId) {
-        this.CaseID = CaseID;
+        this.caseId = CaseID;
         this.description = description;
         this.location = location;
         this.precinct = precinct;
         this.policeId = policeId;
-        this.LawyerId = LawyerId;
+        this.lawyerId = LawyerId;
         this.EmerStringType = EmerStringType;
         this.dateTime = dateTime;
         this.caseStatus = caseStatus;
         this.detectiveId = detectiveId;
     }
+    
+    public Case() {
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Integer getCaseId() {
+        return caseId;
+    }
+
+    public void setCaseId(Integer caseId) {
+        this.caseId = caseId;
+    }
+    
     public void setDetectiveId(Integer detectiveId) {
         this.detectiveId = detectiveId;
     }
@@ -55,10 +106,6 @@ public class Case {
         return dateTime;
     }
 
-    public void setLawyerId(Integer LawyerId) {
-        this.LawyerId = LawyerId;
-    }
-
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
@@ -68,16 +115,8 @@ public class Case {
         return precinct;
     }
 
-    public Integer getLawyerId() {
-        return LawyerId;
-    }
-
     public void setPrecinct(Precinct precinct) {
         this.precinct = precinct;
-    }
-    
-    public void setCaseID(Integer CaseID) {
-        this.CaseID = CaseID;
     }
 
     public void setDescription(String description) {
@@ -96,10 +135,6 @@ public class Case {
 
     public void setEmerStringType(String EmerStringType) {
         this.EmerStringType = EmerStringType;
-    }
-
-    public Integer getCaseID() {
-        return CaseID;
     }
 
     public String getDescription() {
@@ -122,10 +157,33 @@ public class Case {
         return EmerStringType;
     }
 
+    public void setLocation_id(Integer location_id) {
+        this.location_id = location_id;
+    }
+
+    public void setPrecinctId(Integer precinctId) {
+        this.precinctId = precinctId;
+    }
+
+    public Integer getLocationid() {
+        return location_id;
+    }
+
+    public Integer getPrecinctId() {
+        return precinctId;
+    }
+
+    public Integer getLawyerId() {
+        return lawyerId;
+    }
+
+    public void setLawyerId(Integer lawyerId) {
+        this.lawyerId = lawyerId;
+    }
+
     public void addToCaseTable(Case cas){
-        String query = "insert into case values(" + cas.getCaseID() + ", '" + cas.getDescription()+ "', " + cas.getLocation().getLocationId() +  ", " + cas.getLawyerId() + ", " + cas.getPrecinct().getPrecinctId() + ", " + cas.getPoliceId() + ", '" + getEmerStringType() + "','" + Helper.getValidSnowFlkDate(cas.getDateTime()) + "','" + cas.getCaseStatus() + "'," + cas.getDetectiveId() + ")";
+        String query = "insert into case values(" + cas.getCaseId() + ", '" + cas.getDescription()+ "', " + cas.getLocation().getLocationId() +  ", " + cas.getLawyerId() + ", " + cas.getPrecinct().getPrecinctId() + ", " + cas.getPoliceId() + ", '" + getEmerStringType() + "','" + Helper.getValidSnowFlkDate(cas.getDateTime()) + "','" + cas.getCaseStatus() + "'," + cas.getDetectiveId() + ")";
         Helper.getData(query);
     }
-    
     
 }
