@@ -30,6 +30,11 @@ public class Credentials implements Serializable {
         this.password = password;
     }
 
+    public Credentials() {
+    }
+    
+    
+
     @Column(name="PASSWORD")
     String password;
 

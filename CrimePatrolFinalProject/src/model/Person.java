@@ -5,22 +5,41 @@
 package model;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 
 /**
  *
  * @author aryan
  */
+
+@Entity
 public class Person {
-    String name; 
-    int address; 
-    String email; 
-    long phoneNo; 
-    Date dateOfBirth; 
+    
+    @Id
+    @Column(name = "PERSON_ID")
     int id;
+    @Column(name = "NAME")
+    String name; 
+    @Column(name = "LOCATION_ID")
+    int address; 
+    @Column(name = "LOCATION_ID")
+    String email; 
+    @Column(name = "PHONE_NO")
+    long phoneNo; 
+    @Column(name = "DATE_OF_BIRTH")
+    Date dateOfBirth; 
+    @Column(name = "BLOOD_GROUP")
     String bloodGroup; 
+    @Column(name = "ROLE")
     String role; 
+    @Column(name = "GENDER")
     String gender; 
+//    @Column(name = "C")
+//    String communityName;
+    
 
     public Person(String name, int address, String email, long phoneNo, Date dateOfBirth, int id, String bloodGroup, String role, String gender) {
         this.name = name;

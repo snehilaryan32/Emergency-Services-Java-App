@@ -4,9 +4,14 @@
  */
 package crimepatrolfinalproject;
 
+import com.amazonaws.services.ec2.model.PrincipalType;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Citizen;
 import utilPackage.GenerateId;
+import utilPackage.Helper;
 
 /**
  *
@@ -127,6 +132,11 @@ public class SignUp2 extends javax.swing.JFrame {
         jButton2.setText("Clear");
 
         jButton3.setText("Go To Login");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -247,29 +257,39 @@ public class SignUp2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jBloodGroupActionPerformed
 
     private void jSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitActionPerformed
-        // TODO add your handling code here:
-        String name = jName.getText(); 
-        String email = jEmail.getText(); 
-        String phoneNo = jContact.getText(); 
-        Date dateOfBirth = jDateOfBirth.getDate(); 
-        String password = jPassword.getText(); 
-        String gender = jGender.getSelectedItem().toString(); 
-        String bloodGroup = jBloodGroup.getText(); 
-        String address = jAddress.getText(); 
-        int personID = GenerateId.newPersonId();
-        
-        Citizen cit = new Citizen(0, false, false, name, Integer.parseInt(address), email, Long.parseLong(phoneNo), dateOfBirth, personID, bloodGroup, "Citizen", gender);
-        cit.addToPersonTable(cit);
-        
-        Credentials cred = new Credentials(String.valueOf(personID), password);
-        cred.addToCredentialTable(cred);
-     
-        //Helper.insertData("insert into values('" + personID + "','" 
-        //        + name + "','" + address + "','" + email + "','" + "','" 
-        //        + phoneNo + "', to_date('03-02-1998', 'MM-DD-YYYY'),'" + bloodGroup + "','" + gender + "', 'Citizen')");
-        
-        System.out.println(name);
+        try {
+            // TODO add your handling code here:
+            String name = jName.getText();
+            String email = jEmail.getText();
+            String phoneNo = jContact.getText();
+            Date dateOfBirth = jDateOfBirth.getDate();
+            String password = jPassword.getText();
+            String gender = jGender.getSelectedItem().toString();
+            String bloodGroup = jBloodGroup.getText();
+            String address = jAddress.getText();
+            int personID = Helper.getMaxId("person", "person_id", " role = 'Citizen'");
+            
+            Citizen cit = new Citizen(0, false, false, name, Integer.parseInt(address), email, Long.parseLong(phoneNo), dateOfBirth, personID, bloodGroup, "Citizen", gender);
+            cit.addToPersonTable(cit);
+            
+            Credentials cred = new Credentials(String.valueOf(personID), password);
+            cred.addToCredentialTable(cred);
+            
+            //Helper.insertData("insert into values('" + personID + "','"
+            //        + name + "','" + address + "','" + email + "','" + "','"
+            //        + phoneNo + "', to_date('03-02-1998', 'MM-DD-YYYY'),'" + bloodGroup + "','" + gender + "', 'Citizen')");
+
+            System.out.println(name);
+        } catch (SQLException ex) {
+            Logger.getLogger(SignUp2.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jSubmitActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Login obj = new Login(); 
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

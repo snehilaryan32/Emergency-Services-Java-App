@@ -30,8 +30,8 @@ public class CitizenMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jViewNearbyCases = new javax.swing.JButton();
+        jCitizenPersonalDetailsButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -68,17 +68,27 @@ public class CitizenMenu extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        jButton1.setText("View Nearby Case");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jViewNearbyCases.setText("View Nearby Case");
+        jViewNearbyCases.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jViewNearbyCasesMouseClicked(evt);
+            }
+        });
+        jViewNearbyCases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewNearbyCasesActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Update Personal Details");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jCitizenPersonalDetailsButton.setText("Update Personal Details");
+        jCitizenPersonalDetailsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                jCitizenPersonalDetailsButtonMouseClicked(evt);
+            }
+        });
+        jCitizenPersonalDetailsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCitizenPersonalDetailsButtonActionPerformed(evt);
             }
         });
 
@@ -95,6 +105,11 @@ public class CitizenMenu extends javax.swing.JFrame {
                 jButton4MouseClicked(evt);
             }
         });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -103,15 +118,12 @@ public class CitizenMenu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(187, 187, 187)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jViewNearbyCases, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                .addGap(160, 160, 160)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)))
+                    .addComponent(jCitizenPersonalDetailsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(218, 218, 218))
         );
         jPanel2Layout.setVerticalGroup(
@@ -119,8 +131,8 @@ public class CitizenMenu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(142, 142, 142)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jViewNearbyCases, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCitizenPersonalDetailsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(71, 71, 71)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,12 +163,12 @@ public class CitizenMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jViewNearbyCasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewNearbyCasesMouseClicked
         // TODO add your handling code here:
         ViewNearbyCase cManagement = new ViewNearbyCase();
         cManagement.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jViewNearbyCasesMouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
@@ -174,13 +186,29 @@ public class CitizenMenu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton4MouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void jCitizenPersonalDetailsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCitizenPersonalDetailsButtonMouseClicked
         // TODO add your handling code here:
         UpdatePersonalDetails cManagement = new UpdatePersonalDetails();
         cManagement.setVisible(true);
         dispose();
         
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_jCitizenPersonalDetailsButtonMouseClicked
+
+    private void jViewNearbyCasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewNearbyCasesActionPerformed
+        ViewNearbyCase obj = new ViewNearbyCase(); 
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jViewNearbyCasesActionPerformed
+
+    private void jCitizenPersonalDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCitizenPersonalDetailsButtonActionPerformed
+        UpdatePersonalDetails obj = new UpdatePersonalDetails(); 
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jCitizenPersonalDetailsButtonActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,13 +246,13 @@ public class CitizenMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jCitizenPersonalDetailsButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jViewNearbyCases;
     // End of variables declaration//GEN-END:variables
 }

@@ -55,7 +55,6 @@ public class Case implements Serializable{
     
     @Column(name="DETECTIVE_ID")
     Integer detectiveId;
-    
 
     public String getCaseStatus() {
         return caseStatus;

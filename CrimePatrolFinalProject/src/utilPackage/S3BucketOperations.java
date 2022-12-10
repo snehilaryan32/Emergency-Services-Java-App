@@ -38,7 +38,7 @@ public class S3BucketOperations {
     static AmazonS3 s3Client = null;
     
     public static void setAmazonConnection() {
-        Regions clientRegion = Regions.US_EAST_1;
+        Regions clientRegion = Regions.US_EAST_2;
            
         try {
             s3Client = AmazonS3ClientBuilder.standard().withRegion(clientRegion).build();
