@@ -1,5 +1,7 @@
 package crimepatrolfinalproject;
 
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
 import utilPackage.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputListener;
 import model.Community;
 import model.Location;
+import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.OSMTileFactoryInfo;
 import org.jxmapviewer.VirtualEarthTileFactoryInfo;
 import org.jxmapviewer.input.PanMouseInputListener;
@@ -42,6 +45,16 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         jXMapViewer.addMouseWheelListener(new ZoomMouseWheelListenerCenter(jXMapViewer));
         event = getEvent();
     }
+    
+    public class Coordinates {
+    public static GeoPosition getCoordinates(JXMapViewer map, Point point) {
+    // Get the GeoPosition at the specified point on the map
+    GeoPosition coordinates = map.convertPointToGeoPosition(point);
+
+    // Return the coordinates
+    return coordinates;
+  }
+}
 
     private void addWaypoint(MyWaypoint waypoint) {
         for (MyWaypoint d : waypoints) {
@@ -104,6 +117,12 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jXMapViewer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jXMapViewerMouseClicked(evt);
+            }
+        });
 
         comboMapType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Open Stree", "Virtual Earth", "Hybrid", "Satellite" }));
         comboMapType.addActionListener(new java.awt.event.ActionListener() {
@@ -173,17 +192,12 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         jAddLocation.setText("Add Location");
         jAddLocation.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jAddLocationMouseClicked(evt);
+                jButton1MouseClicked(evt);
             }
         });
         jAddLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAddLocationActionPerformed(evt);
-            }
-        });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -220,6 +234,11 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         jLabel12.setText("Add Community");
 
         jButton2.setText("Create");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -364,8 +383,20 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdClearActionPerformed
 
     private void cmdAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdAddMouseClicked
-       addWaypoint(new MyWaypoint("Test 001", event, new GeoPosition(42.34726263455203, -71.0789384243692)));
-        addWaypoint(new MyWaypoint("Test 002", event, new GeoPosition(42.26361185091972, -71.79881373236489)));
+        String latitude = jLattitude.getText();
+        String longitude = jLongitude.getText();
+        int communityid = 123;
+                Community comm = Helper.fetchCommunity(communityid);
+
+        
+        
+        
+        Location loc = new Location(123,Double.parseDouble(longitude),Double.parseDouble(latitude), comm);
+
+        
+        
+        addWaypoint(new MyWaypoint("test", event, new GeoPosition(loc.getLatitude(), loc.getLongtude())));
+        //addWaypoint(new MyWaypoint("Test 002", event, new GeoPosition(loc.getLatitude(), loc.getLongtude())));
     }//GEN-LAST:event_cmdAddMouseClicked
 
     private void cmdClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdClearMouseClicked
@@ -395,6 +426,7 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
 
     private void jAddLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddLocationActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jAddLocationActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -405,6 +437,8 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         Community comm = new Community(name, id, 0);
         
         comm.addToCommunityTable(comm);
+        
+        jComboBox1.setSelectedItem(comm.getName());
 
 
         // TODO add your handling code here:
@@ -417,6 +451,20 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jXMapViewerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jXMapViewerMouseClicked
+        // TODO add your handling code here:
+        
+            
+        
+        
+        
+         
+    }//GEN-LAST:event_jXMapViewerMouseClicked
 
     /**
      * @param args the command line arguments
