@@ -171,13 +171,8 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jButton7" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jDescription" min="-2" pref="148" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                          <Component id="jDescription" min="-2" pref="148" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -189,6 +184,8 @@
                                   <Component id="jDelete" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jButton7" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
