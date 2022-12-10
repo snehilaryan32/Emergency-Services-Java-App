@@ -27,6 +27,7 @@ import utilPackage.GenerateId;
 import utilPackage.Helper; 
 import utilPackage.Helper;
 import utilPackage.ResultSetMapper;
+import utilPackage.S3BucketOperations;
 import utilPackage.SystemConstants;
 import utilPackage.SendNotification;
 
@@ -41,6 +42,8 @@ public class CrimePatrolFinalProject {
      */
     public static void main(String[] args) throws SQLException, InstantiationException{
         
+        S3BucketOperations.downloadS3Object("TestImage.png");
+        
 //          List<Case> credList = Helper.getResultSet(Case.class, "CASE");
 //          
 //          for (Case cred : credList){
@@ -50,14 +53,14 @@ public class CrimePatrolFinalProject {
 //          
 //          System.out.println(GenerateId.newDoctorId());
           
-          Map<String, String> mp = new HashMap<>();
-          mp.put("password", "aed");
-          mp.put("username", "1000008");
-          
-          
-          Helper.updateColumns("credentials", mp, "username = 1000009");
-          
-          System.out.println("uopdated");
+//          Map<String, String> mp = new HashMap<>();
+//          mp.put("password", "aed");
+//          mp.put("username", "1000008");
+//          
+//          
+//          Helper.updateColumns("credentials", mp, "username = 1000009");
+//          
+//          System.out.println("uopdated");
           
 //        ResultSetMapper<Community> credentialsResultSetMapper = new ResultSetMapper<Community>();
 //        
