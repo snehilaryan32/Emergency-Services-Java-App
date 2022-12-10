@@ -568,6 +568,7 @@ public class CasePortal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBackButtonActionPerformed
 
     private void jCaseMasterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCaseMasterTableMouseClicked
+        
         DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
         int caseIdUpdate = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
 

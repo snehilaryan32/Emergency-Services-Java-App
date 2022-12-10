@@ -4,75 +4,53 @@
  */
 package model;
 
+import PoliceDepartment.Case;
+import PoliceDepartment.Precinct;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import utilPackage.Helper;
 
 /**
  *
  * @author sahilpadyal
  */
+
+
 public class Police extends Person{
-    
-    int precinctid;
-    int caseid;
+    private int id;
+    Precinct precinct;
     String rank;
     String performance;
 
-    public Police(int precinctid, int caseid, String rank, String performance, String name, int address, String email, long phoneNo, Date dateOfBirth, int id, String bloodGroup, String role, String gender) {
+    public Police(Precinct precinct, String rank, String performance, String name, int address, String email, long phoneNo, Date dateOfBirth, int id, String bloodGroup, String role, String gender) {
         super(name, address, email, phoneNo, dateOfBirth, id, bloodGroup, role, gender);
-        this.precinctid = precinctid;
-        this.caseid = caseid;
+        this.precinct = precinct;
         this.rank = rank;
         this.performance = performance;
     }
 
-    
-    
-    
-    
-
-    
-    
-
-    public String getPerformance() {
-        return performance;
+    public Precinct getPrecinct() {
+        return precinct;
     }
 
-    public void setPerformance(String performance) {
-        this.performance = performance;
-    }
-    
-
-    public int getPrecinctid() {
-        return precinctid;
-    }
-
-    public void setPrecinctid(int precinctid) {
-        this.precinctid = precinctid;
-    }
-
-    public int getCaseid() {
-        return caseid;
-    }
-
-    public void setCaseid(int caseid) {
-        this.caseid = caseid;
-    }
 
     public String getRank() {
         return rank;
     }
 
-    public void setRank(String rank) {
-        this.rank = rank;
+    public String getPerformance() {
+        return performance;
     }
+
+
     
     public void addToPoliceTable(Police police){
-        String insertQuery = "insert into person values ( " + police.getId() + ", '" + police.getName() + "'," + police.getAddress() + ",'" + police.getEmail() + "'," + police.getPhoneNo() + ", to_date('03-02-1998', 'dd-mm-yyyy'),'" + police.getBloodGroup() + "', '" + police.getGender() + "', '" + police.getRole() + "')";
-        String query = "insert into police values(" + police.getId() + ",'" + police.getName() + "','" + police.getRank() + "'," + police.getPrecinctid() + ",'" + police.getPerformance() + "')";
+        String insertQuery = "insert into person values ( " + police.getId() + ", '" + police.getName() + "'," + police.getAddress() + ",'" + police.getEmail() + "'," + police.getPhoneNo() + ", '" + Helper.getValidSnowFlkDate(police.getDateOfBirth()) + "','" + police.getBloodGroup() + "', '" + police.getGender() + "', '" + police.getRole() + "')";
+        String query = "insert into police values(" + police.getId() + ",'" + police.getName() + "','" + police.getRank() + "'," + police.getPrecinct().getPrecinctId() + ",'" + police.getPerformance() + "')";
         Helper.insertDeleteData(query);
         Helper.insertDeleteData(insertQuery);
     
     
-}
+    }
 }
