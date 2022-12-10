@@ -30,9 +30,37 @@ public class CasePortal extends javax.swing.JFrame {
     /**
      * Creates new form Case
      */
+    
+    Integer currentCaseId;
+    
     public CasePortal() {
         initComponents();
+        
+        try {
+          
+            List<Case> objList = Helper.getResultSet(Case.class, "case");
+            
+            for(Case i : objList){
+                Integer iD = i.getCaseId(); 
+                Integer precinctId = i.getPrecinctId();
+                Integer policeId = i.getPoliceId(); 
+                Integer lawyerId = i.getLawyerId(); 
+                Integer detectiveId = i.getDetectiveId();
+                String caseStatus = i.getCaseStatus(); 
+                String description = i.getDescription(); 
+                String date = i.getDateTime().toString();
+                Integer locationId = i.getLocationid();
+                DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
+                Object[] obj = {iD, date, precinctId, policeId, lawyerId, detectiveId, caseStatus, description, locationId};
+                tblModel.addRow(obj);                   
             }
+            
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
             
     /**
      * This method is called from within the constructor to initialize the form.
@@ -527,33 +555,18 @@ public class CasePortal extends javax.swing.JFrame {
     }//GEN-LAST:event_jUpdateButtonActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
+        if (jCaseMasterTable.getSelectedRowCount() == 1){
+            Integer caseId = Integer.valueOf(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
+            currentCaseId = caseId;
+            EvidencePortal evidencePortal = new EvidencePortal(currentCaseId);
+            evidencePortal.setVisible(true);
+        }
         
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        
-        
-        try {
-          
-            List<Case> objList = Helper.getResultSet(Case.class, "case");
-            
-            for(Case i : objList){
-                Integer iD = i.getCaseId(); 
-                Integer precinctId = i.getPrecinctId();
-                Integer policeId = i.getPoliceId(); 
-                Integer lawyerId = i.getLawyerId(); 
-                Integer detectiveId = i.getDetectiveId();
-                String caseStatus = i.getCaseStatus(); 
-                String description = i.getDescription(); 
-                String date = i.getDateTime().toString();
-                DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
-                Object[] obj = {iD, date, precinctId, policeId, lawyerId, detectiveId, caseStatus, description};
-                tblModel.addRow(obj);                   
-            }
-            
-        } catch (InstantiationException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed

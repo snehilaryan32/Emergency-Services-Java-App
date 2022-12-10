@@ -9,12 +9,6 @@ package PoliceDepartment;
  * @author sahilpadyal
  */
 
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.AmazonS3Exception;
-import com.amazonaws.services.s3.model.PutObjectRequest;
 import java.awt.Image;
 import java.io.File;
 import java.sql.ResultSet;
@@ -25,10 +19,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import utilPackage.Helper;
 import utilPackage.S3BucketOperations;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -39,8 +33,11 @@ public class EvidencePortal extends javax.swing.JFrame {
     /**
      * Creates new form mainPoliceDept
      */
+    Integer currentCaseId;
     public EvidencePortal() {
         initComponents();
+        
+        jEvidenceId.disable();
         
         try {
           
@@ -63,6 +60,51 @@ public class EvidencePortal extends javax.swing.JFrame {
         }
         
     }
+    
+    public EvidencePortal(Integer currCaseId) {
+        initComponents();
+        
+        jEvidenceId.disable();
+        
+        currentCaseId = currCaseId;
+        
+        System.out.println("current case id ===> " + currentCaseId);
+        
+        try {
+          
+            
+            List<Evidence> evidenceList = Helper.getResultSetByConditionId(Evidence.class, "evidence","case_id", currentCaseId);
+            
+            if(evidenceList != null) {
+                for(Evidence i : evidenceList){
+                    Integer evidenceId = i.getEvidenceId();
+                    Integer caseId = i.getCaseId();
+                    String description = i.getDescription();
+                    DefaultTableModel tblModel = (DefaultTableModel)jEvidenceTable.getModel();
+                    Object[] obj = {evidenceId, caseId, description};
+                    tblModel.addRow(obj);                   
+                }
+                
+                Evidence ev1 = evidenceList.get(0);
+                jEvidenceId.setText(ev1.getEvidenceId().toString());
+                jCaseId.setText(ev1.getCaseId().toString());
+                jDescription.setText(ev1.getDescription());
+                jImagePath.setName(ev1.getImagePath());
+                ImageIcon imgIcon = new ImageIcon(ev1.getImagePath());
+                Image img = imgIcon.getImage();
+                Image scaledImage = img.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
+                ImageIcon scaledImgIcon = new ImageIcon(scaledImage);
+                imageLabel.setIcon(scaledImgIcon);
+            }
+            
+            
+            
+            
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,15 +116,10 @@ public class EvidencePortal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         uploadEvidence = new javax.swing.JButton();
         imageLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEvidenceTable = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jCaseId = new javax.swing.JTextField();
-        jDescription = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jDelete = new javax.swing.JButton();
         jUpdateButton = new javax.swing.JButton();
@@ -90,31 +127,28 @@ public class EvidencePortal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jImagePath = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jEvidenceId = new javax.swing.JTextField();
+        jDescription = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jCaseId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Evidence Portal");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 365, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addGap(0, 223, Short.MAX_VALUE)
         );
 
-        uploadEvidence.setText("Add Evidence");
+        uploadEvidence.setText("Upload/Replace Evidence");
         uploadEvidence.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 uploadEvidenceActionPerformed(evt);
@@ -136,17 +170,12 @@ public class EvidencePortal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jEvidenceTable);
 
-        jLabel2.setText("Case ID");
-
-        jLabel3.setText("Description");
-
-        jCaseId.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("Reset");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCaseIdActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
-
-        jButton4.setText("Reset");
 
         jDelete.setText("Delete");
         jDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -169,39 +198,45 @@ public class EvidencePortal extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Evidence Portal");
+
+        jLabel2.setText("Case ID");
+
+        jEvidenceId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEvidenceIdActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Description");
+
+        jLabel6.setText("Evidence ID");
+
+        jCaseId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCaseIdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCaseId))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(176, 176, 176))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(uploadEvidence, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(58, 58, 58)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(jImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(uploadEvidence)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(createEvidence)
@@ -211,7 +246,32 @@ public class EvidencePortal extends javax.swing.JFrame {
                         .addComponent(jDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(64, 64, 64)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jCaseId)
+                                            .addComponent(jEvidenceId, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(99, 99, 99)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -220,40 +280,49 @@ public class EvidencePortal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(155, 155, 155)
                         .addComponent(jLabel4)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jCaseId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(uploadEvidence)
-                                .addComponent(createEvidence)
-                                .addComponent(jUpdateButton)
-                                .addComponent(jDelete)
-                                .addComponent(jButton4))
-                            .addGap(9, 9, 9)
-                            .addComponent(jLabel4))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(231, 231, 231)
-                            .addComponent(jImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(237, 237, 237)
+                        .addComponent(jImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(jEvidenceId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel6))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(jLabel2)
+                                                    .addComponent(jCaseId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(20, 20, 20)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(jLabel3)
+                                                    .addComponent(jDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(18, 18, 18))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(24, 24, 24)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(uploadEvidence)
+                                    .addComponent(createEvidence)
+                                    .addComponent(jUpdateButton)
+                                    .addComponent(jDelete)
+                                    .addComponent(jButton4))
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel4)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(257, Short.MAX_VALUE))
@@ -281,90 +350,72 @@ public class EvidencePortal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_uploadEvidenceActionPerformed
 
-    private void jCaseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCaseIdActionPerformed
+    private void jEvidenceIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEvidenceIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCaseIdActionPerformed
+    }//GEN-LAST:event_jEvidenceIdActionPerformed
 
     private void jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteActionPerformed
 
-//        DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
-//        if(jCaseMasterTable.getSelectedRowCount() == 1){
-//
-//            Integer caseId = Integer.valueOf(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
-//
-//            int patientID = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
-//            tblModel.removeRow(jCaseMasterTable.getSelectedRow());
-//
-//            Helper.insertDeleteData("delete from case where case_id = " + caseId);
-//
-//        }
+        DefaultTableModel tblModel = (DefaultTableModel)jEvidenceTable.getModel();
+        if(jEvidenceTable.getSelectedRowCount() == 1){
+            Integer evidenceId = Integer.valueOf(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 1).toString());
+            tblModel.removeRow(jEvidenceTable.getSelectedRow());
+            Helper.insertDeleteData("delete from evidence where evidence_id = " + evidenceId);
+            resetAllFields();
+        }
 
     }//GEN-LAST:event_jDeleteActionPerformed
 
     private void jUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateButtonActionPerformed
-//        DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
-//
-//        if (jCaseMasterTable.getSelectedRowCount() == 1){
-//
-//            Integer caseId = Integer.valueOf(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
-//            Integer precinctId = Integer.valueOf(jPrecinctId.getText());
-//            Integer policeId = Integer.valueOf(jPoliceId.getText());
-//            Integer lawyerId = Integer.valueOf(jLawyerId.getText());
-//            Integer detectiveId = Integer.valueOf(jDetectiveId.getText());
-//            String description = jDescription.getText();
-//            String caseStatus = (String) jCaseStatus.getSelectedItem();
-//
-//            System.out.println(description);
-//            System.out.println(caseId);
-//
-//            tblModel.setValueAt(precinctId, jCaseMasterTable.getSelectedRow(), 2);
-//            tblModel.setValueAt(policeId, jCaseMasterTable.getSelectedRow(), 3);
-//            tblModel.setValueAt(lawyerId, jCaseMasterTable.getSelectedRow(), 4);
-//            tblModel.setValueAt(detectiveId, jCaseMasterTable.getSelectedRow(), 5);
-//            tblModel.setValueAt(caseStatus, jCaseMasterTable.getSelectedRow(), 6);
-//            tblModel.setValueAt(description, jCaseMasterTable.getSelectedRow(), 7);
-//
-//            Map<String, String> mp = new HashMap<>();
-//            mp.put("description", description);
-//            mp.put("lawyerid", String.valueOf(lawyerId));
-//            mp.put("precinct_id", String.valueOf(precinctId));
-//            mp.put("police_id", String.valueOf(policeId));
-//            mp.put("casestatus", caseStatus);
-//            mp.put("detective_id", String.valueOf(detectiveId));
-//
-//            try {
-//                Helper.updateColumns("case", mp, "case_id = " + caseId);
-//            }
-//
-//            catch (SQLException ex) {
-//                System.out.println("Failed");
-//                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//            tblModel.setRowCount(0);
-//
-//            try {
-//                List<Case> objList = Helper.getResultSet(Case.class, "case");
-//
-//                for(Case i : objList){
-//                    Integer id = i.getCaseId();
-//                    Integer objPrecinctId = i.getPrecinctId();
-//                    Integer objPoliceId = i.getPoliceId();
-//                    Integer objLawyerId = i.getLawyerId();
-//                    Integer objDetectiveId = i.getDetectiveId();
-//                    String objCaseStatus = i.getCaseStatus();
-//                    String objDesc = i.getDescription();
-//                    String objDate = i.getDateTime().toString();
-//                    Object[] obj = {id, objDate, objPrecinctId, objPoliceId, objLawyerId, objDetectiveId, objCaseStatus, objDesc};
-//                    tblModel.addRow(obj);
-//                }
-//
-//            } catch (InstantiationException ex) {
-//                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//        }
+        DefaultTableModel tblModel = (DefaultTableModel)jEvidenceTable.getModel();
+        
+        if (jEvidenceTable.getSelectedRowCount() == 1){
 
+            Integer caseId = Integer.valueOf(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 1).toString());
+            if(caseId != Integer.parseInt(jCaseId.getText())) {
+                JOptionPane.showMessageDialog(this, "Case ID for an Evidence cannot be updated.");
+                return;
+            }
+            
+            String desc = jDescription.getText();
+            String imagePath = jImagePath.getName();
+            
+            Integer evidenceId = Integer.valueOf(jEvidenceId.getText());
+            
+            Map<String, String> mp = new HashMap<>();
+            mp.put("description", desc);
+            mp.put("IMAGEPATH", imagePath);
+            
+            try {
+                Helper.updateColumns("evidence", mp, "evidence_id = " + evidenceId);
+            }
+            catch (SQLException ex) {
+                System.out.println("Failed");
+                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            tblModel.setRowCount(0);
+
+            try {
+                    List<Evidence> evidenceList = null;
+                    if(currentCaseId != null) {
+                        evidenceList = Helper.getResultSetByConditionId(Evidence.class, "evidence", "case_id", currentCaseId);
+                    } else {
+                       evidenceList = Helper.getResultSet(Evidence.class, "evidence"); 
+                    }
+                    if(evidenceList != null) {
+                        for(Evidence i : evidenceList){
+                            Integer evId = i.getEvidenceId();
+                            Integer casId = i.getCaseId();
+                            String objDesc = i.getDescription();
+                            Object[] obj = {evId, casId, objDesc};
+                            tblModel.addRow(obj);   
+                        }
+                }
+            } catch (InstantiationException ex) {
+                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jUpdateButtonActionPerformed
 
     private void createEvidenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvidenceActionPerformed
@@ -386,20 +437,35 @@ public class EvidencePortal extends javax.swing.JFrame {
 
         Evidence evidence = new Evidence(evidenceId, caseId, desc, imagePath);
         evidence.addToEvidenceTable(evidence);
+        resetAllFields();
 
     }//GEN-LAST:event_createEvidenceActionPerformed
 
+    public void resetAllFields() {
+        jEvidenceId.setText(null);
+        jCaseId.setText("");
+        jDescription.setText("");
+        imageLabel.setIcon(null);
+    }
+    
     private void jEvidenceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEvidenceTableMouseClicked
         // TODO add your handling code here:
+        resetAllFields();
         DefaultTableModel tblModel = (DefaultTableModel)jEvidenceTable.getModel(); 
         if(jEvidenceTable.getSelectedRowCount() == 1){
             
             Integer evidenceId = Integer.parseInt(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 0).toString());
             jDescription.setText(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 2).toString());
             jCaseId.setText(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 1).toString());
-            ResultSet result = Helper.getData("select * from evidence where evidence_id = " + evidenceId);
-            ResultSetMapper<Evidence> evRSMapper = new ResultSetMapper<Evidence>();
-            List<Evidence> evidenceList = evRSMapper.mapResultSetToObject(result, Evidence.class);
+            jEvidenceId.setText(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 0).toString());
+            
+            List<Evidence> evidenceList = new ArrayList<>();
+            try {
+                evidenceList = Helper.getResultSetByConditionId(Evidence.class, "evidence", "evidence_id", evidenceId);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(EvidencePortal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             if(evidenceList.size() == 1 && evidenceList.get(0).getImagePath() != null) {
                 jImagePath.setName(evidenceList.get(0).getImagePath());
                 ImageIcon imgIcon = new ImageIcon(evidenceList.get(0).getImagePath());
@@ -411,6 +477,15 @@ public class EvidencePortal extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jEvidenceTableMouseClicked
+
+    private void jCaseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCaseIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCaseIdActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        resetAllFields();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -457,6 +532,7 @@ public class EvidencePortal extends javax.swing.JFrame {
     private javax.swing.JTextField jCaseId;
     private javax.swing.JButton jDelete;
     private javax.swing.JTextField jDescription;
+    private javax.swing.JTextField jEvidenceId;
     private javax.swing.JTable jEvidenceTable;
     private javax.swing.JLabel jImagePath;
     private javax.swing.JLabel jLabel1;
@@ -464,6 +540,7 @@ public class EvidencePortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jUpdateButton;
