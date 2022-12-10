@@ -5,13 +5,19 @@
 package PoliceDepartment;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.Location;
 import utilPackage.GenerateId;
 import utilPackage.Helper;
@@ -62,15 +68,16 @@ public class CasePortal extends javax.swing.JFrame {
         jCaseMasterTable = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         jPoliceId = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLocation = new javax.swing.JTextField();
         jDate = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
         jCaseType = new javax.swing.JComboBox<>();
+        searchTxt = new javax.swing.JTextField();
+        searchByOptions = new javax.swing.JComboBox<>();
+        searchCaseBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,6 +148,12 @@ public class CasePortal extends javax.swing.JFrame {
 
         jLabel6.setText("Description");
 
+        jDescription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDescriptionActionPerformed(evt);
+            }
+        });
+
         jLabel7.setText("Lawyer ID");
 
         jLabel8.setText("Detective ID");
@@ -170,13 +183,10 @@ public class CasePortal extends javax.swing.JFrame {
 
         jCaseMasterTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Case ID", "Date", "Precinct ID", "Police ID", "Lawyer ID", "Detective ID", "Case Status", "Description"
+                "Case ID", "Date", "Precinct ID", "Police ID", "Lawyer ID", "Detective ID", "Case Status", "Description", "Location ID"
             }
         ));
         jCaseMasterTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -188,12 +198,8 @@ public class CasePortal extends javax.swing.JFrame {
 
         jLabel9.setText("Police ID");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 20)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel10.setText("Search By");
-
-        jTextField8.setText("jTextField8");
 
         jButton7.setText("View Evidence");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +210,6 @@ public class CasePortal extends javax.swing.JFrame {
 
         jLabel11.setText("Location");
 
-        jLocation.setText("jTextField9");
         jLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jLocationActionPerformed(evt);
@@ -215,18 +220,31 @@ public class CasePortal extends javax.swing.JFrame {
 
         jCaseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        searchTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTxtActionPerformed(evt);
+            }
+        });
+
+        searchByOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Case ID", "Precinct ID", "Police ID", "Lawyer ID", "Detective ID", "Case Status", "Description", "Location ID" }));
+        searchByOptions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchByOptionsActionPerformed(evt);
+            }
+        });
+
+        searchCaseBtn.setText("SEARCH");
+        searchCaseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchCaseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCaseBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,13 +294,23 @@ public class CasePortal extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jUpdateButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDelete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jButton1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jUpdateButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jDelete)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButton4))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(searchByOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(searchCaseBtn)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -293,12 +321,7 @@ public class CasePortal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jCaseStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
@@ -335,9 +358,15 @@ public class CasePortal extends javax.swing.JFrame {
                     .addComponent(jDelete)
                     .addComponent(jButton4)
                     .addComponent(jButton7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(searchByOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchCaseBtn)
+                    .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -434,12 +463,12 @@ public class CasePortal extends javax.swing.JFrame {
         if (jCaseMasterTable.getSelectedRowCount() == 1){
             
             Integer caseId = Integer.valueOf(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString()); 
-            Integer precinctId = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 2).toString());
-            Integer policeId = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 3).toString());
-            Integer lawyerId = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4).toString());
-            Integer detectiveId = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 5).toString());
-            String description = tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 7).toString(); 
-            String caseStatus = jCaseStatus.getSelectedItem().toString();
+            Integer precinctId = Integer.valueOf(jPrecinctId.getText()); 
+            Integer policeId = Integer.valueOf(jPoliceId.getText()); 
+            Integer lawyerId = Integer.valueOf(jLawyerId.getText()); 
+            Integer detectiveId = Integer.valueOf(jDetectiveId.getText()); 
+            String description = jDescription.getText(); 
+            String caseStatus = (String) jCaseStatus.getSelectedItem();
            
             System.out.println(description);
             System.out.println(caseId);
@@ -457,7 +486,7 @@ public class CasePortal extends javax.swing.JFrame {
             mp.put("precinct_id", String.valueOf(precinctId));
             mp.put("police_id", String.valueOf(policeId));
             mp.put("casestatus", caseStatus);
-            mp.put("detective_id", String.valueOf(lawyerId));
+            mp.put("detective_id", String.valueOf(detectiveId));
             
             try {
                 Helper.updateColumns("case", mp, "case_id = " + caseId);
@@ -468,12 +497,28 @@ public class CasePortal extends javax.swing.JFrame {
                 Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+            tblModel.setRowCount(0);
             
+            try {
+            List<Case> objList = Helper.getResultSet(Case.class, "case");
             
+            for(Case i : objList){
+                Integer id = i.getCaseId(); 
+                Integer objPrecinctId = i.getPrecinctId();
+                Integer objPoliceId = i.getPoliceId(); 
+                Integer objLawyerId = i.getLawyerId(); 
+                Integer objDetectiveId = i.getDetectiveId();
+                String objCaseStatus = i.getCaseStatus(); 
+                String objDesc = i.getDescription(); 
+                String objDate = i.getDateTime().toString();
+                Object[] obj = {id, objDate, objPrecinctId, objPoliceId, objLawyerId, objDetectiveId, objCaseStatus, objDesc};
+                tblModel.addRow(obj);                   
+            }
             
-            
-        
-        
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
         }
         
         
@@ -492,25 +537,17 @@ public class CasePortal extends javax.swing.JFrame {
             List<Case> objList = Helper.getResultSet(Case.class, "case");
             
             for(Case i : objList){
-                Integer iD = i.getCaseID(); 
-                Date date = i.getDateTime(); 
-                Integer precinct = i.getPrecinctId();
+                Integer iD = i.getCaseId(); 
+                Integer precinctId = i.getPrecinctId();
                 Integer policeId = i.getPoliceId(); 
                 Integer lawyerId = i.getLawyerId(); 
                 Integer detectiveId = i.getDetectiveId();
                 String caseStatus = i.getCaseStatus(); 
-                String description = i.getDescription();
-                Location location = null;
-//                try {
-//                    location = Helper.fetchLocation(i.getLocationid());
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                
+                String description = i.getDescription(); 
+                String date = i.getDateTime().toString();
                 DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
-                Object[] obj = {iD, date, i.getPrecinctId(), policeId, lawyerId, detectiveId, caseStatus, description};
-                tblModel.addRow(obj);
-                   
+                Object[] obj = {iD, date, precinctId, policeId, lawyerId, detectiveId, caseStatus, description};
+                tblModel.addRow(obj);                   
             }
             
         } catch (InstantiationException ex) {
@@ -527,12 +564,31 @@ public class CasePortal extends javax.swing.JFrame {
     private void jCaseMasterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCaseMasterTableMouseClicked
         DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
         int caseIdUpdate = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
+
         
         if(jCaseMasterTable.getSelectedRowCount() == 1){
+            
+            String dt = tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 1).toString();
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
+            Date date = null;
+            try {
+                date = formatter.parse(dt);
+            } catch (ParseException ex) {
+                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jDate.setDate(date);
             jPrecinctId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 2).toString());
             jPoliceId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 3).toString());
-            jLawyerId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4).toString());
-            jDetectiveId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 5).toString());
+            if(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4) != null) {
+               jLawyerId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4).toString()); 
+            } else {
+                jLawyerId.setText("");
+            }
+            if(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 5) != null) {
+               jDetectiveId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 5).toString());
+            } else {
+                jDetectiveId.setText("");
+            }
             //jCaseStatus.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 6).toString()); 
             jDescription.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 7).toString()); 
         }
@@ -553,6 +609,61 @@ public class CasePortal extends javax.swing.JFrame {
           }
         
     }//GEN-LAST:event_jDeleteActionPerformed
+
+    private void jDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDescriptionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDescriptionActionPerformed
+
+    private void searchTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTxtActionPerformed
+
+    private void searchByOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByOptionsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchByOptionsActionPerformed
+
+    private void searchCaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCaseBtnActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel tblModel = (DefaultTableModel) jCaseMasterTable.getModel();
+        String searchString = searchTxt.getText();
+        String searchField = (String) searchByOptions.getSelectedItem();
+
+        int tblHeaderIndex = 1;
+
+        switch(searchField) {
+            case "Case ID":
+            tblHeaderIndex = 0;
+            break;
+            case "Precinct Id":
+            tblHeaderIndex = 2;
+            break;
+            case "Police ID":
+            tblHeaderIndex = 3;
+            break;
+            case "Lawyer ID":
+            tblHeaderIndex = 4;
+            break;
+            case "Detective ID":
+            tblHeaderIndex = 5;
+            break;
+            case "Case Status":
+            tblHeaderIndex = 6;
+            break;
+            case "Description":
+            tblHeaderIndex = 7;
+            break;
+            case "Location ID":
+            tblHeaderIndex = 8;
+            break;
+            default:
+            tblHeaderIndex = 0;
+        }
+
+        TableRowSorter<DefaultTableModel> tSorter = new TableRowSorter(tblModel);
+        jCaseMasterTable.setRowSorter(tSorter);
+        tSorter.setRowFilter(RowFilter.regexFilter(searchString.trim(), tblHeaderIndex));
+
+    }//GEN-LAST:event_searchCaseBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -599,7 +710,6 @@ public class CasePortal extends javax.swing.JFrame {
     private javax.swing.JTable jCaseMasterTable;
     private javax.swing.JComboBox<String> jCaseStatus;
     private javax.swing.JComboBox<String> jCaseType;
-    private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JButton jDelete;
     private javax.swing.JTextField jDescription;
@@ -622,7 +732,9 @@ public class CasePortal extends javax.swing.JFrame {
     private javax.swing.JTextField jPoliceId;
     private javax.swing.JTextField jPrecinctId;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JButton jUpdateButton;
+    private javax.swing.JComboBox<String> searchByOptions;
+    private javax.swing.JButton searchCaseBtn;
+    private javax.swing.JTextField searchTxt;
     // End of variables declaration//GEN-END:variables
 }

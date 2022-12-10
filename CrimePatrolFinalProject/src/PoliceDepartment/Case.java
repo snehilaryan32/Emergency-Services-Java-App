@@ -22,14 +22,12 @@ public class Case implements Serializable{
     @Id
     private int id;
 
-  
-    
     @Column(name="CASE_ID")
-    Integer CaseID;
+    Integer caseId;
     
     @Column(name="DESCRIPTION")
     String description;
-    //@Column(name="LOCATION")
+
     Location location; 
     
     @Column(name="LOCATION_ID")
@@ -44,7 +42,7 @@ public class Case implements Serializable{
     Integer policeId;
     
     @Column(name="LAWYERID")
-    Integer LawyerId;
+    Integer lawyerId;
     
     @Column(name="EMERGENCYTYPE")
     String EmerStringType;
@@ -64,12 +62,12 @@ public class Case implements Serializable{
     }
 
     public Case(Integer CaseID, String description, Location location, Precinct precinct, Integer policeId, Integer LawyerId, String EmerStringType, Date dateTime, String caseStatus, Integer detectiveId) {
-        this.CaseID = CaseID;
+        this.caseId = CaseID;
         this.description = description;
         this.location = location;
         this.precinct = precinct;
         this.policeId = policeId;
-        this.LawyerId = LawyerId;
+        this.lawyerId = LawyerId;
         this.EmerStringType = EmerStringType;
         this.dateTime = dateTime;
         this.caseStatus = caseStatus;
@@ -78,9 +76,23 @@ public class Case implements Serializable{
     
     public Case() {
     }
-    
- 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Integer getCaseId() {
+        return caseId;
+    }
+
+    public void setCaseId(Integer caseId) {
+        this.caseId = caseId;
+    }
+    
     public void setDetectiveId(Integer detectiveId) {
         this.detectiveId = detectiveId;
     }
@@ -94,10 +106,6 @@ public class Case implements Serializable{
         return dateTime;
     }
 
-    public void setLawyerId(Integer LawyerId) {
-        this.LawyerId = LawyerId;
-    }
-
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
@@ -107,16 +115,8 @@ public class Case implements Serializable{
         return precinct;
     }
 
-    public Integer getLawyerId() {
-        return LawyerId;
-    }
-
     public void setPrecinct(Precinct precinct) {
         this.precinct = precinct;
-    }
-    
-    public void setCaseID(Integer CaseID) {
-        this.CaseID = CaseID;
     }
 
     public void setDescription(String description) {
@@ -135,10 +135,6 @@ public class Case implements Serializable{
 
     public void setEmerStringType(String EmerStringType) {
         this.EmerStringType = EmerStringType;
-    }
-
-    public Integer getCaseID() {
-        return CaseID;
     }
 
     public String getDescription() {
@@ -177,8 +173,16 @@ public class Case implements Serializable{
         return precinctId;
     }
 
+    public Integer getLawyerId() {
+        return lawyerId;
+    }
+
+    public void setLawyerId(Integer lawyerId) {
+        this.lawyerId = lawyerId;
+    }
+
     public void addToCaseTable(Case cas){
-        String query = "insert into case values(" + cas.getCaseID() + ", '" + cas.getDescription()+ "', " + cas.getLocation().getLocationId() +  ", " + cas.getLawyerId() + ", " + cas.getPrecinct().getPrecinctId() + ", " + cas.getPoliceId() + ", '" + getEmerStringType() + "','" + Helper.getValidSnowFlkDate(cas.getDateTime()) + "','" + cas.getCaseStatus() + "'," + cas.getDetectiveId() + ")";
+        String query = "insert into case values(" + cas.getCaseId() + ", '" + cas.getDescription()+ "', " + cas.getLocation().getLocationId() +  ", " + cas.getLawyerId() + ", " + cas.getPrecinct().getPrecinctId() + ", " + cas.getPoliceId() + ", '" + getEmerStringType() + "','" + Helper.getValidSnowFlkDate(cas.getDateTime()) + "','" + cas.getCaseStatus() + "'," + cas.getDetectiveId() + ")";
         Helper.getData(query);
     }
     

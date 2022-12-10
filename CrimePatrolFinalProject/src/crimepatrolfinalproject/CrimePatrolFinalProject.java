@@ -41,22 +41,23 @@ public class CrimePatrolFinalProject {
      */
     public static void main(String[] args) throws SQLException, InstantiationException{
         
-        
-        
-          List<Case> credList = Helper.getResultSet(Case.class, "CASE");
-          
-          for (Case cred : credList){
-              System.out.println(String.valueOf(cred.getCaseID()) + ":" + cred.getPoliceId());
-              
-          }
-          
-          System.out.println(GenerateId.newDoctorId());
+//          List<Case> credList = Helper.getResultSet(Case.class, "CASE");
+//          
+//          for (Case cred : credList){
+//              System.out.println(String.valueOf(cred.getCaseId()) + ":" + cred.getPoliceId());
+//              
+//          }
+//          
+//          System.out.println(GenerateId.newDoctorId());
           
           Map<String, String> mp = new HashMap<>();
-          mp.put("description", "UPDATED DESC");
+          mp.put("password", "aed");
+          mp.put("username", "1000008");
           
           
-          Helper.updateColumns("case", mp, "case_id = 30000011");
+          Helper.updateColumns("credentials", mp, "username = 1000009");
+          
+          System.out.println("uopdated");
           
 //        ResultSetMapper<Community> credentialsResultSetMapper = new ResultSetMapper<Community>();
 //        
