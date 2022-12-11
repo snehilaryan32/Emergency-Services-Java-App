@@ -4,6 +4,7 @@
  */
 package utilPackage;
 
+import FireDepartment.FireStation;
 import PoliceDepartment.Precinct;
 import com.amazonaws.services.s3.model.ObjectListing;
 import crimepatrolfinalproject.Credentials;
@@ -143,6 +144,30 @@ public class Helper {
         
         return pre;
     }
+    
+     public static FireStation fetchFireStation(int Id) throws SQLException{
+        Connection connectToSnow = Helper.connect;
+        
+        int locationId = 0;
+        Integer cheifId = null;
+
+        FireStation fire = null;
+        
+        ResultSet res = Helper.getData("select * from fireStation where station_id = " + Id);
+        while(res.next()){
+            locationId = Integer.parseInt(res.getString(2));
+            cheifId = Integer.parseInt(res.getString(3));
+         
+        }
+        
+        if(locationId != 0){
+            Location loc = Helper.fetchLocation(locationId);
+            fire = new FireStation(Id, loc.getLocationId(), cheifId);   
+        }
+        
+        
+        return fire;
+    }    
         
         //Function to fetch data from
         

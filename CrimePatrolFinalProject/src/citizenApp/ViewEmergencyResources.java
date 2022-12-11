@@ -403,7 +403,7 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
 
     private void jPoliceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPoliceTableMouseClicked
         DefaultTableModel tblModel = (DefaultTableModel)jPoliceTable.getModel();
-       // List<Precinct> objList=null;
+       
         double lat = 0.00 ;
         double longitude  = 0.00;
         int setLocation = Integer.parseInt(tblModel.getValueAt(jPoliceTable.getSelectedRow(), 0).toString());

@@ -4,16 +4,26 @@
  */
 package FireDepartment;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import utilPackage.Helper;
 
 /**
  *
  * @author aryan
  */
+
+@Entity
 public class FireStation {
-    
+    @Id
+    @Column(name="STATION_ID")
     int stationId; 
+    @Id
+    @Column(name="LOCATION_ID")
     int LocationId; 
+    @Id
+    @Column(name="CHEIF_ID")
     int chiefId;
 
     public FireStation(int stationId, int LocationId, int chiefId) {
@@ -21,6 +31,9 @@ public class FireStation {
         this.LocationId = LocationId;
         this.chiefId = chiefId;
     }
+    
+        public FireStation() {};
+
 
     public int getStationId() {
         return stationId;

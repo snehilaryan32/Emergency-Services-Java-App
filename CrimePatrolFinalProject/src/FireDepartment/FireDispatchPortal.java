@@ -35,33 +35,34 @@ public class FireDispatchPortal extends javax.swing.JFrame {
     public FireDispatchPortal() throws InstantiationException, SQLException {
         initComponents();
         init();
-//        List<Precinct> objList = Helper.getResultSet(Precinct.class, "precinct");
-//        
-//        for(Precinct i : objList){
-//            
-//            Integer id = i.getPrecinctId();
-//            int loc_id = i.getLocation();
-//            
-//            Location loc = Helper.fetchLocation(loc_id);
-//            if (loc != null) {
-//
-//                double longitude = loc.getLongtude();
-//                double latitude = loc.getLatitude();
-//                DefaultTableModel tblModel = (DefaultTableModel)jFireTable.getModel();
-//                Object[] obj = {id,"test"};
-//                tblModel.addRow(obj);
-//
-//
-//
-//            }
-//            
-//        
-//            
-//            
-//        
-//        }
+        List<FireStation> objList = Helper.getResultSet(FireStation.class, "fireStation");
+        
+        for(FireStation i : objList){
+            
+            Integer id = i.getStationId();
+            int loc_id = i.getLocationId();
+            
+            Location loc = Helper.fetchLocation(loc_id);
+            if (loc != null) {
+
+                double longitude = loc.getLongtude();
+                double latitude = loc.getLatitude();
+                DefaultTableModel tblModel = (DefaultTableModel)jFireTable.getModel();
+                Object[] obj = {id,"test"};
+                tblModel.addRow(obj);
+
+System.out.println(obj); 
+
+            }
+            
+        
+            
+           
+        
+        }
         
         
+                
     }
 
     private void init() {
@@ -188,19 +189,24 @@ public class FireDispatchPortal extends javax.swing.JFrame {
         );
 
         jLabel10.setFont(new java.awt.Font("Helvetica", 1, 25)); // NOI18N
-        jLabel10.setText("Fire Dispatch ");
+        jLabel10.setText("Fire Dispatcher ");
 
         jLabel1.setFont(new java.awt.Font("Helvetica", 1, 25)); // NOI18N
         jLabel1.setText("Portal");
 
         jFireTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null}
             },
             new String [] {
-                "Fire Precinct ID", "FireStation Name"
+                "Fire Station ID", "FireStation Name"
             }
         ));
+        jFireTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFireTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jFireTable);
 
         jButton1.setText("Home");
@@ -219,7 +225,7 @@ public class FireDispatchPortal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addGap(68, 68, 68)
+                .addGap(62, 62, 62)
                 .addComponent(jButton1)
                 .addGap(26, 26, 26))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -365,6 +371,36 @@ public class FireDispatchPortal extends javax.swing.JFrame {
         cManagement.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jFireTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFireTableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tblModel = (DefaultTableModel)jFireTable.getModel();
+       
+        double lat = 0.00 ;
+        double longitude  = 0.00;
+        int setLocation = Integer.parseInt(tblModel.getValueAt(jFireTable.getSelectedRow(), 0).toString());
+        if(jFireTable.getSelectedRowCount() == 1){
+            
+            
+                
+            try {
+                Integer dt = Integer.parseInt(tblModel.getValueAt(jFireTable.getSelectedRow(), 0).toString());
+                FireStation fire = Helper.fetchFireStation(dt);
+                Location loc = Helper.fetchLocation(fire.getLocationId());
+                
+                lat = loc.getLatitude();
+                longitude = loc.getLongtude();
+            } catch (SQLException ex) {
+                Logger.getLogger(ViewEmergencyResources.class.getName()).log(Level.SEVERE, null, ex);
+            }
+              
+        }   
+                System.out.println(longitude);
+                System.out.println(lat);
+
+        
+        addWaypoint(new MyWaypoint("Test 0999", event, new GeoPosition(lat, longitude)));
+    }//GEN-LAST:event_jFireTableMouseClicked
 
     /**
      * @param args the command line arguments
