@@ -195,6 +195,8 @@
                                           <Component id="searchTxt" min="-2" pref="120" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="searchCaseBtn" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jOpenMap" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -275,6 +277,7 @@
                       <Component id="searchByOptions" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="searchCaseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="searchTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jOpenMap" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="415" max="-2" attributes="0"/>
@@ -531,6 +534,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchCaseBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jOpenMap">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="View Map"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jOpenMapActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

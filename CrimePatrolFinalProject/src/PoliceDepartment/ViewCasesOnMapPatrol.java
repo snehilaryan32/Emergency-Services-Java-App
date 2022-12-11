@@ -27,12 +27,12 @@ import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
 
-public class ViewCasesOnMapCaptain extends javax.swing.JFrame {
+public class ViewCasesOnMapPatrol extends javax.swing.JFrame {
 
     private final Set<MyWaypoint> waypoints = new HashSet<>();
     private EventWaypoint event;
 
-    public ViewCasesOnMapCaptain() throws InstantiationException, SQLException {
+    public ViewCasesOnMapPatrol() throws InstantiationException, SQLException {
         initComponents();
         init();
         List<Case> objList = Helper.getResultSet(Case.class, "case");
@@ -95,7 +95,7 @@ public class ViewCasesOnMapCaptain extends javax.swing.JFrame {
         return new EventWaypoint() {
             @Override
             public void selected(MyWaypoint waypoint) {
-                JOptionPane.showMessageDialog(ViewCasesOnMapCaptain.this, waypoint.getName());
+                JOptionPane.showMessageDialog(ViewCasesOnMapPatrol.this, waypoint.getName());
             }
         };
     }
@@ -173,10 +173,7 @@ public class ViewCasesOnMapCaptain extends javax.swing.JFrame {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Description", "Location"
@@ -345,7 +342,7 @@ public class ViewCasesOnMapCaptain extends javax.swing.JFrame {
         try {
             objList = Helper.getResultSet(Case.class, "precinct");
         } catch (InstantiationException ex) {
-            Logger.getLogger(ViewCasesOnMapCaptain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewCasesOnMapPatrol.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         for(Case i : objList){
@@ -356,7 +353,7 @@ public class ViewCasesOnMapCaptain extends javax.swing.JFrame {
             try {
                 loc = Helper.fetchLocation(loc_id);
             } catch (SQLException ex) {
-                Logger.getLogger(ViewCasesOnMapCaptain.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ViewCasesOnMapPatrol.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (loc != null) {
 
@@ -377,7 +374,7 @@ public class ViewCasesOnMapCaptain extends javax.swing.JFrame {
     }//GEN-LAST:event_jLogOutButtonActionPerformed
 
     private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
-        CaptainMenu obj = new CaptainMenu(); 
+        CasePortalPatrolingPolice obj = new CasePortalPatrolingPolice(); 
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_jBackActionPerformed
@@ -399,14 +396,142 @@ public class ViewCasesOnMapCaptain extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewCasesOnMapCaptain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewCasesOnMapPatrol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewCasesOnMapCaptain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewCasesOnMapPatrol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewCasesOnMapCaptain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewCasesOnMapPatrol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewCasesOnMapCaptain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewCasesOnMapPatrol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -540,11 +665,11 @@ public class ViewCasesOnMapCaptain extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new ViewCasesOnMapCaptain().setVisible(true);
+                    new ViewCasesOnMapPatrol().setVisible(true);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(ViewCasesOnMapCaptain.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ViewCasesOnMapPatrol.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(ViewCasesOnMapCaptain.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ViewCasesOnMapPatrol.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

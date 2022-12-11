@@ -27,12 +27,12 @@ import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
 
-public class ViewCasesOnMap extends javax.swing.JFrame {
+public class ViewCasesOnMapDetective extends javax.swing.JFrame {
 
     private final Set<MyWaypoint> waypoints = new HashSet<>();
     private EventWaypoint event;
 
-    public ViewCasesOnMap() throws InstantiationException, SQLException {
+    public ViewCasesOnMapDetective() throws InstantiationException, SQLException {
         initComponents();
         init();
         List<Case> objList = Helper.getResultSet(Case.class, "case");
@@ -95,7 +95,7 @@ public class ViewCasesOnMap extends javax.swing.JFrame {
         return new EventWaypoint() {
             @Override
             public void selected(MyWaypoint waypoint) {
-                JOptionPane.showMessageDialog(ViewCasesOnMap.this, waypoint.getName());
+                JOptionPane.showMessageDialog(ViewCasesOnMapDetective.this, waypoint.getName());
             }
         };
     }
@@ -287,7 +287,7 @@ public class ViewCasesOnMap extends javax.swing.JFrame {
 //        try {
 //            objList = Helper.getResultSet(Case.class, "precinct");
 //        } catch (InstantiationException ex) {
-//            Logger.getLogger(ViewCasesOnMap.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(ViewCasesOnMapDetective.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        
 //        for(Case i : objList){
@@ -298,7 +298,7 @@ public class ViewCasesOnMap extends javax.swing.JFrame {
 //            try {
 //                loc = Helper.fetchLocation(loc_id);
 //            } catch (SQLException ex) {
-//                Logger.getLogger(ViewCasesOnMap.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(ViewCasesOnMapDetective.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 //            if (loc != null) {
 //
@@ -342,7 +342,7 @@ public class ViewCasesOnMap extends javax.swing.JFrame {
         try {
             objList = Helper.getResultSet(Case.class, "precinct");
         } catch (InstantiationException ex) {
-            Logger.getLogger(ViewCasesOnMap.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewCasesOnMapDetective.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         for(Case i : objList){
@@ -353,7 +353,7 @@ public class ViewCasesOnMap extends javax.swing.JFrame {
             try {
                 loc = Helper.fetchLocation(loc_id);
             } catch (SQLException ex) {
-                Logger.getLogger(ViewCasesOnMap.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ViewCasesOnMapDetective.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (loc != null) {
 
@@ -374,7 +374,7 @@ public class ViewCasesOnMap extends javax.swing.JFrame {
     }//GEN-LAST:event_jLogOutButtonActionPerformed
 
     private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
-        CaptainMenu obj = new CaptainMenu(); 
+        DetectiveMenu obj = new DetectiveMenu(); 
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_jBackActionPerformed
@@ -396,14 +396,78 @@ public class ViewCasesOnMap extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewCasesOnMap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewCasesOnMapDetective.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewCasesOnMap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewCasesOnMapDetective.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewCasesOnMap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewCasesOnMapDetective.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewCasesOnMap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewCasesOnMapDetective.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -473,11 +537,11 @@ public class ViewCasesOnMap extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new ViewCasesOnMap().setVisible(true);
+                    new ViewCasesOnMapDetective().setVisible(true);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(ViewCasesOnMap.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ViewCasesOnMapDetective.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(ViewCasesOnMap.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ViewCasesOnMapDetective.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

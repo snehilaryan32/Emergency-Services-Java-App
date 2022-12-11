@@ -105,6 +105,7 @@ public class CasePortalCaptain extends javax.swing.JFrame {
         searchTxt = new javax.swing.JTextField();
         searchByOptions = new javax.swing.JComboBox<>();
         searchCaseBtn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -262,6 +263,13 @@ public class CasePortalCaptain extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("View Cases on A map");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -321,7 +329,9 @@ public class CasePortalCaptain extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton7))
+                                .addComponent(jButton7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -382,7 +392,8 @@ public class CasePortalCaptain extends javax.swing.JFrame {
                     .addComponent(jUpdateButton)
                     .addComponent(jDelete)
                     .addComponent(jButton4)
-                    .addComponent(jButton7))
+                    .addComponent(jButton7)
+                    .addComponent(jButton2))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -688,6 +699,18 @@ public class CasePortalCaptain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCaseTypeActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            ViewCasesOnMapCaptain obj = new ViewCasesOnMapCaptain();
+            obj.setVisible(true);
+            dispose();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -728,6 +751,7 @@ public class CasePortalCaptain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
