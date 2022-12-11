@@ -1,8 +1,10 @@
 package crimepatrolfinalproject;
 
+import java.sql.SQLException;
 import utilPackage.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputListener;
@@ -378,15 +380,19 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jCommNameActionPerformed
 
     private void jAddLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAddLocationMouseClicked
-        // TODO add your handling code here:
-        String latitude = jLattitude.getText();
-        String longitude = jLongitude.getText();
-        int communityid = 123; //add drop box code 
-        int id = GenerateId.newLocationId();
-        
-        Community comm = Helper.fetchCommunity(communityid);
-        Location loc = new Location(id,Double.parseDouble(longitude),Double.parseDouble(latitude), comm);
-        loc.addToLocationTable(loc);
+        try {
+            // TODO add your handling code here:
+            String latitude = jLattitude.getText();
+            String longitude = jLongitude.getText();
+            int communityid = 123; //add drop box code
+            int id = Helper.getMaxId("location", "location_id", null);
+            
+            Community comm = Helper.fetchCommunity(communityid);
+            Location loc = new Location(id,Double.parseDouble(longitude),Double.parseDouble(latitude), comm);
+            loc.addToLocationTable(loc);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainMapSysAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }//GEN-LAST:event_jAddLocationMouseClicked

@@ -1,14 +1,22 @@
 package citizenApp;
 
+import PoliceDepartment.Case;
+import PoliceDepartment.Precinct;
 import crimepatrolfinalproject.*;
+import java.sql.SQLException;
+import java.util.Date;
 import utilPackage.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputListener;
+import javax.swing.table.DefaultTableModel;
 import model.Community;
 import model.Location;
+import model.Police;
 import org.jxmapviewer.OSMTileFactoryInfo;
 import org.jxmapviewer.VirtualEarthTileFactoryInfo;
 import org.jxmapviewer.input.PanMouseInputListener;
@@ -23,9 +31,36 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
     private final Set<MyWaypoint> waypoints = new HashSet<>();
     private EventWaypoint event;
 
-    public ViewEmergencyResources() {
+    public ViewEmergencyResources() throws InstantiationException, SQLException {
         initComponents();
         init();
+        List<Precinct> objList = Helper.getResultSet(Precinct.class, "precinct");
+        
+        for(Precinct i : objList){
+            
+            Integer id = i.getPrecinctId();
+            int loc_id = i.getLocation();
+            
+            Location loc = Helper.fetchLocation(loc_id);
+            if (loc != null) {
+
+                double longitude = loc.getLongtude();
+                double latitude = loc.getLatitude();
+                DefaultTableModel tblModel = (DefaultTableModel)jPoliceTable.getModel();
+                Object[] obj = {id, longitude};
+                tblModel.addRow(obj);
+
+
+
+            }
+            
+        
+            
+            
+        
+        }
+        
+        
     }
 
     private void init() {
@@ -94,7 +129,7 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jPoliceTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,7 +186,7 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
                     .addComponent(comboMapType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmdAdd)
                     .addComponent(cmdClear))
-                .addContainerGap(580, Short.MAX_VALUE))
+                .addContainerGap(574, Short.MAX_VALUE))
         );
 
         jLabel10.setFont(new java.awt.Font("Helvetica", 1, 25)); // NOI18N
@@ -186,7 +221,7 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jPoliceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -197,7 +232,7 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
                 "Precinct ID", "Station Name"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(jPoliceTable);
 
         jButton1.setText("Home");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -302,8 +337,40 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdClearActionPerformed
 
     private void cmdAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdAddMouseClicked
-       addWaypoint(new MyWaypoint("Test 001", event, new GeoPosition(42.34726263455203, -71.0789384243692)));
-        addWaypoint(new MyWaypoint("Test 002", event, new GeoPosition(42.26361185091972, -71.79881373236489)));
+        List<Precinct> objList=null;
+        double latitude = 0.00 ;
+        double longitude  = 0.00;
+
+        
+        try {
+            objList = Helper.getResultSet(Precinct.class, "precinct");
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ViewEmergencyResources.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for(Precinct i : objList){
+            
+            Integer id = i.getPrecinctId();
+            int loc_id = i.getLocation();
+            
+            Location loc = null;
+            try {
+                loc = Helper.fetchLocation(loc_id);
+            } catch (SQLException ex) {
+                Logger.getLogger(ViewEmergencyResources.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (loc != null) {
+
+                 longitude = loc.getLongtude();
+                 latitude = loc.getLatitude();
+        
+            }
+        }
+        addWaypoint(new MyWaypoint("New England Baptist Hospital", event, new GeoPosition(latitude, longitude)));
+        addWaypoint(new MyWaypoint("New England Baptist Hospital", event, new GeoPosition(42.33108446415697, -71.10739075295284)));
+        addWaypoint(new MyWaypoint("New England Baptist Hospital", event, new GeoPosition(42.33108446415697, -71.10739075295284)));
+       addWaypoint(new MyWaypoint("Boston Children Hospital", event, new GeoPosition(42.335381966301945, -71.10874057514663)));
+       addWaypoint(new MyWaypoint("Tufts Medical Center", event, new GeoPosition(42.335381966301945, -71.07286335094186)));
     }//GEN-LAST:event_cmdAddMouseClicked
 
     private void cmdClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdClearMouseClicked
@@ -391,7 +458,13 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewEmergencyResources().setVisible(true);
+                try {
+                    new ViewEmergencyResources().setVisible(true);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(ViewEmergencyResources.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ViewEmergencyResources.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -404,12 +477,12 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTable jPoliceTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private org.jxmapviewer.JXMapViewer jXMapViewer;
     // End of variables declaration//GEN-END:variables
 }
