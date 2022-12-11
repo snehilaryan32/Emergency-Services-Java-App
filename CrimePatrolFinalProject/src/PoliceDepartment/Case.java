@@ -34,6 +34,10 @@ public class Case implements Serializable{
     Integer location_id;
     
     Precinct precinct;
+
+    public Integer getLocation_id() {
+        return location_id;
+    }
     
     @Column(name="PRECINCT_ID")
     Integer precinctId;

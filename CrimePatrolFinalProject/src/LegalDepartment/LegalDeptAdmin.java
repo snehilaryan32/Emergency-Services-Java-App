@@ -147,6 +147,11 @@ public class LegalDeptAdmin extends javax.swing.JFrame {
         jLabel7.setText("Probono");
 
         jProbono.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
+        jProbono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jProbonoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -208,12 +213,13 @@ public class LegalDeptAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(jDob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(jAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jProbono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jProbono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCreate)
@@ -263,7 +269,7 @@ public class LegalDeptAdmin extends javax.swing.JFrame {
             String name = jName.getText();
             String bloodGroup = null;
             String email = jEmail.getText();
-            Integer Contact = Integer.parseInt(jContact.getText());
+            Integer contact = Integer.parseInt(jContact.getText());
             Date dateOfBirth = jDob.getDate();
             String availability = jAvailability.getSelectedItem().toString();
             String probono = jProbono.getSelectedItem().toString();
@@ -277,16 +283,13 @@ public class LegalDeptAdmin extends javax.swing.JFrame {
             
             
             DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
-            Object[] obj = { name,lawyerId, dateOfBirth, email, availability,probono,Contact};
+            Object[] obj = { name,lawyerId, dateOfBirth, email, availability,probono,contact};
             tblModel.addRow(obj);
+            Lawyer lawyer = new Lawyer(lawyerId, availability, probono, name, address, email, contact, dateOfBirth, lawyerId, bloodGroup, role, gender);
+            lawyer.addToLawyerTable(lawyer);
         } catch (SQLException ex) {
             Logger.getLogger(LegalDeptAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-       
-        Lawyer lawyer = new Lawyer(lawyerId, rank, performance, name, address, email, phoneNo, dateOfBirth, policeId, bloodGroup, role, gender);
-            lawyer.addToLawyerTable(lawyer);
-        
         
     }//GEN-LAST:event_jCreateMouseClicked
 
@@ -294,6 +297,10 @@ public class LegalDeptAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jUpdateMouseClicked
+
+    private void jProbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProbonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jProbonoActionPerformed
 
     /**
      * @param args the command line arguments

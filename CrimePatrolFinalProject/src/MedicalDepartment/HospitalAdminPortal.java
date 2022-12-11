@@ -25,12 +25,12 @@ import utilPackage.SendNotification;
  *
  * @author bashu
  */
-public class HospitalPortal extends javax.swing.JFrame {
+public class HospitalAdminPortal extends javax.swing.JFrame {
 
     /**
      * Creates new form HospitalJFrame
      */
-    public HospitalPortal() {
+    public HospitalAdminPortal() {
         initComponents();
         hospitalIdTextField.disable();
         try {
@@ -49,7 +49,7 @@ public class HospitalPortal extends javax.swing.JFrame {
             }
             
         } catch (InstantiationException ex) {
-            Logger.getLogger(HospitalPortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HospitalAdminPortal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -162,7 +162,7 @@ public class HospitalPortal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 153, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Hospital Management Portal");
+        jLabel3.setText("Hospital Admin Portal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,7 +172,7 @@ public class HospitalPortal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 164, Short.MAX_VALUE)
+                        .addGap(0, 282, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addGap(69, 69, 69)
                         .addComponent(homePageBtn)
@@ -278,7 +278,7 @@ public class HospitalPortal extends javax.swing.JFrame {
         try {
             hospitalId = Helper.getMaxId("hospital", "hospital_id", null);
         } catch (SQLException ex) {
-            Logger.getLogger(HospitalPortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HospitalAdminPortal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         DefaultTableModel tblModel = (DefaultTableModel)hospitalJTable.getModel();
@@ -286,7 +286,7 @@ public class HospitalPortal extends javax.swing.JFrame {
         tblModel.addRow(obj);
        
         Location loc = null;
-        Hospital hospital = new Hospital(hospitalId, loc.getLocationId(), hospitalName, email);
+        Hospital hospital = new Hospital(hospitalId, hospitalName, locationId, email, contactNum);
         hospital.addToHospitalTable(hospital);
         JOptionPane.showMessageDialog(this, "Hospital Saved Successfully!!!");
     }//GEN-LAST:event_hospCreateBtnActionPerformed
@@ -346,7 +346,7 @@ public class HospitalPortal extends javax.swing.JFrame {
             
             catch (SQLException ex) {
                 System.out.println("Failed");
-                Logger.getLogger(HospitalPortal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HospitalAdminPortal.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             tblModel.setRowCount(0);
@@ -366,7 +366,7 @@ public class HospitalPortal extends javax.swing.JFrame {
             }
             
         } catch (InstantiationException ex) {
-            Logger.getLogger(HospitalPortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HospitalAdminPortal.class.getName()).log(Level.SEVERE, null, ex);
         }
            
         }
@@ -432,14 +432,18 @@ public class HospitalPortal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HospitalPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HospitalAdminPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HospitalPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HospitalAdminPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HospitalPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HospitalAdminPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HospitalPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HospitalAdminPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -448,7 +452,7 @@ public class HospitalPortal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HospitalPortal().setVisible(true);
+                new HospitalAdminPortal().setVisible(true);
                 
             }
         });

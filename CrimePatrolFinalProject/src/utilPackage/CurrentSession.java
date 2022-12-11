@@ -12,6 +12,7 @@ import model.Person;
  */
 public class CurrentSession {
     public static Person currentUser;
+    public static Integer queryUser; 
 
     public CurrentSession() {
     }
@@ -22,6 +23,10 @@ public class CurrentSession {
     
     public static void setCurrentUser(Person per) {
         CurrentSession.currentUser = per;
+    }
+    
+    public static void setQueryUser(Integer iD) {
+        CurrentSession.queryUser = iD;
     }
     
     

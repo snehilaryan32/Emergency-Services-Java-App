@@ -4,6 +4,13 @@
  */
 package citizenApp;
 
+import PoliceDepartment.Case;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Lawyer;
+import utilPackage.Helper;
+
 /**
  *
  * @author sahilpadyal
@@ -13,8 +20,10 @@ public class ViewLawyers extends javax.swing.JFrame {
     /**
      * Creates new form ViewLawyers
      */
-    public ViewLawyers() {
+    public ViewLawyers() throws InstantiationException {
         initComponents();
+//        List<Lawyer> objList = Helper.getResultSet(Lawyer.class, "lawyer");
+//        
     }
 
     /**
@@ -71,13 +80,13 @@ public class ViewLawyers extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Lawyer ID", "Lawyer Name", "Available"
+                "Lawyer ID", "Lawyer Name", "Availibility", "Phone No", "Email"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -159,7 +168,11 @@ public class ViewLawyers extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewLawyers().setVisible(true);
+                try {
+                    new ViewLawyers().setVisible(true);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(ViewLawyers.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

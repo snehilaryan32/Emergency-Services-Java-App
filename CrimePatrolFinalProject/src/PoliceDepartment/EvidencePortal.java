@@ -56,7 +56,7 @@ public class EvidencePortal extends javax.swing.JFrame {
             
             
         } catch (InstantiationException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -101,7 +101,7 @@ public class EvidencePortal extends javax.swing.JFrame {
             
             
         } catch (InstantiationException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -391,7 +391,7 @@ public class EvidencePortal extends javax.swing.JFrame {
             }
             catch (SQLException ex) {
                 System.out.println("Failed");
-                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             tblModel.setRowCount(0);
@@ -413,7 +413,7 @@ public class EvidencePortal extends javax.swing.JFrame {
                         }
                 }
             } catch (InstantiationException ex) {
-                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jUpdateButtonActionPerformed
