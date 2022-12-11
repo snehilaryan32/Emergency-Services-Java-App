@@ -184,7 +184,7 @@ public class Helper {
         
         //Function to fetch data from
         
-        public static <T> List<T> getResultSet(Class<T> c, String table) throws InstantiationException{
+    public static <T> List<T> getResultSet(Class<T> c, String table) throws InstantiationException{
         Object obj = null;  
         List<T> objList = null;
         try {
@@ -204,6 +204,27 @@ public class Helper {
         
         return objList;
             
+    }
+    
+    public static <T> List<T> getResultSetByConditionId(Class<T> c, String table, String conditionId, Integer id) throws InstantiationException {
+        Object obj = null;  
+        List<T> objList = null;
+        try {
+            
+            
+            obj = c.newInstance();
+            ResultSet result = Helper.getData("select * from " + table + " where " + conditionId + " = " + id);
+            ResultSetMapper<T> credsRSMapper = new ResultSetMapper<T>();
+            objList = credsRSMapper.mapResultSetToObject(result, c);
+            
+            
+        } 
+        
+        catch (IllegalAccessException ex) {
+            Logger.getLogger(Helper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return objList;
     }
         
         public static int getMaxId(String table, String columnName, String condition) throws SQLException{
