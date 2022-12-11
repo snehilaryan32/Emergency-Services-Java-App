@@ -32,10 +32,12 @@
                       <Component id="jSearchField" min="-2" pref="312" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSearch" min="-2" pref="146" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="154" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="479" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="319" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,6 +51,7 @@
                   <Component id="jSearchOption" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSearchField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="377" max="-2" attributes="0"/>
@@ -103,6 +106,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPersonTableMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -144,6 +150,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSearchActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CHECK BACKGROUND"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

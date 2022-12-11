@@ -26,15 +26,16 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import model.CitizenStatus;
 import model.Evidence;
 import utilPackage.ResultSetMapper;
-public class EvidencePortal extends javax.swing.JFrame {
+public class CitizenStatusPortal extends javax.swing.JFrame {
 
     /**
      * Creates new form mainPoliceDept
      */
     Integer currentCaseId;
-    public EvidencePortal() {
+    public CitizenStatusPortal() {
         initComponents();
         
         jEvidenceId.disable();
@@ -61,51 +62,6 @@ public class EvidencePortal extends javax.swing.JFrame {
         
     }
     
-    public EvidencePortal(Integer currCaseId) {
-        initComponents();
-        
-        jEvidenceId.disable();
-        
-        currentCaseId = currCaseId;
-        
-        System.out.println("current case id ===> " + currentCaseId);
-        
-        try {
-          
-            
-            List<Evidence> evidenceList = Helper.getResultSetByConditionId(Evidence.class, "evidence","case_id", currentCaseId);
-            
-            if(evidenceList != null) {
-                for(Evidence i : evidenceList){
-                    Integer evidenceId = i.getEvidenceId();
-                    Integer caseId = i.getCaseId();
-                    String description = i.getDescription();
-                    DefaultTableModel tblModel = (DefaultTableModel)jEvidenceTable.getModel();
-                    Object[] obj = {evidenceId, caseId, description};
-                    tblModel.addRow(obj);                   
-                }
-                
-                Evidence ev1 = evidenceList.get(0);
-                jEvidenceId.setText(ev1.getEvidenceId().toString());
-                jCaseId.setText(ev1.getCaseId().toString());
-                jDescription.setText(ev1.getDescription());
-                jImagePath.setName(ev1.getImagePath());
-                ImageIcon imgIcon = new ImageIcon(ev1.getImagePath());
-                Image img = imgIcon.getImage();
-                Image scaledImage = img.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
-                ImageIcon scaledImgIcon = new ImageIcon(scaledImage);
-                imageLabel.setIcon(scaledImgIcon);
-            }
-            
-            
-            
-            
-        } catch (InstantiationException ex) {
-            Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,8 +72,6 @@ public class EvidencePortal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        uploadEvidence = new javax.swing.JButton();
-        imageLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEvidenceTable = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
@@ -129,11 +83,13 @@ public class EvidencePortal extends javax.swing.JFrame {
         jImagePath = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jEvidenceId = new javax.swing.JTextField();
-        jDescription = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jCaseId = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jStatus = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jWantedLevel = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,19 +104,12 @@ public class EvidencePortal extends javax.swing.JFrame {
             .addGap(0, 223, Short.MAX_VALUE)
         );
 
-        uploadEvidence.setText("Upload/Replace Evidence");
-        uploadEvidence.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadEvidenceActionPerformed(evt);
-            }
-        });
-
         jEvidenceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Evidence ID", "Case ID", "Description"
+                "Status ID", "Person ID", "Status", "Case ID", "Wanted Level"
             }
         ));
         jEvidenceTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -201,19 +150,9 @@ public class EvidencePortal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Evidence Portal");
+        jLabel1.setText("Background Data");
 
         jLabel2.setText("Case ID");
-
-        jEvidenceId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jEvidenceIdActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Description");
-
-        jLabel6.setText("Evidence ID");
 
         jCaseId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,138 +160,110 @@ public class EvidencePortal extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Wanted Level");
+
+        jStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suspect", "Victim", "Witness", " " }));
+
+        jLabel6.setText("Status");
+
+        jWantedLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", " " }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(uploadEvidence)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(createEvidence)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jUpdateButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(173, 173, 173)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGap(155, 155, 155)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(64, 64, 64)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(createEvidence)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jCaseId)
-                                            .addComponent(jEvidenceId, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(99, 99, 99)))
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jUpdateButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jDelete)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButton4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jCaseId, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jWantedLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(237, 237, 237)
+                        .addGap(234, 234, 234)
                         .addComponent(jImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(127, 127, 127)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel7))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jCaseId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(jEvidenceId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel8)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jLabel6))
-                                                .addGap(18, 18, 18)
+                                                .addGap(21, 21, 21)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(jLabel2)
-                                                    .addComponent(jCaseId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(20, 20, 20)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(jLabel3)
-                                                    .addComponent(jDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(18, 18, 18))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(24, 24, 24)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(uploadEvidence)
-                                    .addComponent(createEvidence)
-                                    .addComponent(jUpdateButton)
-                                    .addComponent(jDelete)
-                                    .addComponent(jButton4))
-                                .addGap(9, 9, 9)
+                                                    .addComponent(createEvidence)
+                                                    .addComponent(jUpdateButton)
+                                                    .addComponent(jDelete)
+                                                    .addComponent(jButton4)))
+                                            .addComponent(jWantedLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel4)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void uploadEvidenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadEvidenceActionPerformed
-        JFileChooser browseImageFile = new JFileChooser();
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGE", "png","jpg", "jpeg");
-        browseImageFile.addChoosableFileFilter(fnef);
-        int showOptionDialogue = browseImageFile.showOpenDialog(null);
-        if(showOptionDialogue == JFileChooser.APPROVE_OPTION) {
-            File selectedImageFile = browseImageFile.getSelectedFile();
-            String selectedImagePath = selectedImageFile.getAbsolutePath();
-            JOptionPane.showMessageDialog(null, selectedImagePath);
-            ImageIcon imgIcon = new ImageIcon(selectedImagePath);
-            Image img = imgIcon.getImage();
-            Image scaledImage = img.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
-            ImageIcon scaledImgIcon = new ImageIcon(scaledImage);
-            imageLabel.setIcon(scaledImgIcon);
-            S3BucketOperations.uploadS3Object(selectedImagePath);
-            jImagePath.setName(selectedImagePath);
-        }
-    }//GEN-LAST:event_uploadEvidenceActionPerformed
-
-    private void jEvidenceIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEvidenceIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jEvidenceIdActionPerformed
 
     private void jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteActionPerformed
 
@@ -377,7 +288,7 @@ public class EvidencePortal extends javax.swing.JFrame {
                 return;
             }
             
-            String desc = jDescription.getText();
+            String desc = jWantedLevel.getText();
             String imagePath = jImagePath.getName();
             
             Integer evidenceId = Integer.valueOf(jEvidenceId.getText());
@@ -419,32 +330,21 @@ public class EvidencePortal extends javax.swing.JFrame {
     }//GEN-LAST:event_jUpdateButtonActionPerformed
 
     private void createEvidenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvidenceActionPerformed
-
-        Integer caseId = Integer.parseInt(jCaseId.getText());
-        String desc = jDescription.getText();
-        String imagePath = jImagePath.getName();
-
-        Integer evidenceId = null;
-        try {
-            evidenceId = Helper.getMaxId("evidence", "evidence_id", null);
-        } catch (SQLException ex) {
-            Logger.getLogger(EvidencePortal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        DefaultTableModel tblModel = (DefaultTableModel)jEvidenceTable.getModel();
-        Object[] obj = {evidenceId, caseId, desc};
-        tblModel.addRow(obj);
-
-        Evidence evidence = new Evidence(evidenceId, caseId, desc, imagePath);
-        evidence.addToEvidenceTable(evidence);
-        resetAllFields();
+        String caseId = jCaseId.getText(); 
+        Integer wantedLevel = Integer.parseInt(jWantedLevel.getSelectedItem().toString());
+        String status = jStatus.getSelectedItem().toString().toString();
+        
+        CitizenStatus cs = null; 
+        
+        
+        
 
     }//GEN-LAST:event_createEvidenceActionPerformed
 
     public void resetAllFields() {
         jEvidenceId.setText(null);
         jCaseId.setText("");
-        jDescription.setText("");
+        jWantedLevel.setText("");
         imageLabel.setIcon(null);
     }
     
@@ -455,7 +355,7 @@ public class EvidencePortal extends javax.swing.JFrame {
         if(jEvidenceTable.getSelectedRowCount() == 1){
             
             Integer evidenceId = Integer.parseInt(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 0).toString());
-            jDescription.setText(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 2).toString());
+            jWantedLevel.setText(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 2).toString());
             jCaseId.setText(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 1).toString());
             jEvidenceId.setText(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 0).toString());
             
@@ -463,7 +363,7 @@ public class EvidencePortal extends javax.swing.JFrame {
             try {
                 evidenceList = Helper.getResultSetByConditionId(Evidence.class, "evidence", "evidence_id", evidenceId);
             } catch (InstantiationException ex) {
-                Logger.getLogger(EvidencePortal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CitizenStatusPortal.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             if(evidenceList.size() == 1 && evidenceList.get(0).getImagePath() != null) {
@@ -504,14 +404,18 @@ public class EvidencePortal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EvidencePortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CitizenStatusPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EvidencePortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CitizenStatusPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EvidencePortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CitizenStatusPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EvidencePortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CitizenStatusPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -520,19 +424,16 @@ public class EvidencePortal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EvidencePortal().setVisible(true);
+                new CitizenStatusPortal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createEvidence;
-    private javax.swing.JLabel imageLabel;
     private javax.swing.JButton jButton4;
     private javax.swing.JTextField jCaseId;
     private javax.swing.JButton jDelete;
-    private javax.swing.JTextField jDescription;
-    private javax.swing.JTextField jEvidenceId;
     private javax.swing.JTable jEvidenceTable;
     private javax.swing.JLabel jImagePath;
     private javax.swing.JLabel jLabel1;
@@ -541,9 +442,12 @@ public class EvidencePortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jStatus;
     private javax.swing.JButton jUpdateButton;
-    private javax.swing.JButton uploadEvidence;
+    private javax.swing.JComboBox<String> jWantedLevel;
     // End of variables declaration//GEN-END:variables
 }

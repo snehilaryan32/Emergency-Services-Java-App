@@ -11,6 +11,7 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Person;
+import utilPackage.CurrentSession;
 import utilPackage.Helper;
 
 /**
@@ -37,8 +38,7 @@ public class BackgroundCheckDetective extends javax.swing.JFrame {
                 
                 DefaultTableModel tblModel = (DefaultTableModel)jPersonTable.getModel();
                 Object[] obj = {iD, name, email, phoneNo};
-                tblModel.addRow(obj);
-                
+                tblModel.addRow(obj);   
             }
                   
         }
@@ -63,6 +63,7 @@ public class BackgroundCheckDetective extends javax.swing.JFrame {
         jSearchField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jSearch = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +75,11 @@ public class BackgroundCheckDetective extends javax.swing.JFrame {
                 "Citizen Id", "Name", "Email Id", "Phone No"
             }
         ));
+        jPersonTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPersonTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jPersonTable);
 
         jSearchOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Id", "Phone", "Email Id", " " }));
@@ -99,6 +105,13 @@ public class BackgroundCheckDetective extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("CHECK BACKGROUND");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,9 +124,11 @@ public class BackgroundCheckDetective extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
-                .addGap(0, 479, Short.MAX_VALUE))
+                .addGap(0, 319, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +139,8 @@ public class BackgroundCheckDetective extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSearchOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSearch))
+                    .addComponent(jSearch)
+                    .addComponent(jButton1))
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(96, Short.MAX_VALUE))
@@ -170,6 +186,20 @@ public class BackgroundCheckDetective extends javax.swing.JFrame {
         tSorter.setRowFilter(RowFilter.regexFilter(searchString.trim(), tblHeaderIndex));
     }//GEN-LAST:event_jSearchActionPerformed
 
+    private void jPersonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPersonTableMouseClicked
+        DefaultTableModel tblModel = (DefaultTableModel) jPersonTable.getModel();
+        
+        Integer personId = Integer.parseInt(tblModel.getValueAt(jPersonTable.getSelectedRow(), 0).toString());
+        CurrentSession.setQueryUser(personId);       
+        
+    }//GEN-LAST:event_jPersonTableMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CitizenStatusPortal obj = new CitizenStatusPortal(); 
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -210,6 +240,7 @@ public class BackgroundCheckDetective extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jPersonTable;
     private javax.swing.JScrollPane jScrollPane1;
