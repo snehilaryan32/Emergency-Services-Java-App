@@ -4,6 +4,7 @@
  */
 package utilPackage;
 
+import FireDepartment.FireStation;
 import PoliceDepartment.Precinct;
 import com.amazonaws.services.s3.model.ObjectListing;
 import crimepatrolfinalproject.Credentials;
@@ -110,7 +111,7 @@ public class Helper {
         
         ResultSet res = Helper.getData("select * from location where location_id = " + Id);
         while(res.next()){
-            longitude = Double.parseDouble(res.getString(1));
+            longitude = Double.parseDouble(res.getString(3));
             latitude = Double.parseDouble(res.getString(2));
             communityId = Integer.parseInt(res.getString(4));
    
@@ -129,23 +130,49 @@ public class Helper {
         Connection connectToSnow = Helper.connect;
         
         int locationId = 0;
+        Integer captainId = null;
 
         Precinct pre = null;
         
         ResultSet res = Helper.getData("select * from precinct where precinct_id = " + Id);
         while(res.next()){
             locationId = Integer.parseInt(res.getString(2));
+            captainId = Integer.parseInt(res.getString(3));
          
         }
         
         if(locationId != 0){
             Location loc = Helper.fetchLocation(locationId);
-            pre = new Precinct(Id, loc, locationId);   
+            pre = new Precinct(Id, loc.getLocationId(), captainId);   
         }
         
         
         return pre;
     }
+    
+     public static FireStation fetchFireStation(int Id) throws SQLException{
+        Connection connectToSnow = Helper.connect;
+        
+        int locationId = 0;
+        Integer cheifId = null;
+
+        FireStation fire = null;
+        
+        ResultSet res = Helper.getData("select * from fireStation where station_id = " + Id);
+        while(res.next()){
+            locationId = Integer.parseInt(res.getString(2));
+            cheifId = Integer.parseInt(res.getString(3));
+         
+        }
+        
+        if(locationId != 0){
+            Location loc = Helper.fetchLocation(locationId);
+            fire = new FireStation(Id, loc.getLocationId(), cheifId);   
+        }
+        
+        
+        return fire;
+    }    
         
         public static Person fetchPerson(int Id) throws SQLException, ParseException{
         Connection connectToSnow = Helper.connect;
