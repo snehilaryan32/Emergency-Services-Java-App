@@ -20,6 +20,7 @@ import javax.swing.table.TableRowSorter;
 import model.Location;
 import utilPackage.GenerateId;
 import utilPackage.Helper;
+import utilPackage.SendNotification;
 
 /**
  *
@@ -32,6 +33,27 @@ public class CasePortal extends javax.swing.JFrame {
      */
     public CasePortal() {
         initComponents();
+        try {
+          
+            List<Case> objList = Helper.getResultSet(Case.class, "case");
+            
+            for(Case i : objList){
+                Integer iD = i.getCaseId(); 
+                Integer precinctId = i.getPrecinctId();
+                Integer policeId = i.getPoliceId(); 
+                Integer lawyerId = i.getLawyerId(); 
+                Integer detectiveId = i.getDetectiveId();
+                String caseStatus = i.getCaseStatus(); 
+                String description = i.getDescription(); 
+                String date = i.getDateTime().toString();
+                DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
+                Object[] obj = {iD, date, precinctId, policeId, lawyerId, detectiveId, caseStatus, description};
+                tblModel.addRow(obj);                   
+            }
+            
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
             }
             
     /**
@@ -217,7 +239,12 @@ public class CasePortal extends javax.swing.JFrame {
 
         jLabel12.setText("Case Type");
 
-        jCaseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCaseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Police ", "Fire ", "Medical ", " " }));
+        jCaseType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCaseTypeActionPerformed(evt);
+            }
+        });
 
         searchTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,8 +334,7 @@ public class CasePortal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(searchCaseBtn)))
-                        .addGap(249, 249, 249)))
+                                .addComponent(searchCaseBtn)))))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -428,13 +454,13 @@ public class CasePortal extends javax.swing.JFrame {
         
     
         DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
-        Object[] obj = {caseId, dateOfCase, precinctId, policeId, lawyerId, detectiveId, caseStatus, description};
+        Object[] obj = {caseId, dateOfCase, precinctId, policeId, lawyerId, detectiveId, caseStatus, description, caseType};
         tblModel.addRow(obj);
        
-        
+        Location loc = null;
         try { 
             
-            Location loc = Helper.fetchLocation(location);
+            loc = Helper.fetchLocation(location);
             Precinct pre = Helper.fetchPrecinct(precinctId);
             Case cas = new Case(caseId, description, loc, pre, policeId, lawyerId, caseType, dateOfCase, caseStatus, detectiveId);
             cas.addToCaseTable(cas);
@@ -442,6 +468,16 @@ public class CasePortal extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        if(caseType.equals("Medical")){
+            
+            String emailBody = "MEDICAL ATTENTION NEEDED AT coordinates" + loc.getLatitude() + "," + loc.getLongtude();
+            SendNotification.sendEmailNotification("NEW MEDICAL CASE", emailBody, "snehil.aryan7823@gmail.com");
+            System.out.println("Notification Sent to");
+            
+        }
+    
+
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -666,6 +702,10 @@ public class CasePortal extends javax.swing.JFrame {
         tSorter.setRowFilter(RowFilter.regexFilter(searchString.trim(), tblHeaderIndex));
 
     }//GEN-LAST:event_searchCaseBtnActionPerformed
+
+    private void jCaseTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCaseTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCaseTypeActionPerformed
 
     /**
      * @param args the command line arguments
