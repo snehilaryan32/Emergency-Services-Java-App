@@ -269,7 +269,7 @@ public class LegalDeptAdmin extends javax.swing.JFrame {
             String name = jName.getText();
             String bloodGroup = null;
             String email = jEmail.getText();
-            Integer Contact = Integer.parseInt(jContact.getText());
+            Integer contact = Integer.parseInt(jContact.getText());
             Date dateOfBirth = jDob.getDate();
             String availability = jAvailability.getSelectedItem().toString();
             String probono = jProbono.getSelectedItem().toString();
@@ -283,16 +283,13 @@ public class LegalDeptAdmin extends javax.swing.JFrame {
             
             
             DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
-            Object[] obj = { name,lawyerId, dateOfBirth, email, availability,probono,Contact};
+            Object[] obj = { name,lawyerId, dateOfBirth, email, availability,probono,contact};
             tblModel.addRow(obj);
+            Lawyer lawyer = new Lawyer(lawyerId, availability, probono, name, address, email, contact, dateOfBirth, lawyerId, bloodGroup, role, gender);
+            lawyer.addToLawyerTable(lawyer);
         } catch (SQLException ex) {
             Logger.getLogger(LegalDeptAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-       
-        Lawyer lawyer = new Lawyer(lawyerId, rank, performance, name, address, email, phoneNo, dateOfBirth, policeId, bloodGroup, role, gender);
-            lawyer.addToLawyerTable(lawyer);
-        
         
     }//GEN-LAST:event_jCreateMouseClicked
 
@@ -302,7 +299,7 @@ public class LegalDeptAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jUpdateMouseClicked
 
     private void jProbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProbonoActionPerformed
-kk        // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jProbonoActionPerformed
 
     /**

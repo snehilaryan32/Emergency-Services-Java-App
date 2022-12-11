@@ -47,7 +47,7 @@ public class DoctorManagementPortal extends javax.swing.JFrame {
             String name = i.getName();
             Integer hospitalId = i.getHospitalId();
             String email = i.getEmail();
-            Integer phone = (int) i.getPhoneNo();
+            Long phone = i.getPhoneNo();
             Integer locationId = i.getAddress();
             String bloodGroup = i.getBloodGroup();
             String gender = i.getGender();
