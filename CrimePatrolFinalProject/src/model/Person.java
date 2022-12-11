@@ -24,11 +24,11 @@ public class Person {
     @Column(name = "NAME")
     String name; 
     @Column(name = "LOCATION_ID")
-    int address; 
+    Integer address; 
     @Column(name = "EMAIL")
     String email; 
     @Column(name = "PHONE_NO")
-    long phoneNo; 
+    Long phoneNo; 
     @Column(name = "DATE_OF_BIRTH")
     Date dateOfBirth; 
     @Column(name = "BLOOD_GROUP")
@@ -60,7 +60,7 @@ public class Person {
         return name;
     }
 
-    public int getAddress() {
+    public Integer getAddress() {
         return address;
     }
 
@@ -68,7 +68,7 @@ public class Person {
         return email;
     }
 
-    public long getPhoneNo() {
+    public Long getPhoneNo() {
         return phoneNo;
     }
 
@@ -96,7 +96,7 @@ public class Person {
         this.name = name;
     }
 
-    public void setAddress(int address) {
+    public void setAddress(Integer address) {
         this.address = address;
     }
 
@@ -104,7 +104,7 @@ public class Person {
         this.email = email;
     }
 
-    public void setPhoneNo(long phoneNo) {
+    public void setPhoneNo(Long phoneNo) {
         this.phoneNo = phoneNo;
     }
 

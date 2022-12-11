@@ -187,7 +187,12 @@ public class CitizenMenu extends javax.swing.JFrame {
 
     private void jViewLawyersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewLawyersMouseClicked
         // TODO add your handling code here:
-        ViewLawyers cManagement = new ViewLawyers();
+        ViewLawyers cManagement = null;
+        try {
+            cManagement = new ViewLawyers();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CitizenMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         cManagement.setVisible(true);
         dispose();
         
@@ -238,7 +243,12 @@ public class CitizenMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLogOutActionPerformed
 
     private void jViewLawyersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewLawyersActionPerformed
-            ViewLawyers obj = new ViewLawyers(); 
+            ViewLawyers obj = null; 
+        try {
+            obj = new ViewLawyers();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CitizenMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
             obj.setVisible(true);
             dispose();
     }//GEN-LAST:event_jViewLawyersActionPerformed

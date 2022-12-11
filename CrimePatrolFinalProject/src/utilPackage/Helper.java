@@ -27,6 +27,7 @@ import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.util.ArrayList;
 import model.Doctor;
+import model.Hospital;
 import model.Person;
 
 /**
@@ -210,6 +211,35 @@ public class Helper {
         return person;
         
     }
+        
+        public static Integer fetchHospitalIdForDoctor(Integer doctorId) throws SQLException {
+            Integer hospitalId = null;
+            ResultSet res = Helper.getData("select hospital_id from doctor where doctor_id = " + doctorId);
+            while(res.next()){
+                hospitalId = Integer.parseInt(res.getString(2));
+            }
+            return hospitalId;
+        }
+        
+        public static Hospital fetchHospital(Integer id) {
+            String hospName = null;
+            Integer locationId = null;
+            String email = null;
+            Integer contactNum = null;
+            
+            ResultSet res = Helper.getData("select * from hospital where hospital_id = " + id + " limit 1");
+        try {
+            while(res.next()){
+                hospName = res.getString(2);
+                locationId = Integer.parseInt(res.getString(3));
+                email = res.getString(4);
+                contactNum = Integer.parseInt(res.getString(5));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Helper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return new Hospital(id, hospName, locationId, email, contactNum);
+        }
         
         
         public static List<Doctor> fetchAllDoctors() throws SQLException, ParseException{
