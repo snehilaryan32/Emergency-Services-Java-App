@@ -6,6 +6,7 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import utilPackage.Helper;
 
 /**
  *
@@ -28,6 +29,16 @@ public class Hospital {
     
     @Column(name="contactNo")
     Integer contactNum;
+    
+    public Hospital(Integer id, String name, Integer locationId, String email, Integer contactNum) {
+        this.hospitalId = id;
+        this.name = name;
+        this.locationId = locationId;
+        this.emailId = email;
+        this.contactNum = contactNum;
+    }
+    
+    public Hospital() {};
 
     public Integer getHospitalId() {
         return hospitalId;
@@ -67,6 +78,11 @@ public class Hospital {
 
     public void setContactNum(Integer contactNum) {
         this.contactNum = contactNum;
+    }
+    
+    public void addToHospitalTable(Hospital hospital) {
+        String query = "insert into hospital values(" + hospital.getHospitalId() + ",'" + hospital.getName()+ "', " + hospital.getLocationId() +  ",'" + hospital.getEmailId() + "', " + hospital.getContactNum() + ")";
+        Helper.getData(query);
     }
     
 }
