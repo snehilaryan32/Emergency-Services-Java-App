@@ -6,7 +6,6 @@ package FireDepartment;
 
 import MedicalDepartment.*;
 import PoliceDepartment.Case;
-import PoliceDepartment.CasePortal;
 import PoliceDepartment.Precinct;
 import java.sql.SQLException;
 import java.util.Date;
@@ -51,7 +50,7 @@ public class FireStationPortal extends javax.swing.JFrame {
             }
             
         } catch (InstantiationException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FireStationPortal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -6,7 +6,6 @@ package FireDepartment;
 
 import MedicalDepartment.*;
 import PoliceDepartment.Case;
-import PoliceDepartment.CasePortal;
 import PoliceDepartment.Precinct;
 import java.sql.SQLException;
 import java.util.Date;
@@ -51,7 +50,7 @@ public class FireStationPortalSysAdmin extends javax.swing.JFrame {
             }
             
         } catch (InstantiationException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FireStationPortalSysAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -264,7 +263,7 @@ public class FireStationPortalSysAdmin extends javax.swing.JFrame {
         try {
             firestationId = Helper.getMaxId("firestation", "station_id", null);
         } catch (SQLException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FireStationPortalSysAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         DefaultTableModel tblModel = (DefaultTableModel)fireStationJTable.getModel();
@@ -332,7 +331,7 @@ public class FireStationPortalSysAdmin extends javax.swing.JFrame {
             
             catch (SQLException ex) {
                 System.out.println("Failed");
-                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FireStationPortalSysAdmin.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             tblModel.setRowCount(0);
@@ -352,7 +351,7 @@ public class FireStationPortalSysAdmin extends javax.swing.JFrame {
             }
             
         } catch (InstantiationException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FireStationPortalSysAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
            
         }
