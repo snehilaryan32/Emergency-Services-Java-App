@@ -37,8 +37,7 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
     Integer currentCaseId;
     public CitizenStatusPortal() {
         initComponents();
-        
-        jEvidenceId.disable();
+  
         
         try {
           
@@ -62,6 +61,8 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
         
     }
     
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
