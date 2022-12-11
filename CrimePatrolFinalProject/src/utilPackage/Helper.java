@@ -27,6 +27,7 @@ import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.util.ArrayList;
 import model.Doctor;
+import model.Hospital;
 import model.Person;
 
 /**
@@ -167,12 +168,39 @@ public class Helper {
         
         if(locationId != 0){
             Location loc = Helper.fetchLocation(locationId);
-            fire = new FireStation(Id, loc.getLocationId(), cheifId);   
+            fire = new FireStation(Id, loc.getLocationId(), null);   
         }
         
         
         return fire;
     }    
+     
+     
+     public static Hospital fetchHospital(int Id) throws SQLException{
+        Connection connectToSnow = Helper.connect;
+        
+        int locationId = 0;
+        //Integer cheifId = null;
+
+        Hospital hos = null;
+        
+        ResultSet res = Helper.getData("select * from hospital where hospital_id = " + Id);
+        while(res.next()){
+            locationId = Integer.parseInt(res.getString(2));
+           // cheifId = Integer.parseInt(res.getString(3));
+         
+        }
+        
+        if(locationId != 0){
+            Location loc = Helper.fetchLocation(locationId);
+            hos = new Hospital(Id, loc.getLocationId(),"testname","null");   
+        }
+        
+        
+        return hos;
+    }    
+     
+     
         
         public static Person fetchPerson(int Id) throws SQLException, ParseException{
         Connection connectToSnow = Helper.connect;

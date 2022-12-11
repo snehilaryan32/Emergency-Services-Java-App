@@ -4,6 +4,10 @@
  */
 package citizenApp;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author aryan
@@ -179,10 +183,16 @@ public class CitizenMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        // TODO add your handling code here:
-        ViewEmergencyResources cManagement = new ViewEmergencyResources();
-        cManagement.setVisible(true);
-        dispose();
+        try {
+            // TODO add your handling code here:
+            ViewEmergencyResources cManagement = new ViewEmergencyResources();
+            cManagement.setVisible(true);
+            dispose();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CitizenMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CitizenMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButton4MouseClicked
 

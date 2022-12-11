@@ -201,21 +201,19 @@ public class HospitalPortal extends javax.swing.JFrame {
                                     .addComponent(hospitalNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addComponent(hospCreateBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(hospUpdateBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(hospDeleteBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(hospResetBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(464, 464, 464)
-                                .addComponent(manageDoctorsBtn)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(64, 64, 64)
+                            .addComponent(hospCreateBtn)
+                            .addGap(18, 18, 18)
+                            .addComponent(hospUpdateBtn)
+                            .addGap(18, 18, 18)
+                            .addComponent(hospDeleteBtn)
+                            .addGap(18, 18, 18)
+                            .addComponent(hospResetBtn))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(464, 464, 464)
+                            .addComponent(manageDoctorsBtn))))
                 .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
@@ -256,11 +254,12 @@ public class HospitalPortal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hospCreateBtn)
-                            .addComponent(hospUpdateBtn)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hospDeleteBtn)
-                            .addComponent(hospResetBtn)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(hospCreateBtn)
+                                .addComponent(hospUpdateBtn)
+                                .addComponent(hospResetBtn))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(manageDoctorsBtn)))
@@ -288,7 +287,7 @@ public class HospitalPortal extends javax.swing.JFrame {
         tblModel.addRow(obj);
        
         Location loc = null;
-        Hospital hospital = new Hospital(hospitalId, hospitalName, locationId, email, contactNum);
+        Hospital hospital = new Hospital(hospitalId, loc.getLocationId(), hospitalName, email);
         hospital.addToHospitalTable(hospital);
         JOptionPane.showMessageDialog(this, "Hospital Saved Successfully!!!");
     }//GEN-LAST:event_hospCreateBtnActionPerformed
