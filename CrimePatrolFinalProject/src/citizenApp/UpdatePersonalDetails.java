@@ -4,7 +4,7 @@
  */
 package citizenApp;
 
-import PoliceDepartment.CasePortal;
+import PoliceDepartment.CasePortalCaptain;
 import crimepatrolfinalproject.*;
 import java.sql.SQLException;
 import java.util.Date;
@@ -239,7 +239,7 @@ public class UpdatePersonalDetails extends javax.swing.JFrame {
          
          catch (SQLException ex) {
                 System.out.println("Failed");
-                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
             }
          
          

@@ -25,7 +25,7 @@ public class Person {
     String name; 
     @Column(name = "LOCATION_ID")
     int address; 
-    @Column(name = "LOCATION_ID")
+    @Column(name = "EMAIL")
     String email; 
     @Column(name = "PHONE_NO")
     long phoneNo; 
@@ -51,6 +51,9 @@ public class Person {
         this.bloodGroup = bloodGroup;
         this.role = role;
         this.gender = gender;
+    }
+
+    public Person() {
     }
 
     public String getName() {

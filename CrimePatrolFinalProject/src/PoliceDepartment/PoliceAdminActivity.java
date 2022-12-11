@@ -87,6 +87,11 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         jLabel1.setText("Welcome To Captain Portal");
 
         jButton5.setText("Back");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Home");
 
@@ -487,7 +492,7 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         try {
             policeId = Helper.getMaxId("police", "police_id", null);
         } catch (SQLException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         DefaultTableModel tblModel = (DefaultTableModel)jPoliceTable.getModel();
@@ -504,7 +509,7 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             police.addToPoliceTable(police);
             
         } catch (SQLException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -584,6 +589,14 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
     private void jSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSearchFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jSearchFieldActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        
+        CaptainMenu obj = new CaptainMenu(); 
+        obj.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,7 +5,7 @@
 package MedicalDepartment;
 
 import PoliceDepartment.Case;
-import PoliceDepartment.CasePortal;
+//import PoliceDepartment.Do;
 import PoliceDepartment.Precinct;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -302,7 +302,7 @@ public class DoctorManagementPortal extends javax.swing.JFrame {
         try {
             doctorId = Helper.getMaxId("doctor", "doctor_id", null);
         } catch (SQLException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         DefaultTableModel tblModel = (DefaultTableModel)doctorJTable.getModel();
@@ -387,7 +387,7 @@ public class DoctorManagementPortal extends javax.swing.JFrame {
             
             catch (SQLException ex) {
                 System.out.println("Failed");
-                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DoctorManagementPortal.class.getName()).log(Level.SEVERE, null, ex);
             }
            
         }

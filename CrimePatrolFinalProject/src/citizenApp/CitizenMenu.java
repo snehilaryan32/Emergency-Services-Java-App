@@ -4,6 +4,11 @@
  */
 package citizenApp;
 
+import crimepatrolfinalproject.Login;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author aryan
@@ -28,11 +33,11 @@ public class CitizenMenu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        jLogOut = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jViewNearbyCases = new javax.swing.JButton();
         jCitizenPersonalDetailsButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jViewLawyers = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,7 +47,12 @@ public class CitizenMenu extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Citizen Menu");
 
-        jButton5.setText("Home");
+        jLogOut.setText("Log Out");
+        jLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLogOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,7 +62,7 @@ public class CitizenMenu extends javax.swing.JFrame {
                 .addGap(324, 324, 324)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(jLogOut)
                 .addGap(66, 66, 66))
         );
         jPanel1Layout.setVerticalGroup(
@@ -64,7 +74,7 @@ public class CitizenMenu extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)))
+                        .addComponent(jLogOut)))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -92,10 +102,15 @@ public class CitizenMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("View Lawyers");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jViewLawyers.setText("View Lawyers");
+        jViewLawyers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                jViewLawyersMouseClicked(evt);
+            }
+        });
+        jViewLawyers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewLawyersActionPerformed(evt);
             }
         });
 
@@ -119,7 +134,7 @@ public class CitizenMenu extends javax.swing.JFrame {
                 .addGap(187, 187, 187)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jViewNearbyCases, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                    .addComponent(jViewLawyers, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
                 .addGap(160, 160, 160)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCitizenPersonalDetailsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
@@ -135,7 +150,7 @@ public class CitizenMenu extends javax.swing.JFrame {
                     .addComponent(jCitizenPersonalDetailsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(71, 71, 71)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jViewLawyers, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(167, Short.MAX_VALUE))
         );
@@ -170,19 +185,25 @@ public class CitizenMenu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jViewNearbyCasesMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void jViewLawyersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jViewLawyersMouseClicked
         // TODO add your handling code here:
         ViewLawyers cManagement = new ViewLawyers();
         cManagement.setVisible(true);
         dispose();
         
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_jViewLawyersMouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        // TODO add your handling code here:
-        ViewEmergencyResources cManagement = new ViewEmergencyResources();
-        cManagement.setVisible(true);
-        dispose();
+        try {
+            // TODO add your handling code here:
+            ViewEmergencyResources cManagement = new ViewEmergencyResources();
+            cManagement.setVisible(true);
+            dispose();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CitizenMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CitizenMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButton4MouseClicked
 
@@ -209,6 +230,18 @@ public class CitizenMenu extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogOutActionPerformed
+        Login obj = new Login(); 
+        obj.setVisible(true); 
+        dispose();    
+    }//GEN-LAST:event_jLogOutActionPerformed
+
+    private void jViewLawyersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewLawyersActionPerformed
+            ViewLawyers obj = new ViewLawyers(); 
+            obj.setVisible(true);
+            dispose();
+    }//GEN-LAST:event_jViewLawyersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,13 +279,13 @@ public class CitizenMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jCitizenPersonalDetailsButton;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jLogOut;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jViewLawyers;
     private javax.swing.JButton jViewNearbyCases;
     // End of variables declaration//GEN-END:variables
 }
