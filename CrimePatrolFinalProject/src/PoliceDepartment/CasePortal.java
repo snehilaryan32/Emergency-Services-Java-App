@@ -46,8 +46,9 @@ public class CasePortal extends javax.swing.JFrame {
                 String caseStatus = i.getCaseStatus(); 
                 String description = i.getDescription(); 
                 String date = i.getDateTime().toString();
+                Integer locationId = i.getLocationid();
                 DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
-                Object[] obj = {iD, date, precinctId, policeId, lawyerId, detectiveId, caseStatus, description};
+                Object[] obj = {iD, date, precinctId, policeId, lawyerId, detectiveId, caseStatus, description, locationId};
                 tblModel.addRow(obj);                   
             }
             
@@ -239,7 +240,7 @@ public class CasePortal extends javax.swing.JFrame {
 
         jLabel12.setText("Case Type");
 
-        jCaseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Police ", "Fire ", "Medical ", " " }));
+        jCaseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Police", "Fire", "Medical" }));
         jCaseType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCaseTypeActionPerformed(evt);
@@ -454,7 +455,7 @@ public class CasePortal extends javax.swing.JFrame {
         
     
         DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
-        Object[] obj = {caseId, dateOfCase, precinctId, policeId, lawyerId, detectiveId, caseStatus, description, caseType};
+        Object[] obj = {caseId, dateOfCase, precinctId, policeId, lawyerId, detectiveId, caseStatus, description, location};
         tblModel.addRow(obj);
        
         Location loc = null;
@@ -469,10 +470,11 @@ public class CasePortal extends javax.swing.JFrame {
             Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if(caseType.equals("Medical")){
+        if(caseType.equals("Medical")) {
             
             String emailBody = "MEDICAL ATTENTION NEEDED AT coordinates" + loc.getLatitude() + "," + loc.getLongtude();
             SendNotification.sendEmailNotification("NEW MEDICAL CASE", emailBody, "snehil.aryan7823@gmail.com");
+            //snehil.aryan7823@gmail.com
             System.out.println("Notification Sent to");
             
         }
