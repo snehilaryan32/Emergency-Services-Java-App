@@ -104,6 +104,7 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
         searchTxt = new javax.swing.JTextField();
         searchByOptions = new javax.swing.JComboBox<>();
         searchCaseBtn = new javax.swing.JButton();
+        jOpenMap = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -257,6 +258,13 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
             }
         });
 
+        jOpenMap.setText("View Map");
+        jOpenMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jOpenMapActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -323,7 +331,9 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(searchCaseBtn)))))))
+                                        .addComponent(searchCaseBtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jOpenMap)))))))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -380,7 +390,8 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(searchByOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchCaseBtn)
-                    .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jOpenMap))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -608,6 +619,10 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jViewMapActionPerformed
 
+    private void jOpenMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenMapActionPerformed
+        
+    }//GEN-LAST:event_jOpenMapActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -681,6 +696,7 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jLawyerId;
     private javax.swing.JTextField jLocation;
+    private javax.swing.JButton jOpenMap;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jPoliceId;
