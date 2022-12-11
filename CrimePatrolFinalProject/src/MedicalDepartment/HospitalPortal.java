@@ -81,7 +81,6 @@ public class HospitalPortal extends javax.swing.JFrame {
         hospitalIdTextField = new javax.swing.JTextField();
         homePageBtn = new javax.swing.JButton();
         manageDoctorsBtn = new javax.swing.JButton();
-        manageEncountersBtn = new javax.swing.JButton();
         homePageBtn1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -154,13 +153,6 @@ public class HospitalPortal extends javax.swing.JFrame {
             }
         });
 
-        manageEncountersBtn.setText("MANAGE ENCOUNTERS");
-        manageEncountersBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageEncountersBtnActionPerformed(evt);
-            }
-        });
-
         homePageBtn1.setText("BACK");
         homePageBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +173,7 @@ public class HospitalPortal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 164, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addGap(69, 69, 69)
                         .addComponent(homePageBtn)
@@ -223,9 +215,7 @@ public class HospitalPortal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(464, 464, 464)
                                 .addComponent(manageDoctorsBtn)))
-                        .addGap(18, 18, 18)
-                        .addComponent(manageEncountersBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
@@ -273,9 +263,7 @@ public class HospitalPortal extends javax.swing.JFrame {
                             .addComponent(hospResetBtn)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(manageDoctorsBtn)
-                            .addComponent(manageEncountersBtn))))
+                        .addComponent(manageDoctorsBtn)))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
 
@@ -424,10 +412,6 @@ public class HospitalPortal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_manageDoctorsBtnActionPerformed
 
-    private void manageEncountersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEncountersBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_manageEncountersBtnActionPerformed
-
     private void homePageBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageBtn1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_homePageBtn1ActionPerformed
@@ -493,6 +477,5 @@ public class HospitalPortal extends javax.swing.JFrame {
     private javax.swing.JTextField jLocationId;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton manageDoctorsBtn;
-    private javax.swing.JButton manageEncountersBtn;
     // End of variables declaration//GEN-END:variables
 }
