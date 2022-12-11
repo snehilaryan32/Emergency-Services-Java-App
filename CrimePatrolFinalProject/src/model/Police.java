@@ -50,7 +50,7 @@ public class Police extends Person{
         String query = "insert into police values(" + police.getId() + ",'" + police.getName() + "','" + police.getRank() + "'," + police.getPrecinct().getPrecinctId() + ",'" + police.getPerformance() + "')";
         Helper.insertDeleteData(query);
         Helper.insertDeleteData(insertQuery);
-    
-    
+        
+        
     }
 }

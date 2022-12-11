@@ -24,6 +24,8 @@ import model.Community;
 import model.Location;
 import java.sql.PreparedStatement;
 import java.text.ParseException;
+import java.util.ArrayList;
+import model.Doctor;
 import model.Person;
 
 /**
@@ -179,6 +181,49 @@ public class Helper {
         }
        
         return person;
+        
+    }
+        
+        
+        public static List<Doctor> fetchAllDoctors() throws SQLException, ParseException{
+        Connection connectToSnow = Helper.connect;
+        
+        Integer doctorId = null;
+        Integer hospitalId = null;
+        String name = null; 
+        Integer locationId = null;
+        String email = null;
+        Long phoneNo = null; 
+        Date dateOfBirth = null;
+        String bloodGroup = null; 
+        String gender = null; 
+        String role = null; 
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+        ArrayList<Doctor> docList = new ArrayList<Doctor> ();
+        ResultSet resDoc = Helper.getData("select * from doctor");
+        while(resDoc.next()){
+            doctorId = Integer.parseInt(resDoc.getString(1));
+            hospitalId = Integer.parseInt(resDoc.getString(2));
+            
+            ResultSet resPerson = Helper.getData("select * from person where person_id = " + doctorId + " LIMIT 1");
+            
+            while(resPerson.next()) {
+                name = resPerson.getString(2);
+                locationId = Integer.parseInt(resPerson.getString(3));
+                email = resPerson.getString(4); 
+                phoneNo = Long.parseLong(resPerson.getString(5)); 
+                dateOfBirth = dateFormat.parse(resPerson.getString(6)); 
+                bloodGroup = resPerson.getString(7); 
+                gender = resPerson.getString(8); 
+                role = resPerson.getString(9);
+                Doctor doc = new Doctor(name, locationId, email, phoneNo, dateOfBirth, doctorId, bloodGroup, role, gender, doctorId, hospitalId);
+                docList.add(doc);
+            }
+             
+        }
+       
+        return docList;
         
     }
         
