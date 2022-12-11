@@ -1,5 +1,6 @@
-package citizenApp;
+package FireDepartment;
 
+import citizenApp.*;
 import PoliceDepartment.Case;
 import PoliceDepartment.Precinct;
 import crimepatrolfinalproject.*;
@@ -26,39 +27,39 @@ import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
 
-public class ViewEmergencyResources extends javax.swing.JFrame {
+public class FireDispatchPortal extends javax.swing.JFrame {
 
     private final Set<MyWaypoint> waypoints = new HashSet<>();
     private EventWaypoint event;
 
-    public ViewEmergencyResources() throws InstantiationException, SQLException {
+    public FireDispatchPortal() throws InstantiationException, SQLException {
         initComponents();
         init();
-        List<Precinct> objList = Helper.getResultSet(Precinct.class, "precinct");
-        
-        for(Precinct i : objList){
-            
-            Integer id = i.getPrecinctId();
-            int loc_id = i.getLocation();
-            
-            Location loc = Helper.fetchLocation(loc_id);
-            if (loc != null) {
-
-                double longitude = loc.getLongtude();
-                double latitude = loc.getLatitude();
-                DefaultTableModel tblModel = (DefaultTableModel)jPoliceTable.getModel();
-                Object[] obj = {id,"test"};
-                tblModel.addRow(obj);
-
-
-
-            }
-            
-        
-            
-            
-        
-        }
+//        List<Precinct> objList = Helper.getResultSet(Precinct.class, "precinct");
+//        
+//        for(Precinct i : objList){
+//            
+//            Integer id = i.getPrecinctId();
+//            int loc_id = i.getLocation();
+//            
+//            Location loc = Helper.fetchLocation(loc_id);
+//            if (loc != null) {
+//
+//                double longitude = loc.getLongtude();
+//                double latitude = loc.getLatitude();
+//                DefaultTableModel tblModel = (DefaultTableModel)jFireTable.getModel();
+//                Object[] obj = {id,"test"};
+//                tblModel.addRow(obj);
+//
+//
+//
+//            }
+//            
+//        
+//            
+//            
+//        
+//        }
         
         
     }
@@ -108,7 +109,7 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
         return new EventWaypoint() {
             @Override
             public void selected(MyWaypoint waypoint) {
-                JOptionPane.showMessageDialog(ViewEmergencyResources.this, waypoint.getName());
+                JOptionPane.showMessageDialog(FireDispatchPortal.this, waypoint.getName());
             }
         };
     }
@@ -124,13 +125,10 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jPoliceTable = new javax.swing.JTable();
+        jFireTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -190,51 +188,20 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
         );
 
         jLabel10.setFont(new java.awt.Font("Helvetica", 1, 25)); // NOI18N
-        jLabel10.setText("View Emergency  ");
+        jLabel10.setText("Fire Dispatch ");
 
         jLabel1.setFont(new java.awt.Font("Helvetica", 1, 25)); // NOI18N
-        jLabel1.setText("Resources");
+        jLabel1.setText("Portal");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jFireTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Hospital ID", "Hospital Name"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
             },
             new String [] {
                 "Fire Precinct ID", "FireStation Name"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
-
-        jPoliceTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Precinct ID", "Station Name"
-            }
-        ));
-        jPoliceTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPoliceTableMouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(jPoliceTable);
+        jScrollPane2.setViewportView(jFireTable);
 
         jButton1.setText("Home");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -243,31 +210,30 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Send Request");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(16, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(68, 68, 68)
                 .addComponent(jButton1)
                 .addGap(26, 26, 26))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(187, 187, 187)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jButton2)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,12 +244,10 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(128, 128, 128)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(136, 136, 136)
+                .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -339,38 +303,39 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdClearActionPerformed
 
     private void cmdAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdAddMouseClicked
-        List<Precinct> objList=null;
-        double latitude = 0.00 ;
-        double longitude  = 0.00;
+//        List<Precinct> objList=null;
+//        double latitude = 0.00 ;
+//        double longitude  = 0.00;
+//
+//        
+//        try {
+//            objList = Helper.getResultSet(Precinct.class, "precinct");
+//        } catch (InstantiationException ex) {
+//            Logger.getLogger(FireDispatchPortal.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        for(Precinct i : objList){
+//            
+//            Integer id = i.getPrecinctId();
+//            int loc_id = i.getLocation();
+//            
+//            Location loc = null;
+//            try {
+//                loc = Helper.fetchLocation(loc_id);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(FireDispatchPortal.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            if (loc != null) {
+//
+//                 longitude = loc.getLongtude();
+//                 latitude = loc.getLatitude();
+//        
+//            }
+//        }
+//        System.out.println(longitude);
+//        System.out.println(latitude);
+//        addWaypoint(new MyWaypoint("Test", event, new GeoPosition(latitude, longitude)));
 
-        
-        try {
-            objList = Helper.getResultSet(Precinct.class, "precinct");
-        } catch (InstantiationException ex) {
-            Logger.getLogger(ViewEmergencyResources.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        for(Precinct i : objList){
-            
-            Integer id = i.getPrecinctId();
-            int loc_id = i.getLocation();
-            
-            Location loc = null;
-            try {
-                loc = Helper.fetchLocation(loc_id);
-            } catch (SQLException ex) {
-                Logger.getLogger(ViewEmergencyResources.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if (loc != null) {
-
-                 longitude = loc.getLongtude();
-                 latitude = loc.getLatitude();
-        
-            }
-        }
-        System.out.println(longitude);
-        System.out.println(latitude);
-        addWaypoint(new MyWaypoint("Test", event, new GeoPosition(latitude, longitude)));
  //       addWaypoint(new MyWaypoint("New England Baptist Hospital", event, new GeoPosition(42.33108446415697, -71.10739075295284)));
 //        addWaypoint(new MyWaypoint("New England Baptist Hospital", event, new GeoPosition(42.33108446415697, -71.10739075295284)));
 //       addWaypoint(new MyWaypoint("Boston Children Hospital", event, new GeoPosition(42.335381966301945, -71.10874057514663)));
@@ -401,45 +366,6 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jPoliceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPoliceTableMouseClicked
-        DefaultTableModel tblModel = (DefaultTableModel)jPoliceTable.getModel();
-       // List<Precinct> objList=null;
-        double lat = 0.00 ;
-        double longitude  = 0.00;
-        int setLocation = Integer.parseInt(tblModel.getValueAt(jPoliceTable.getSelectedRow(), 0).toString());
-        if(jPoliceTable.getSelectedRowCount() == 1){
-            
-            
-                
-            try {
-                Integer dt = Integer.parseInt(tblModel.getValueAt(jPoliceTable.getSelectedRow(), 0).toString());
-                Precinct pre = Helper.fetchPrecinct(dt);
-                Location loc = Helper.fetchLocation(pre.getLocation());
-                
-                lat = loc.getLatitude();
-                longitude = loc.getLongtude();
-            } catch (SQLException ex) {
-                Logger.getLogger(ViewEmergencyResources.class.getName()).log(Level.SEVERE, null, ex);
-            }
-              
-        }   
-                System.out.println(longitude);
-                System.out.println(lat);
-
-        
-        addWaypoint(new MyWaypoint("Test 0999", event, new GeoPosition(lat, longitude)));
-                
-                
-                
-                
-                
-                
-           
-            
-            
-            
-    }//GEN-LAST:event_jPoliceTableMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -457,14 +383,46 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewEmergencyResources.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FireDispatchPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewEmergencyResources.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FireDispatchPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewEmergencyResources.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FireDispatchPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewEmergencyResources.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FireDispatchPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -502,11 +460,11 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new ViewEmergencyResources().setVisible(true);
+                    new FireDispatchPortal().setVisible(true);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(ViewEmergencyResources.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FireDispatchPortal.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(ViewEmergencyResources.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FireDispatchPortal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -517,15 +475,12 @@ public class ViewEmergencyResources extends javax.swing.JFrame {
     private javax.swing.JButton cmdClear;
     private javax.swing.JComboBox<String> comboMapType;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JTable jFireTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTable jPoliceTable;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private org.jxmapviewer.JXMapViewer jXMapViewer;
     // End of variables declaration//GEN-END:variables
 }

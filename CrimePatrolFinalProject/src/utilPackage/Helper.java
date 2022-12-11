@@ -105,7 +105,7 @@ public class Helper {
         
         ResultSet res = Helper.getData("select * from location where location_id = " + Id);
         while(res.next()){
-            longitude = Double.parseDouble(res.getString(1));
+            longitude = Double.parseDouble(res.getString(3));
             latitude = Double.parseDouble(res.getString(2));
             communityId = Integer.parseInt(res.getString(4));
    
@@ -124,18 +124,20 @@ public class Helper {
         Connection connectToSnow = Helper.connect;
         
         int locationId = 0;
+        Integer captainId = null;
 
         Precinct pre = null;
         
         ResultSet res = Helper.getData("select * from precinct where precinct_id = " + Id);
         while(res.next()){
             locationId = Integer.parseInt(res.getString(2));
+            captainId = Integer.parseInt(res.getString(3));
          
         }
         
         if(locationId != 0){
             Location loc = Helper.fetchLocation(locationId);
-            pre = new Precinct(Id, loc, locationId);   
+            pre = new Precinct(Id, loc.getLocationId(), captainId);   
         }
         
         
