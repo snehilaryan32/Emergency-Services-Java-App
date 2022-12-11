@@ -19,6 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import utilPackage.Helper;
 import utilPackage.S3BucketOperations;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +29,8 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import model.CitizenStatus;
 import model.Evidence;
+import model.Person;
+import utilPackage.CurrentSession;
 import utilPackage.ResultSetMapper;
 public class CitizenStatusPortal extends javax.swing.JFrame {
 
@@ -41,15 +44,18 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
         
         try {
           
-            List<Evidence> evidenceList = Helper.getResultSet(Evidence.class, "evidence");
+            List<CitizenStatus> objList = Helper.getResultSet(CitizenStatus.class, "citizen_status");
             
-            if(evidenceList != null) {
-                for(Evidence i : evidenceList){
-                    Integer evidenceId = i.getEvidenceId();
+            if(objList != null) {
+                for(CitizenStatus i : objList){
+                    Integer statusId = i.getStatusId();
+                    String name = i.getPerson().getName();
+                    String status = i.getStatus();
                     Integer caseId = i.getCaseId();
-                    String description = i.getDescription();
-                    DefaultTableModel tblModel = (DefaultTableModel)jEvidenceTable.getModel();
-                    Object[] obj = {evidenceId, caseId, description};
+                    Integer wantedLevel = i.getWantedLevel();
+                    
+                    DefaultTableModel tblModel = (DefaultTableModel)jBackgroundTable.getModel();
+                    Object[] obj = {statusId, name, status, caseId, wantedLevel};
                     tblModel.addRow(obj);                   
                 }
             }
@@ -73,10 +79,10 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jEvidenceTable = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jDelete = new javax.swing.JButton();
+        jBackgroundTable = new javax.swing.JTable();
         jUpdateButton = new javax.swing.JButton();
         createEvidence = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -94,45 +100,53 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Log Out");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 365, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(0, 200, Short.MAX_VALUE))
         );
 
-        jEvidenceTable.setModel(new javax.swing.table.DefaultTableModel(
+        jBackgroundTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Status ID", "Person ID", "Status", "Case ID", "Wanted Level"
+                "Status ID", "Name", "Status", "Case ID", "Wanted Level"
             }
         ));
-        jEvidenceTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        jBackgroundTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jEvidenceTableMouseClicked(evt);
+                jBackgroundTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jEvidenceTable);
-
-        jButton4.setText("Reset");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jDelete.setText("Delete");
-        jDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jDeleteActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(jBackgroundTable);
 
         jUpdateButton.setText("Update");
         jUpdateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -197,12 +211,8 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(createEvidence)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jUpdateButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jDelete)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton4))
+                                        .addComponent(jUpdateButton))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +224,7 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
                                             .addComponent(jCaseId, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jWantedLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 136, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -252,9 +262,7 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
                                                 .addGap(21, 21, 21)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                     .addComponent(createEvidence)
-                                                    .addComponent(jUpdateButton)
-                                                    .addComponent(jDelete)
-                                                    .addComponent(jButton4)))
+                                                    .addComponent(jUpdateButton)))
                                             .addComponent(jWantedLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)))))
@@ -266,40 +274,27 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteActionPerformed
-
-        DefaultTableModel tblModel = (DefaultTableModel)jEvidenceTable.getModel();
-        if(jEvidenceTable.getSelectedRowCount() == 1){
-            Integer evidenceId = Integer.valueOf(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 1).toString());
-            tblModel.removeRow(jEvidenceTable.getSelectedRow());
-            Helper.insertDeleteData("delete from evidence where evidence_id = " + evidenceId);
-            resetAllFields();
-        }
-
-    }//GEN-LAST:event_jDeleteActionPerformed
-
     private void jUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateButtonActionPerformed
-        DefaultTableModel tblModel = (DefaultTableModel)jEvidenceTable.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel)jBackgroundTable.getModel();
         
-        if (jEvidenceTable.getSelectedRowCount() == 1){
+        if (jBackgroundTable.getSelectedRowCount() == 1){
 
-            Integer caseId = Integer.valueOf(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 1).toString());
-            if(caseId != Integer.parseInt(jCaseId.getText())) {
-                JOptionPane.showMessageDialog(this, "Case ID for an Evidence cannot be updated.");
-                return;
-            }
+            Integer statusId = Integer.valueOf(tblModel.getValueAt(jBackgroundTable.getSelectedRow(), 0).toString());
+          
             
-            String desc = jWantedLevel.getText();
-            String imagePath = jImagePath.getName();
+            String desc = jWantedLevel.getSelectedItem().toString();
+            String status = jStatus.getSelectedItem().toString(); 
             
-            Integer evidenceId = Integer.valueOf(jEvidenceId.getText());
+            tblModel.setValueAt(status, jBackgroundTable.getSelectedRow(), 2);
+            tblModel.setValueAt(status, jBackgroundTable.getSelectedRow(), 4);
             
+          
             Map<String, String> mp = new HashMap<>();
-            mp.put("description", desc);
-            mp.put("IMAGEPATH", imagePath);
+            mp.put("wantedlevel", desc);
+            mp.put("status", status);
             
             try {
-                Helper.updateColumns("evidence", mp, "evidence_id = " + evidenceId);
+                Helper.updateColumns("citizen_status", mp, "status_id = " + statusId);
             }
             catch (SQLException ex) {
                 System.out.println("Failed");
@@ -308,85 +303,88 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
 
             tblModel.setRowCount(0);
 
-            try {
-                    List<Evidence> evidenceList = null;
-                    if(currentCaseId != null) {
-                        evidenceList = Helper.getResultSetByConditionId(Evidence.class, "evidence", "case_id", currentCaseId);
-                    } else {
-                       evidenceList = Helper.getResultSet(Evidence.class, "evidence"); 
-                    }
-                    if(evidenceList != null) {
-                        for(Evidence i : evidenceList){
-                            Integer evId = i.getEvidenceId();
-                            Integer casId = i.getCaseId();
-                            String objDesc = i.getDescription();
-                            Object[] obj = {evId, casId, objDesc};
-                            tblModel.addRow(obj);   
-                        }
-                }
-            } catch (InstantiationException ex) {
-                Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            try {
+//                    List<Evidence> evidenceList = null;
+//                    if(currentCaseId != null) {
+//                        evidenceList = Helper.getResultSetByConditionId(Evidence.class, "evidence", "case_id", currentCaseId);
+//                    } else {
+//                       evidenceList = Helper.getResultSet(Evidence.class, "evidence"); 
+//                    }
+//                    if(evidenceList != null) {
+//                        for(Evidence i : evidenceList){
+//                            Integer evId = i.getEvidenceId();
+//                            Integer casId = i.getCaseId();
+//                            String objDesc = i.getDescription();
+//                            Object[] obj = {evId, casId, objDesc};
+//                            tblModel.addRow(obj);   
+//                        }
+//                }
+//            } catch (InstantiationException ex) {
+//                Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
     }//GEN-LAST:event_jUpdateButtonActionPerformed
 
     private void createEvidenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvidenceActionPerformed
-        String caseId = jCaseId.getText(); 
-        Integer wantedLevel = Integer.parseInt(jWantedLevel.getSelectedItem().toString());
-        String status = jStatus.getSelectedItem().toString().toString();
+        try {
+            Integer caseId = Integer.parseInt(jCaseId.getText());
+            Integer wantedLevel = Integer.parseInt(jWantedLevel.getSelectedItem().toString());
+            String status = jStatus.getSelectedItem().toString().toString();
+            Integer personId = CurrentSession.queryUser;
+            
+            Integer statusId = Helper.getMaxId("citizen_status", "citizen",null);
+            
+            Person person = Helper.fetchPerson(personId);            
+            String name = person.getName();
+            
+            DefaultTableModel tblModel = (DefaultTableModel)jBackgroundTable.getModel();
+            Object [] obj = {statusId, name, status, caseId, wantedLevel};
+            tblModel.addRow(obj);
+            
+            CitizenStatus cs = new CitizenStatus(statusId, person, personId, status, caseId, wantedLevel);
+            cs.addToCitizenStatus(cs);
+                    
+                    } catch (SQLException ex) {
+            Logger.getLogger(CitizenStatusPortal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(CitizenStatusPortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        CitizenStatus cs = null; 
-        
-        
-        
-
     }//GEN-LAST:event_createEvidenceActionPerformed
 
     public void resetAllFields() {
-        jEvidenceId.setText(null);
-        jCaseId.setText("");
-        jWantedLevel.setText("");
-        imageLabel.setIcon(null);
+//        jEvidenceId.setText(null);
+//        jCaseId.setText("");
+//        jWantedLevel.setText("");
+//        imageLabel.setIcon(null);
     }
     
-    private void jEvidenceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEvidenceTableMouseClicked
-        // TODO add your handling code here:
+    private void jBackgroundTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBackgroundTableMouseClicked
+        
         resetAllFields();
-        DefaultTableModel tblModel = (DefaultTableModel)jEvidenceTable.getModel(); 
-        if(jEvidenceTable.getSelectedRowCount() == 1){
-            
-            Integer evidenceId = Integer.parseInt(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 0).toString());
-            jWantedLevel.setText(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 2).toString());
-            jCaseId.setText(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 1).toString());
-            jEvidenceId.setText(tblModel.getValueAt(jEvidenceTable.getSelectedRow(), 0).toString());
-            
-            List<Evidence> evidenceList = new ArrayList<>();
-            try {
-                evidenceList = Helper.getResultSetByConditionId(Evidence.class, "evidence", "evidence_id", evidenceId);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(CitizenStatusPortal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            if(evidenceList.size() == 1 && evidenceList.get(0).getImagePath() != null) {
-                jImagePath.setName(evidenceList.get(0).getImagePath());
-                ImageIcon imgIcon = new ImageIcon(evidenceList.get(0).getImagePath());
-                Image img = imgIcon.getImage();
-                Image scaledImage = img.getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
-                ImageIcon scaledImgIcon = new ImageIcon(scaledImage);
-                imageLabel.setIcon(scaledImgIcon);
-            }
-            
-        }
-    }//GEN-LAST:event_jEvidenceTableMouseClicked
+        DefaultTableModel tblModel = (DefaultTableModel)jBackgroundTable.getModel(); 
+        jCaseId.setText(tblModel.getValueAt(jBackgroundTable.getSelectedRow(), 3).toString());
+        
+    }//GEN-LAST:event_jBackgroundTableMouseClicked
 
     private void jCaseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCaseIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCaseIdActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        resetAllFields();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try { 
+            BackgroundCheckDetective obj = new BackgroundCheckDetective();
+            obj.setVisible(true);
+            dispose();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CitizenStatusPortal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -432,10 +430,10 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createEvidence;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JTable jBackgroundTable;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JTextField jCaseId;
-    private javax.swing.JButton jDelete;
-    private javax.swing.JTable jEvidenceTable;
     private javax.swing.JLabel jImagePath;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

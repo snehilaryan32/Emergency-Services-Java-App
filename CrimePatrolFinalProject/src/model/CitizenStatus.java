@@ -31,7 +31,7 @@ public class CitizenStatus {
     Person Person;
     
     @Column(name = "STATUS")
-    Integer Status;
+    String Status;
     
     @Column(name = "CASE_iD")
     Integer caseId; 
@@ -39,11 +39,10 @@ public class CitizenStatus {
     @Column(name = "WANTEDLEVEL")
     Integer wantedLevel; 
 
-    public CitizenStatus(Integer statusId, Person person, Integer personId, Person Person, Integer Status, Integer caseId, Integer wantedLevel) {
+    public CitizenStatus(Integer statusId, Person person, Integer personId, String Status, Integer caseId, Integer wantedLevel) {
         this.statusId = statusId;
         this.person = person;
         this.personId = personId;
-        this.Person = Person;
         this.Status = Status;
         this.caseId = caseId;
         this.wantedLevel = wantedLevel;
@@ -65,7 +64,7 @@ public class CitizenStatus {
     }
 
 
-    public Integer getStatus() {
+    public String getStatus() {
         return Status;
     }
 
@@ -89,7 +88,7 @@ public class CitizenStatus {
         this.personId = personId;
     }
 
-    public void setStatus(Integer Status) {
+    public void setStatus(String Status) {
         this.Status = Status;
     }
 

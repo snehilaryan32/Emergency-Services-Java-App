@@ -4,6 +4,7 @@
  */
 package crimepatrolfinalproject;
 
+import PoliceDepartment.CaptainMenu;
 import PoliceDepartment.CasePortalCaptain;
 import PoliceDepartment.CasePortalDispatcher;
 import citizenApp.CitizenMenu;
@@ -220,7 +221,7 @@ public class Login extends javax.swing.JFrame {
             }
             
             else if(userName.equals("captain")){
-                CasePortalCaptain obj = new CasePortalCaptain(); 
+                CaptainMenu obj = new CaptainMenu(); 
                 obj.setVisible(true);
                 dispose();
             } 
@@ -236,6 +237,7 @@ public class Login extends javax.swing.JFrame {
                 } catch (ParseException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
                 
                 CurrentSession.setCurrentUser(person);
                 System.out.println(CurrentSession.currentUser.getId()); 

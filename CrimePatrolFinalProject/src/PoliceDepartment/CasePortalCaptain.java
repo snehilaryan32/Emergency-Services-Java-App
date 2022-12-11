@@ -620,7 +620,7 @@ public class CasePortalCaptain extends javax.swing.JFrame {
             
             Integer caseId = Integer.valueOf(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString()); 
             
-            int patientID = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
+            
             tblModel.removeRow(jCaseMasterTable.getSelectedRow());
             
             Helper.insertDeleteData("delete from case where case_id = " + caseId);

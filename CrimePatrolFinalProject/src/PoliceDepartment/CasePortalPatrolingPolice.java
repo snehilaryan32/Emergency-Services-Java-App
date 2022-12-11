@@ -27,7 +27,7 @@ import utilPackage.SendNotification;
  *
  * @author sahilpadyal
  */
-public class CasePortalDetective extends javax.swing.JFrame {
+public class CasePortalPatrolingPolice extends javax.swing.JFrame {
 
     /**
      * Creates new form Case
@@ -35,7 +35,7 @@ public class CasePortalDetective extends javax.swing.JFrame {
     
     Integer currentCaseId;
     
-    public CasePortalDetective() {
+    public CasePortalPatrolingPolice() {
         initComponents();
         try {
           
@@ -57,7 +57,7 @@ public class CasePortalDetective extends javax.swing.JFrame {
             }
             
         } catch (InstantiationException ex) {
-            Logger.getLogger(CasePortalDetective.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalPatrolingPolice.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -448,7 +448,7 @@ public class CasePortalDetective extends javax.swing.JFrame {
             
             catch (SQLException ex) {
                 System.out.println("Failed");
-                Logger.getLogger(CasePortalDetective.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CasePortalPatrolingPolice.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             tblModel.setRowCount(0);
@@ -470,7 +470,7 @@ public class CasePortalDetective extends javax.swing.JFrame {
             }
             
         } catch (InstantiationException ex) {
-            Logger.getLogger(CasePortalDetective.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalPatrolingPolice.class.getName()).log(Level.SEVERE, null, ex);
         }
            
         }
@@ -510,7 +510,7 @@ public class CasePortalDetective extends javax.swing.JFrame {
             try {
                 date = formatter.parse(dt);
             } catch (ParseException ex) {
-                Logger.getLogger(CasePortalDetective.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CasePortalPatrolingPolice.class.getName()).log(Level.SEVERE, null, ex);
             }
             jDate.setDate(date);
             jPrecinctId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 2).toString());
@@ -610,14 +610,22 @@ public class CasePortalDetective extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CasePortalDetective.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CasePortalPatrolingPolice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CasePortalDetective.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CasePortalPatrolingPolice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CasePortalDetective.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CasePortalPatrolingPolice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CasePortalDetective.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CasePortalPatrolingPolice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -630,7 +638,7 @@ public class CasePortalDetective extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CasePortalDetective().setVisible(true);
+                new CasePortalPatrolingPolice().setVisible(true);
             }
         });
     }

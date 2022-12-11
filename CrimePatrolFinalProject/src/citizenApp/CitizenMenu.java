@@ -4,6 +4,8 @@
  */
 package citizenApp;
 
+import crimepatrolfinalproject.Login;
+
 /**
  *
  * @author aryan
@@ -28,7 +30,7 @@ public class CitizenMenu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        jLogOut = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jViewNearbyCases = new javax.swing.JButton();
         jCitizenPersonalDetailsButton = new javax.swing.JButton();
@@ -42,7 +44,12 @@ public class CitizenMenu extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Citizen Menu");
 
-        jButton5.setText("Home");
+        jLogOut.setText("Log Out");
+        jLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLogOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,7 +59,7 @@ public class CitizenMenu extends javax.swing.JFrame {
                 .addGap(324, 324, 324)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(jLogOut)
                 .addGap(66, 66, 66))
         );
         jPanel1Layout.setVerticalGroup(
@@ -64,7 +71,7 @@ public class CitizenMenu extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)))
+                        .addComponent(jLogOut)))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -210,6 +217,12 @@ public class CitizenMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogOutActionPerformed
+        Login obj = new Login(); 
+        obj.setVisible(true); 
+        dispose();    
+    }//GEN-LAST:event_jLogOutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -248,9 +261,9 @@ public class CitizenMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jCitizenPersonalDetailsButton;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jLogOut;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jViewNearbyCases;
