@@ -75,6 +75,7 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        jViewMap = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPrecinctId = new javax.swing.JTextField();
@@ -109,12 +110,19 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Case Records");
+        jLabel1.setText("Case Directory");
 
         jButton6.setText("LogOut");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
+            }
+        });
+
+        jViewMap.setText("View Map");
+        jViewMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewMapActionPerformed(evt);
             }
         });
 
@@ -127,7 +135,8 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jViewMap, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -135,7 +144,9 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addComponent(jButton6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(jViewMap))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addContainerGap(42, Short.MAX_VALUE))
@@ -593,6 +604,10 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCaseTypeActionPerformed
 
+    private void jViewMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewMapActionPerformed
+        
+    }//GEN-LAST:event_jViewMapActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -672,6 +687,7 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
     private javax.swing.JTextField jPrecinctId;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jUpdateButton;
+    private javax.swing.JButton jViewMap;
     private javax.swing.JComboBox<String> searchByOptions;
     private javax.swing.JButton searchCaseBtn;
     private javax.swing.JTextField searchTxt;
