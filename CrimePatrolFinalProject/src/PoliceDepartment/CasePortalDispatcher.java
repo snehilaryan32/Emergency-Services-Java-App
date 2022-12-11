@@ -4,6 +4,7 @@
  */
 package PoliceDepartment;
 
+import crimepatrolfinalproject.Login;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,7 +27,7 @@ import utilPackage.SendNotification;
  *
  * @author sahilpadyal
  */
-public class CasePortal extends javax.swing.JFrame {
+public class CasePortalDispatcher extends javax.swing.JFrame {
 
     /**
      * Creates new form Case
@@ -34,7 +35,7 @@ public class CasePortal extends javax.swing.JFrame {
     
     Integer currentCaseId;
     
-    public CasePortal() {
+    public CasePortalDispatcher() {
         initComponents();
         try {
           
@@ -56,7 +57,7 @@ public class CasePortal extends javax.swing.JFrame {
             }
             
         } catch (InstantiationException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalDispatcher.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -73,7 +74,6 @@ public class CasePortal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jBackButton = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -96,7 +96,6 @@ public class CasePortal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jPoliceId = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLocation = new javax.swing.JTextField();
         jDate = new com.toedter.calendar.JDateChooser();
@@ -113,14 +112,7 @@ public class CasePortal extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Case Records");
 
-        jBackButton.setText("Back");
-        jBackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBackButtonActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("Home");
+        jButton6.setText("LogOut");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -131,24 +123,20 @@ public class CasePortal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
-                .addGap(18, 18, 18)
-                .addComponent(jBackButton)
-                .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBackButton)
-                    .addComponent(jButton6))
+                .addComponent(jButton6)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addContainerGap(42, Short.MAX_VALUE))
@@ -227,13 +215,6 @@ public class CasePortal extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel10.setText("Search By");
-
-        jButton7.setText("View Evidence");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
 
         jLabel11.setText("Location ID");
 
@@ -330,9 +311,7 @@ public class CasePortal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jDelete)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton7))
+                                .addComponent(jButton4))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -392,8 +371,7 @@ public class CasePortal extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jUpdateButton)
                     .addComponent(jDelete)
-                    .addComponent(jButton4)
-                    .addComponent(jButton7))
+                    .addComponent(jButton4))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -454,7 +432,7 @@ public class CasePortal extends javax.swing.JFrame {
         try {
             caseId = Helper.getMaxId("case", "case_id", null);
         } catch (SQLException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalDispatcher.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -472,7 +450,7 @@ public class CasePortal extends javax.swing.JFrame {
             cas.addToCaseTable(cas);
             
         } catch (SQLException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalDispatcher.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         if(caseType.equals("Medical")) {
@@ -538,7 +516,7 @@ public class CasePortal extends javax.swing.JFrame {
             
             catch (SQLException ex) {
                 System.out.println("Failed");
-                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CasePortalDispatcher.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             tblModel.setRowCount(0);
@@ -560,7 +538,7 @@ public class CasePortal extends javax.swing.JFrame {
             }
             
         } catch (InstantiationException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalDispatcher.class.getName()).log(Level.SEVERE, null, ex);
         }
            
         }
@@ -569,26 +547,11 @@ public class CasePortal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jUpdateButtonActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
-        if (jCaseMasterTable.getSelectedRowCount() == 1){
-            Integer caseId = Integer.valueOf(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
-            currentCaseId = caseId;
-            EvidencePortal evidencePortal = new EvidencePortal(currentCaseId);
-            evidencePortal.setVisible(true);
-        }
-        
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
-        PoliceDept obj = new PoliceDept(); 
+        Login obj = new Login(); 
         obj.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jBackButtonActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jCaseMasterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCaseMasterTableMouseClicked
         
@@ -604,11 +567,12 @@ public class CasePortal extends javax.swing.JFrame {
             try {
                 date = formatter.parse(dt);
             } catch (ParseException ex) {
-                Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CasePortalDispatcher.class.getName()).log(Level.SEVERE, null, ex);
             }
             jDate.setDate(date);
             jPrecinctId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 2).toString());
             jPoliceId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 3).toString());
+            
             if(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4) != null) {
                jLawyerId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4).toString()); 
             } else {
@@ -621,6 +585,9 @@ public class CasePortal extends javax.swing.JFrame {
             }
             //jCaseStatus.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 6).toString()); 
             jDescription.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 7).toString()); 
+            jLocation.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 8).toString());
+            
+            
         }
     }//GEN-LAST:event_jCaseMasterTableMouseClicked
     
@@ -716,31 +683,35 @@ public class CasePortal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CasePortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CasePortalDispatcher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CasePortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CasePortalDispatcher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CasePortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CasePortalDispatcher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CasePortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CasePortalDispatcher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CasePortal().setVisible(true);
+                new CasePortalDispatcher().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBackButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JTable jCaseMasterTable;
     private javax.swing.JComboBox<String> jCaseStatus;
     private javax.swing.JComboBox<String> jCaseType;

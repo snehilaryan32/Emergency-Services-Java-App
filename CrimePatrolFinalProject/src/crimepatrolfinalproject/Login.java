@@ -4,6 +4,8 @@
  */
 package crimepatrolfinalproject;
 
+import PoliceDepartment.CasePortalCaptain;
+import PoliceDepartment.CasePortalDispatcher;
 import citizenApp.CitizenMenu;
 import utilPackage.SnowflakeConnector;
 import java.sql.Connection;
@@ -209,7 +211,22 @@ public class Login extends javax.swing.JFrame {
         if(credList.size() == 1 && credList.get(0).getPassword().equals(passWord)) {
             JOptionPane.showMessageDialog(rootPane, "Correct Password");
             
-            if(Integer.parseInt(userName) < 2000000){
+            
+            
+            if(userName.equals("policedispatch")){
+                CasePortalDispatcher obj = new CasePortalDispatcher();
+                obj.setVisible(true);
+                dispose();
+            }
+            
+            else if(userName.equals("captain")){
+                CasePortalCaptain obj = new CasePortalCaptain(); 
+                obj.setVisible(true);
+                dispose();
+            } 
+                
+            
+            else if(Integer.parseInt(userName) < 2000000){
                 
                 Person person = null;
                 try {
@@ -219,12 +236,14 @@ public class Login extends javax.swing.JFrame {
                 } catch (ParseException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
                 CurrentSession.setCurrentUser(person);
                 System.out.println(CurrentSession.currentUser.getId()); 
                 CitizenMenu obj = new CitizenMenu(); 
                 System.out.println("Citezen Logged in");
                 obj.setVisible(true);
                 dispose();
+                
             }
             
             

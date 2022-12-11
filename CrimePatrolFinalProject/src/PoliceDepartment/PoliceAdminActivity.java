@@ -487,7 +487,7 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         try {
             policeId = Helper.getMaxId("police", "police_id", null);
         } catch (SQLException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         DefaultTableModel tblModel = (DefaultTableModel)jPoliceTable.getModel();
@@ -504,7 +504,7 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             police.addToPoliceTable(police);
             
         } catch (SQLException ex) {
-            Logger.getLogger(CasePortal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

@@ -88,7 +88,7 @@ public class PoliceDept extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CasePortal obj = new CasePortal(); 
+        CasePortalCaptain obj = new CasePortalCaptain(); 
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
