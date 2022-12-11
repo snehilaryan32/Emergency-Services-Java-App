@@ -22,7 +22,7 @@ import utilPackage.Helper;
  * @author sahilpadyal
  */
 public class UpdatePersonalDetails extends javax.swing.JFrame {
-
+                        
     /**
      * Creates new form SignUp2
      */

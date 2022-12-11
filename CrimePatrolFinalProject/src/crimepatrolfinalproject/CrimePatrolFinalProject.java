@@ -47,6 +47,8 @@ public class CrimePatrolFinalProject {
         Login obj = new Login(); 
         obj.setVisible(true);
         
+        SendNotification.sendEmailNotification("NEW MEDICAL CASE", "Hello from java", "snehil.aryan7823@gmail.com");
+        
 
         
 //          List<Case> credList = Helper.getResultSet(Case.class, "CASE");
