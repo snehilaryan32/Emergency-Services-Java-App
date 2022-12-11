@@ -1,4 +1,4 @@
-package FireDepartment;
+package MedicalDepartment;
 
 import citizenApp.*;
 import PoliceDepartment.Case;
@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputListener;
 import javax.swing.table.DefaultTableModel;
 import model.Community;
+import model.Hospital;
 import model.Location;
 import model.Police;
 import org.jxmapviewer.OSMTileFactoryInfo;
@@ -27,42 +28,42 @@ import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
 
-public class FireDispatchPortal extends javax.swing.JFrame {
+public class MedicalDispatcherPortal extends javax.swing.JFrame {
 
     private final Set<MyWaypoint> waypoints = new HashSet<>();
     private EventWaypoint event;
 
-    public FireDispatchPortal() throws InstantiationException, SQLException {
+    public MedicalDispatcherPortal() throws InstantiationException, SQLException {
         initComponents();
         init();
-        List<FireStation> objList = Helper.getResultSet(FireStation.class, "fireStation");
+        List<Hospital> objList = Helper.getResultSet(Hospital.class, "hospital");
         
-        for(FireStation i : objList){
+        for(Hospital i : objList){
             
-            Integer id = i.getStationId();
+            Integer id = i.getHospitalId();
             int loc_id = i.getLocationId();
+            String name = i.getName();
             
             Location loc = Helper.fetchLocation(loc_id);
             if (loc != null) {
 
                 double longitude = loc.getLongtude();
                 double latitude = loc.getLatitude();
-                DefaultTableModel tblModel = (DefaultTableModel)jFireTable.getModel();
-                Object[] obj = {id,"test"};
+                DefaultTableModel tblModel = (DefaultTableModel)jHospitalTable.getModel();
+                Object[] obj = {id,name};
                 tblModel.addRow(obj);
+
 
 
             }
             
         
+          
             
-         
- 
         
         }
         
         
-                
     }
 
     private void init() {
@@ -110,7 +111,7 @@ public class FireDispatchPortal extends javax.swing.JFrame {
         return new EventWaypoint() {
             @Override
             public void selected(MyWaypoint waypoint) {
-                JOptionPane.showMessageDialog(FireDispatchPortal.this, waypoint.getName());
+                JOptionPane.showMessageDialog(MedicalDispatcherPortal.this, waypoint.getName());
             }
         };
     }
@@ -126,10 +127,9 @@ public class FireDispatchPortal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jFireTable = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jHospitalTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,25 +189,25 @@ public class FireDispatchPortal extends javax.swing.JFrame {
         );
 
         jLabel10.setFont(new java.awt.Font("Helvetica", 1, 25)); // NOI18N
-        jLabel10.setText("Fire Dispatcher ");
+        jLabel10.setText("View Emergency  ");
 
         jLabel1.setFont(new java.awt.Font("Helvetica", 1, 25)); // NOI18N
-        jLabel1.setText("Portal");
+        jLabel1.setText("Resources");
 
-        jFireTable.setModel(new javax.swing.table.DefaultTableModel(
+        jHospitalTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+
             },
             new String [] {
-                "Fire Station ID", "FireStation Name"
+                "Hospital ID", "Hospital Name"
             }
         ));
-        jFireTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        jHospitalTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jFireTableMouseClicked(evt);
+                jHospitalTableMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jFireTable);
+        jScrollPane1.setViewportView(jHospitalTable);
 
         jButton1.setText("Home");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,44 +216,37 @@ public class FireDispatchPortal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Send Request");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addGap(54, 54, 54)
-                .addComponent(jButton1)
-                .addGap(26, 26, 26))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(16, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(jLabel1))
+                        .addGap(155, 155, 155)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(jButton2)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addGap(124, 124, 124)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(128, 128, 128)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136)
-                .addComponent(jButton2)
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -309,27 +302,27 @@ public class FireDispatchPortal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdClearActionPerformed
 
     private void cmdAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdAddMouseClicked
-//        List<Precinct> objList=null;
+//        List<Hospital> objList=null;
 //        double latitude = 0.00 ;
 //        double longitude  = 0.00;
 //
 //        
 //        try {
-//            objList = Helper.getResultSet(Precinct.class, "precinct");
+//            objList = Helper.getResultSet(Hospital.class, "hospital");
 //        } catch (InstantiationException ex) {
-//            Logger.getLogger(FireDispatchPortal.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(MedicalDispatcherPortal.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        
-//        for(Precinct i : objList){
+//        for(Hospital i : objList){
 //            
-//            Integer id = i.getPrecinctId();
-//            int loc_id = i.getLocation();
+//            Integer id = i.getHospitalId();
+//            int loc_id = i.getLocationId();
 //            
 //            Location loc = null;
 //            try {
 //                loc = Helper.fetchLocation(loc_id);
 //            } catch (SQLException ex) {
-//                Logger.getLogger(FireDispatchPortal.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(MedicalDispatcherPortal.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 //            if (loc != null) {
 //
@@ -372,35 +365,40 @@ public class FireDispatchPortal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jFireTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFireTableMouseClicked
+    private void jHospitalTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHospitalTableMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel)jFireTable.getModel();
+        DefaultTableModel tblModel = (DefaultTableModel)jHospitalTable.getModel();
        
         double lat = 0.00 ;
         double longitude  = 0.00;
-        int setLocation = Integer.parseInt(tblModel.getValueAt(jFireTable.getSelectedRow(), 0).toString());
-        if(jFireTable.getSelectedRowCount() == 1){
+        int setLocation = Integer.parseInt(tblModel.getValueAt(jHospitalTable.getSelectedRow(), 0).toString());
+        if(jHospitalTable.getSelectedRowCount() == 1){
             
             
                 
             try {
-                Integer dt = Integer.parseInt(tblModel.getValueAt(jFireTable.getSelectedRow(), 0).toString());
-                FireStation fire = Helper.fetchFireStation(dt);
-                Location loc = Helper.fetchLocation(fire.getLocationId());
-                
+                Integer dt = Integer.parseInt(tblModel.getValueAt(jHospitalTable.getSelectedRow(), 0).toString());
+                Hospital hos = Helper.fetchHospital(dt);
+                Location loc = Helper.fetchLocation(hos.getLocationId());
+                            
+
                 lat = loc.getLatitude();
                 longitude = loc.getLongtude();
+                System.out.println(lat);
+                                System.out.println(longitude);
+
             } catch (SQLException ex) {
                 Logger.getLogger(ViewEmergencyResources.class.getName()).log(Level.SEVERE, null, ex);
-            }
-              
-        }   
-                System.out.println(longitude);
                 System.out.println(lat);
+                                System.out.println(longitude);
+            }
+        }   
+                
+                
 
         
         addWaypoint(new MyWaypoint("Test 0999", event, new GeoPosition(lat, longitude)));
-    }//GEN-LAST:event_jFireTableMouseClicked
+    }//GEN-LAST:event_jHospitalTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -419,14 +417,78 @@ public class FireDispatchPortal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FireDispatchPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MedicalDispatcherPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FireDispatchPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MedicalDispatcherPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FireDispatchPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MedicalDispatcherPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FireDispatchPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MedicalDispatcherPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -496,11 +558,11 @@ public class FireDispatchPortal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new FireDispatchPortal().setVisible(true);
+                    new MedicalDispatcherPortal().setVisible(true);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(FireDispatchPortal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MedicalDispatcherPortal.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(FireDispatchPortal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MedicalDispatcherPortal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -511,12 +573,11 @@ public class FireDispatchPortal extends javax.swing.JFrame {
     private javax.swing.JButton cmdClear;
     private javax.swing.JComboBox<String> comboMapType;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JTable jFireTable;
+    private javax.swing.JTable jHospitalTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private org.jxmapviewer.JXMapViewer jXMapViewer;
     // End of variables declaration//GEN-END:variables
 }

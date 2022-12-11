@@ -22,17 +22,33 @@ public class FireStation {
     @Id
     @Column(name="LOCATION_ID")
     int LocationId; 
+    
+    @Id
+    @Column(name="EMAIL")
+    String email;
+    
     @Id
     @Column(name="CHEIF_ID")
     int chiefId;
+    
+    
 
-    public FireStation(int stationId, int LocationId, int chiefId) {
+    public FireStation(int stationId, int LocationId, String email) {
         this.stationId = stationId;
         this.LocationId = LocationId;
+        this.email = email;
         this.chiefId = chiefId;
     }
     
         public FireStation() {};
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
 
     public int getStationId() {
