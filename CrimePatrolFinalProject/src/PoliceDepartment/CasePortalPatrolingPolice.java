@@ -113,6 +113,9 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Case Directory");
 
+        jButton6.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(51, 102, 0));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/cross.png"))); // NOI18N
         jButton6.setText("LogOut");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +123,9 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
             }
         });
 
+        jViewMap.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jViewMap.setForeground(new java.awt.Color(51, 102, 0));
+        jViewMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/map (1).png"))); // NOI18N
         jViewMap.setText("View Map");
         jViewMap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,12 +140,14 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jViewMap, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jViewMap, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jButton6)
+                        .addGap(74, 74, 74))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,6 +161,8 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 102, 0));
         jLabel3.setText("Precinct ID");
 
         jPrecinctId.addActionListener(new java.awt.event.ActionListener() {
@@ -161,8 +171,12 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 102, 0));
         jLabel4.setText("Date");
 
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 102, 0));
         jLabel5.setText("Case Status");
 
         jCaseStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Open", "Closed" }));
@@ -172,6 +186,8 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 102, 0));
         jLabel6.setText("Description");
 
         jDescription.addActionListener(new java.awt.event.ActionListener() {
@@ -180,10 +196,16 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 102, 0));
         jLabel7.setText("Lawyer ID");
 
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 102, 0));
         jLabel8.setText("Detective ID");
 
+        jUpdateButton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jUpdateButton.setForeground(new java.awt.Color(51, 102, 0));
         jUpdateButton.setText("Update");
         jUpdateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +213,8 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(51, 102, 0));
         jButton4.setText("Reset");
 
         jCaseMasterTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -208,11 +232,16 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jCaseMasterTable);
 
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(51, 102, 0));
         jLabel9.setText("Police ID");
 
-        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 102, 0));
         jLabel10.setText("Search By");
 
+        jButton7.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(51, 102, 0));
         jButton7.setText("View Evidence");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,6 +249,8 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(51, 102, 0));
         jLabel11.setText("Location ID");
 
         jLocation.addActionListener(new java.awt.event.ActionListener() {
@@ -228,6 +259,8 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(51, 102, 0));
         jLabel12.setText("Case Type");
 
         jCaseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Police", "Fire", "Medical" }));
@@ -250,6 +283,8 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
             }
         });
 
+        searchCaseBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        searchCaseBtn.setForeground(new java.awt.Color(51, 102, 0));
         searchCaseBtn.setText("SEARCH");
         searchCaseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         searchCaseBtn.addActionListener(new java.awt.event.ActionListener() {
