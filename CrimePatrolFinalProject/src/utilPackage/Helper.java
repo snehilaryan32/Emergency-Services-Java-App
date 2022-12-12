@@ -193,7 +193,7 @@ public class Helper {
         
         if(locationId != 0){
             Location loc = Helper.fetchLocation(locationId);
-            hos = new Hospital(Id, loc.getLocationId(),"testname","null");   
+            hos = new Hospital(Id, loc.getLocationId(), "testname", "null", null );   
         }
         
         
@@ -265,7 +265,7 @@ public class Helper {
         } catch (SQLException ex) {
             Logger.getLogger(Helper.class.getName()).log(Level.SEVERE, null, ex);
         }
-            return new Hospital(id, hospName, locationId, email, contactNum);
+            return new Hospital(id, locationId, hospName, email, contactNum);
         }
         
         

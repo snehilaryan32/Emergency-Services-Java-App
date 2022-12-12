@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -22,6 +25,7 @@ import model.Location;
 import utilPackage.GenerateId;
 import utilPackage.Helper;
 import utilPackage.SendNotification;
+import utilPackage.ValidationHelper;
 
 /**
  *
@@ -468,6 +472,50 @@ public class CasePortalPatrolingPolice extends javax.swing.JFrame {
     }//GEN-LAST:event_jCaseStatusActionPerformed
 
     private void jUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateButtonActionPerformed
+        
+        if(ValidationHelper.isEmptyOrNullString(jPrecinctId.getText())) {
+            JOptionPane.showMessageDialog(this, "Precinct ID for a Case cannot be null.");
+            return;
+        }
+        
+        if(ValidationHelper.isEmptyOrNullString(jPoliceId.getText())) {
+            JOptionPane.showMessageDialog(this, "Police ID for a Case cannot be null.");
+            return;
+        }
+        
+        if(ValidationHelper.isEmptyOrNullString(jLocation.getText())) {
+            JOptionPane.showMessageDialog(this, "Location ID for a Case cannot be null.");
+            return;
+        }
+        
+        if(jDate.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Date for a Case cannot be null.");
+            return;
+        }
+        
+        if(ValidationHelper.isEmptyOrNullString(jDescription.getText())) {
+            JOptionPane.showMessageDialog(this, "Description for a Case cannot be null.");
+            return;
+        }
+
+        
+        
+        Map<String, String> idsMap = Stream.of(new String[][] {
+                                    { "Precinct ID",  jPrecinctId.getText()}, 
+                                    { "Police ID", jPoliceId.getText()},
+                                    { "Lawyer ID", jLawyerId.getText()},
+                                    { "Detective ID", jDetectiveId.getText()},
+                                    { "Location ID", jLocation.getText()}
+                                }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
+        
+        String invalidId = ValidationHelper.getInvalidNumericId(idsMap);
+        
+        if (!invalidId.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please Enter a Valid Numeric " + invalidId);
+            return;
+        }
+        
+        
         DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
         
         

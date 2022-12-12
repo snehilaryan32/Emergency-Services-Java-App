@@ -280,36 +280,36 @@ public class ViewCasePortal extends javax.swing.JFrame {
 
     private void jCaseMasterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCaseMasterTableMouseClicked
         
-        DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
-        int caseIdUpdate = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
-
-        
-        if(jCaseMasterTable.getSelectedRowCount() == 1){
-            
-            String dt = tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 1).toString();
-            SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
-            Date date = null;
-            try {
-                date = formatter.parse(dt);
-            } catch (ParseException ex) {
-                Logger.getLogger(ViewCasePortal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            jDate.setDate(date);
-            jPrecinctId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 2).toString());
-            jPoliceId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 3).toString());
-            if(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4) != null) {
-               jLawyerId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4).toString()); 
-            } else {
-                jLawyerId.setText("");
-            }
-            if(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 5) != null) {
-               jDetectiveId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 5).toString());
-            } else {
-                jDetectiveId.setText("");
-            }
-            //jCaseStatus.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 6).toString()); 
-            jDescription.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 7).toString()); 
-        }
+//        DefaultTableModel tblModel = (DefaultTableModel)jCaseMasterTable.getModel();
+//        int caseIdUpdate = Integer.parseInt(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 0).toString());
+//
+//        
+//        if(jCaseMasterTable.getSelectedRowCount() == 1){
+//            
+//            String dt = tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 1).toString();
+//            SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
+//            Date date = null;
+//            try {
+//                date = formatter.parse(dt);
+//            } catch (ParseException ex) {
+//                Logger.getLogger(ViewCasePortal.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            jDate.setDate(date);
+//            jPrecinctId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 2).toString());
+//            jPoliceId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 3).toString());
+//            if(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4) != null) {
+//               jLawyerId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 4).toString()); 
+//            } else {
+//                jLawyerId.setText("");
+//            }
+//            if(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 5) != null) {
+//               jDetectiveId.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 5).toString());
+//            } else {
+//                jDetectiveId.setText("");
+//            }
+//            //jCaseStatus.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 6).toString()); 
+//            jDescription.setText(tblModel.getValueAt(jCaseMasterTable.getSelectedRow(), 7).toString()); 
+//        }
     }//GEN-LAST:event_jCaseMasterTableMouseClicked
     
     private void searchTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTxtActionPerformed
