@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -275,6 +276,7 @@ public class ViewCasePortal extends javax.swing.JFrame {
     private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
         PoliceDept obj = new PoliceDept(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
     }//GEN-LAST:event_jBackButtonActionPerformed
 

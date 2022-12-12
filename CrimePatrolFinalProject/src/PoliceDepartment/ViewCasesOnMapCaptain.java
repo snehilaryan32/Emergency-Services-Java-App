@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputListener;
 import javax.swing.table.DefaultTableModel;
@@ -388,12 +389,14 @@ public class ViewCasesOnMapCaptain extends javax.swing.JFrame {
     private void jLogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogOutButtonActionPerformed
         Login obj = new Login(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
     }//GEN-LAST:event_jLogOutButtonActionPerformed
 
     private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
         CaptainMenu obj = new CaptainMenu(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
     }//GEN-LAST:event_jBackActionPerformed
 

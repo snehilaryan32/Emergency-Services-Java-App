@@ -8,6 +8,7 @@ import crimepatrolfinalproject.Login;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -130,24 +131,28 @@ public class CaptainMenu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CasePortalCaptain obj = new CasePortalCaptain();
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         PoliceAdminActivity obj = new PoliceAdminActivity(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         EvidencePortal obj = new EvidencePortal(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose(); 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Login obj = new Login(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -156,6 +161,7 @@ public class CaptainMenu extends javax.swing.JFrame {
         try {
             obj = new BackgroundCheckDetective();
             obj.setVisible(true);
+            obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
             dispose();
             
         } catch (InstantiationException ex) {

@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -676,6 +677,7 @@ public class CasePortalCaptain extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         Login obj = new Login(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -796,6 +798,7 @@ public class CasePortalCaptain extends javax.swing.JFrame {
         try {
             ViewCasesOnMapCaptain obj = new ViewCasesOnMapCaptain();
             obj.setVisible(true);
+            obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
             dispose();
         } catch (InstantiationException ex) {
             Logger.getLogger(CasePortalCaptain.class.getName()).log(Level.SEVERE, null, ex);

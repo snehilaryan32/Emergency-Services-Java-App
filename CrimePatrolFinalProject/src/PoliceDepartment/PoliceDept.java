@@ -5,6 +5,7 @@
 package PoliceDepartment;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -107,6 +108,7 @@ public class PoliceDept extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CasePortalCaptain obj = new CasePortalCaptain(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

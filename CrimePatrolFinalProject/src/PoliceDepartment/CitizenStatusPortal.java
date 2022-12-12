@@ -28,6 +28,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.CitizenStatus;
 import model.Evidence;
@@ -432,6 +433,7 @@ public class CitizenStatusPortal extends javax.swing.JFrame {
         try { 
             BackgroundCheckDetective obj = new BackgroundCheckDetective();
             obj.setVisible(true);
+            obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
             dispose();
         } catch (InstantiationException ex) {
             Logger.getLogger(CitizenStatusPortal.class.getName()).log(Level.SEVERE, null, ex);

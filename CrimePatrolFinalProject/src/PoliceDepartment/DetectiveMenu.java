@@ -6,6 +6,7 @@ package PoliceDepartment;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -97,6 +98,7 @@ public class DetectiveMenu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CasePortalDetective obj = new CasePortalDetective(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -104,6 +106,7 @@ public class DetectiveMenu extends javax.swing.JFrame {
         try {
             BackgroundCheckDetective obj = new BackgroundCheckDetective();
             obj.setVisible(true);
+            obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
             dispose();
         } catch (InstantiationException ex) {
             Logger.getLogger(DetectiveMenu.class.getName()).log(Level.SEVERE, null, ex);

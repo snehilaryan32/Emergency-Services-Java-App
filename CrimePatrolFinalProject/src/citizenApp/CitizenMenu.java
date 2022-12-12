@@ -8,6 +8,7 @@ import crimepatrolfinalproject.Login;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -223,12 +224,14 @@ public class CitizenMenu extends javax.swing.JFrame {
     private void jViewNearbyCasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewNearbyCasesActionPerformed
         ViewNearbyCase obj = new ViewNearbyCase(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
     }//GEN-LAST:event_jViewNearbyCasesActionPerformed
 
     private void jCitizenPersonalDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCitizenPersonalDetailsButtonActionPerformed
         UpdatePersonalDetails obj = new UpdatePersonalDetails(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
     }//GEN-LAST:event_jCitizenPersonalDetailsButtonActionPerformed
 
@@ -239,6 +242,7 @@ public class CitizenMenu extends javax.swing.JFrame {
     private void jLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogOutActionPerformed
         Login obj = new Login(); 
         obj.setVisible(true); 
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();    
     }//GEN-LAST:event_jLogOutActionPerformed
 
@@ -250,6 +254,7 @@ public class CitizenMenu extends javax.swing.JFrame {
             Logger.getLogger(CitizenMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
             obj.setVisible(true);
+            obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
             dispose();
     }//GEN-LAST:event_jViewLawyersActionPerformed
 

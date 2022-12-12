@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -594,6 +595,7 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         
         CaptainMenu obj = new CaptainMenu(); 
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
         
     }//GEN-LAST:event_jButton5ActionPerformed
