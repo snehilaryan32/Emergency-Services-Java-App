@@ -56,5 +56,6 @@ For better understanding below is the component diagram.
 
 
 
+![Class Diagram](https://user-images.githubusercontent.com/114356277/206963348-2ecbd768-af11-4431-9c4b-3d02c80b3513.png)
 
 
