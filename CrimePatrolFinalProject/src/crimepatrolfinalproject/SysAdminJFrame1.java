@@ -43,9 +43,13 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
         manageEncountersBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         homePageBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        manageHospitalBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        manageHospitalBtn.setForeground(new java.awt.Color(0, 0, 204));
+        manageHospitalBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/hospitalm.png"))); // NOI18N
         manageHospitalBtn.setText("MANAGE HOSPITALS");
         manageHospitalBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +57,9 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
             }
         });
 
+        manageCommAdminsBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        manageCommAdminsBtn.setForeground(new java.awt.Color(0, 0, 204));
+        manageCommAdminsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/legal.png"))); // NOI18N
         manageCommAdminsBtn.setText("MANAGE LAWYERS");
         manageCommAdminsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +67,9 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
             }
         });
 
+        manageFireStationBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        manageFireStationBtn.setForeground(new java.awt.Color(0, 0, 204));
+        manageFireStationBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/Fire.png"))); // NOI18N
         manageFireStationBtn.setText("MANAGE FIRE STATION");
         manageFireStationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,13 +77,20 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
             }
         });
 
+        managePoliceBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        managePoliceBtn.setForeground(new java.awt.Color(0, 0, 204));
+        managePoliceBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/policem.png"))); // NOI18N
         managePoliceBtn.setText("MANAGE POLICE");
+        managePoliceBtn.setToolTipText("");
         managePoliceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 managePoliceBtnActionPerformed(evt);
             }
         });
 
+        manageHospitalsBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        manageHospitalsBtn.setForeground(new java.awt.Color(0, 0, 204));
+        manageHospitalsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/citizen.png"))); // NOI18N
         manageHospitalsBtn.setText("MANAGE CITIZENS");
         manageHospitalsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +98,9 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
             }
         });
 
+        manageEncountersBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        manageEncountersBtn.setForeground(new java.awt.Color(0, 0, 204));
+        manageEncountersBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/doctorm.png"))); // NOI18N
         manageEncountersBtn.setText("MANAGE DOCTORS");
         manageEncountersBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,8 +108,14 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("SYSTEM ADMIN OPERATIONS");
 
+        homePageBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        homePageBtn.setForeground(new java.awt.Color(0, 0, 204));
+        homePageBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/Home.png"))); // NOI18N
         homePageBtn.setText("HOME");
         homePageBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,49 +123,60 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/police-siren-siren.gif"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(347, 347, 347)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
-                        .addComponent(homePageBtn)
-                        .addGap(99, 99, 99))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(manageEncountersBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(managePoliceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageHospitalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageHospitalsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageCommAdminsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageFireStationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(manageCommAdminsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(manageHospitalsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(manageEncountersBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(manageHospitalBtn)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(managePoliceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(45, 45, 45)
+                                .addComponent(manageFireStationBtn))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jLabel1)
+                        .addGap(103, 103, 103)
+                        .addComponent(homePageBtn)))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(homePageBtn)
+                    .addComponent(jLabel1))
+                .addGap(43, 43, 43)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(147, 147, 147)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(homePageBtn))
-                .addGap(76, 76, 76)
-                .addComponent(manageHospitalBtn)
-                .addGap(18, 18, 18)
-                .addComponent(managePoliceBtn)
-                .addGap(18, 18, 18)
-                .addComponent(manageFireStationBtn)
-                .addGap(18, 18, 18)
-                .addComponent(manageCommAdminsBtn)
-                .addGap(18, 18, 18)
-                .addComponent(manageHospitalsBtn)
-                .addGap(18, 18, 18)
-                .addComponent(manageEncountersBtn)
-                .addContainerGap(157, Short.MAX_VALUE))
+                    .addComponent(manageHospitalBtn)
+                    .addComponent(managePoliceBtn)
+                    .addComponent(manageFireStationBtn))
+                .addGap(88, 88, 88)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manageCommAdminsBtn)
+                    .addComponent(manageHospitalsBtn)
+                    .addComponent(manageEncountersBtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -232,6 +269,7 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton homePageBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton manageCommAdminsBtn;
     private javax.swing.JButton manageEncountersBtn;
     private javax.swing.JButton manageFireStationBtn;
