@@ -319,7 +319,7 @@ public class HospitalPortal extends javax.swing.JFrame {
         tblModel.addRow(obj);
        
         Location loc = null;
-        Hospital hospital = new Hospital(hospitalId, loc.getLocationId(), hospitalName, email);
+        Hospital hospital = new Hospital(hospitalId, loc.getLocationId(), hospitalName, email, contactNum);
         hospital.addToHospitalTable(hospital);
         JOptionPane.showMessageDialog(this, "Hospital Saved Successfully!!!");
     }//GEN-LAST:event_hospCreateBtnActionPerformed

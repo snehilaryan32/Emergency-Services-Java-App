@@ -30,7 +30,7 @@ public class Hospital {
     @Column(name="contactNo")
     Integer contactNum;
     
-    public Hospital(int id, int locationId, String name, String email, Integer contactNum) {
+    public Hospital(Integer id, Integer locationId, String name, String email, Integer contactNum) {
         this.hospitalId = id;
         this.name = name;
         this.locationId = locationId;
