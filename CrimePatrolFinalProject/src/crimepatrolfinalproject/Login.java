@@ -174,10 +174,7 @@ public class Login extends javax.swing.JFrame {
         ResultSetMapper<Credentials> credsRSMapper = new ResultSetMapper<Credentials>();
         List<Credentials> credList = credsRSMapper.mapResultSetToObject(result, Credentials.class);
         
-        if(credList != null && credList.size() == 1 && credList.get(0).getPassword().equals(passWord)) {
-            JOptionPane.showMessageDialog(rootPane, "Correct Password");
-            
-            
+        if(credList != null && credList.size() == 1 && credList.get(0).getPassword().equals(passWord)) { 
             
             if(userName.equals("policedispatch")){
                 CasePortalDispatcher obj = new CasePortalDispatcher();

@@ -42,8 +42,12 @@ public class CrimePatrolFinalProject {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException, InstantiationException{
+        try {
+          S3BucketOperations.downloadS3Object("TestImage.png");  
+        } catch(Exception e) {
+            System.out.println("successfully connected");
+        }
         
-        S3BucketOperations.downloadS3Object("TestImage.png");
         
         Login obj = new Login();
         obj.setVisible(true);

@@ -7,6 +7,7 @@ package FireDepartment;
 import MedicalDepartment.*;
 import PoliceDepartment.Case;
 import PoliceDepartment.Precinct;
+import crimepatrolfinalproject.SysAdminJFrame1;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,12 +16,14 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Hospital;
 import model.Location;
 import utilPackage.Helper;
 import utilPackage.SendNotification;
+import utilPackage.ValidationHelper;
 
 /**
  *
@@ -33,7 +36,7 @@ public class FireStationPortal extends javax.swing.JFrame {
      */
     public FireStationPortal() {
         initComponents();
-        stationIdTextField.disable();
+//        stationIdTextField.disable();
         try {
           
             List<FireStation> objList = Helper.getResultSet(FireStation.class, "firestation");
@@ -63,30 +66,13 @@ public class FireStationPortal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLocationId = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jEmailId = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         fireStationJTable = new javax.swing.JTable();
-        hospResetBtn = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        stationIdTextField = new javax.swing.JTextField();
-        homePageBtn = new javax.swing.JButton();
-        homePageBtn1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        homePageBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel4.setText("Location ID");
-
-        jLabel5.setText("Email");
-
-        jEmailId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jEmailIdActionPerformed(evt);
-            }
-        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fireStationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,101 +89,24 @@ public class FireStationPortal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(fireStationJTable);
 
-        hospResetBtn.setText("VIew Cases");
-        hospResetBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hospResetBtnActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 770, 290));
 
-        jLabel7.setText("Station Id");
+        jLabel3.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Fire Station Portal");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 37, -1, -1));
 
-        homePageBtn.setText("HOME");
-        homePageBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homePageBtnActionPerformed(evt);
-            }
-        });
-
+        homePageBtn1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        homePageBtn1.setForeground(new java.awt.Color(0, 204, 255));
+        homePageBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/backs.png"))); // NOI18N
         homePageBtn1.setText("BACK");
         homePageBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homePageBtn1ActionPerformed(evt);
             }
         });
-
-        jLabel3.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Fire Station Portal");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(175, 175, 175)
-                        .addComponent(homePageBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(homePageBtn1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jEmailId, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(stationIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLocationId, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 119, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)))
-                .addGap(86, 86, 86))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(hospResetBtn)
-                .addGap(301, 301, 301))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(homePageBtn)
-                            .addComponent(homePageBtn1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel3)))
-                .addGap(118, 118, 118)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(stationIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLocationId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jEmailId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(hospResetBtn)
-                .addContainerGap(84, Short.MAX_VALUE))
-        );
+        getContentPane().add(homePageBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 140, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -212,14 +121,18 @@ public class FireStationPortal extends javax.swing.JFrame {
             String tblHospId = fireTableModel.getValueAt( fireStationJTable.getSelectedRow(),0).toString();
             //String tblHospName = hospTableModel.getValueAt( fireStationJTable.getSelectedRow(),1).toString();
             String tblHospLocationId = fireTableModel.getValueAt( fireStationJTable.getSelectedRow(),1).toString();
-            String tblHospEmail = fireTableModel.getValueAt( fireStationJTable.getSelectedRow(),2).toString();
+            String tblHospEmail = "";
+            if(fireTableModel.getValueAt( fireStationJTable.getSelectedRow(),2) != null) {
+               tblHospEmail = fireTableModel.getValueAt( fireStationJTable.getSelectedRow(),2).toString(); 
+            }
+            
             //String tblHospContact = hospTableModel.getValueAt( fireStationJTable.getSelectedRow(),4).toString();
 
 
-            stationIdTextField.setText(tblHospId);
-            //stationNameTextField.setText(tblHospName);
-            jLocationId.setText(tblHospLocationId);
-            jEmailId.setText(tblHospEmail);
+//            stationIdTextField.setText(tblHospId);
+//            //stationNameTextField.setText(tblHospName);
+//            jLocationId.setText(tblHospLocationId);
+//            jEmailId.setText(tblHospEmail);
             //jContactNum.setText(tblHospContact);
         }
         
@@ -227,30 +140,21 @@ public class FireStationPortal extends javax.swing.JFrame {
     }//GEN-LAST:event_fireStationJTableMouseClicked
 
     public void resetAllFields() {
-        stationIdTextField.setText(null);
-     //   stationNameTextField.setText(null);
-        jLocationId.setText(null);
-        jEmailId.setText(null);
+//        stationIdTextField.setText(null);
+//     //   stationNameTextField.setText(null);
+//        jLocationId.setText(null);
+//        jEmailId.setText(null);
     //    jContactNum.setText(null);
     }
     
-    private void hospResetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospResetBtnActionPerformed
-        // TODO add your handling code here:
-        resetAllFields();
-    }//GEN-LAST:event_hospResetBtnActionPerformed
-
-    private void homePageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageBtnActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_homePageBtnActionPerformed
-
     private void homePageBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_homePageBtn1ActionPerformed
 
-    private void jEmailIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEmailIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jEmailIdActionPerformed
+        SysAdminJFrame1 obj = new SysAdminJFrame1();
+        obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
+        dispose();
+
+    }//GEN-LAST:event_homePageBtn1ActionPerformed
 
     
     /**
@@ -322,16 +226,8 @@ public class FireStationPortal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable fireStationJTable;
-    private javax.swing.JButton homePageBtn;
     private javax.swing.JButton homePageBtn1;
-    private javax.swing.JButton hospResetBtn;
-    private javax.swing.JTextField jEmailId;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jLocationId;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField stationIdTextField;
     // End of variables declaration//GEN-END:variables
 }

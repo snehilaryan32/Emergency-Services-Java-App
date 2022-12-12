@@ -233,7 +233,7 @@ public class DoctorManagementPortal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         if(ValidationHelper.isEmptyOrNullString(jDocName.getText())) {
-            JOptionPane.showMessageDialog(this, "Doctor Name Case cannot be Empty.");
+            JOptionPane.showMessageDialog(this, "Doctor Name cannot be Empty.");
             return;
         }
         

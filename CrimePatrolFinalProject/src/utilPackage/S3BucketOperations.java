@@ -49,13 +49,19 @@ public class S3BucketOperations {
     
         
     public static void downloadS3Object(String fileName) {
-        setAmazonConnection();
-        S3Object s3object = s3Client.getObject("aed-dev", fileName);
-        S3ObjectInputStream inputStream = s3object.getObjectContent();
         try {
+            setAmazonConnection();
+            S3Object s3object = null;
+            try {
+                s3object = s3Client.getObject("aed-dev", fileName);
+            } catch(Exception e) {
+                
+            }
+            
+            S3ObjectInputStream inputStream = s3object.getObjectContent();
+        
             FileUtils.copyInputStreamToFile(inputStream, new File("/Users/bashu/Desktop/newImg.png"));
         } catch (IOException ex) {
-            Logger.getLogger(S3BucketOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
