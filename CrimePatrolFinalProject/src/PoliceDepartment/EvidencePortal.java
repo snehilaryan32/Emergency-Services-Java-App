@@ -9,6 +9,7 @@ package PoliceDepartment;
  * @author sahilpadyal
  */
 
+import crimepatrolfinalproject.Login;
 import java.awt.Image;
 import java.io.File;
 import java.sql.ResultSet;
@@ -25,9 +26,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.Evidence;
 import utilPackage.ResultSetMapper;
+import utilPackage.ValidationHelper;
 public class EvidencePortal extends javax.swing.JFrame {
 
     /**
@@ -139,17 +144,10 @@ public class EvidencePortal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
-        );
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(801, 278, 270, -1));
 
         uploadEvidence.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         uploadEvidence.setForeground(new java.awt.Color(51, 102, 0));
@@ -160,6 +158,8 @@ public class EvidencePortal extends javax.swing.JFrame {
                 uploadEvidenceActionPerformed(evt);
             }
         });
+        getContentPane().add(uploadEvidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 302, -1, -1));
+        getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 142, 123, 142));
 
         jEvidenceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -176,6 +176,8 @@ public class EvidencePortal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jEvidenceTable);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, 872, 236));
+
         jButton4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jButton4.setForeground(new java.awt.Color(51, 102, 0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/delete (1).png"))); // NOI18N
@@ -185,6 +187,7 @@ public class EvidencePortal extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(862, 302, -1, 54));
 
         jDelete.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jDelete.setForeground(new java.awt.Color(51, 102, 0));
@@ -195,6 +198,7 @@ public class EvidencePortal extends javax.swing.JFrame {
                 jDeleteActionPerformed(evt);
             }
         });
+        getContentPane().add(jDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(729, 302, -1, -1));
 
         jUpdateButton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jUpdateButton.setForeground(new java.awt.Color(51, 102, 0));
@@ -205,6 +209,7 @@ public class EvidencePortal extends javax.swing.JFrame {
                 jUpdateButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(jUpdateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 302, -1, -1));
 
         createEvidence.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         createEvidence.setForeground(new java.awt.Color(51, 102, 0));
@@ -215,170 +220,72 @@ public class EvidencePortal extends javax.swing.JFrame {
                 createEvidenceActionPerformed(evt);
             }
         });
+        getContentPane().add(createEvidence, new org.netbeans.lib.awtextra.AbsoluteConstraints(455, 302, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 365, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 244, -1, 40));
+        getContentPane().add(jImagePath, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 284, 42, 48));
 
         jLabel1.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 102, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Evidence Portal");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 72, 388, 95));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 102, 0));
         jLabel2.setText("Case ID");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 190, 64, -1));
 
         jEvidenceId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jEvidenceIdActionPerformed(evt);
             }
         });
+        getContentPane().add(jEvidenceId, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 146, 143, -1));
+        getContentPane().add(jDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 230, 144, 54));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 102, 0));
         jLabel3.setText("Description");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 248, 75, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 102, 0));
         jLabel6.setText("Evidence ID");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 149, 82, -1));
 
         jCaseId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCaseIdActionPerformed(evt);
             }
         });
+        getContentPane().add(jCaseId, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 187, 143, -1));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/search.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 72, 151, -1));
 
         jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 102, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/cross.png"))); // NOI18N
         jButton1.setText("Logout");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(731, 6, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 102, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/backs.png"))); // NOI18N
         jButton2.setText("Back");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(86, 86, 86)
-                                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(uploadEvidence))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(createEvidence)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jUpdateButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jCaseId)
-                                        .addComponent(jEvidenceId, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(98, 98, 98)))
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(52, 52, 52)
-                .addComponent(jButton2)
-                .addGap(55, 55, 55))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(jImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(jEvidenceId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel6))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(jLabel2)
-                                                    .addComponent(jCaseId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(20, 20, 20)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(jLabel3)
-                                                    .addComponent(jDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(18, 18, 18))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(24, 24, 24)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(createEvidence)
-                                        .addComponent(jUpdateButton)
-                                        .addComponent(jDelete)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(uploadEvidence))
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel4)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(160, Short.MAX_VALUE))
-        );
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 6, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -419,6 +326,23 @@ public class EvidencePortal extends javax.swing.JFrame {
     }//GEN-LAST:event_jDeleteActionPerformed
 
     private void jUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateButtonActionPerformed
+        
+        if(ValidationHelper.isEmptyOrNullString(jCaseId.getText())) {
+                JOptionPane.showMessageDialog(this, "Case ID cannot be null.");
+                return;
+        }
+            
+        Map<String, String> idsMap = Stream.of(new String[][] {
+                                { "Case ID",  jCaseId.getText()}
+                            }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
+
+        String invalidId = ValidationHelper.getInvalidNumericId(idsMap);
+
+        if (!invalidId.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please Enter a Valid Numeric " + invalidId);
+            return;
+        }
+        
         DefaultTableModel tblModel = (DefaultTableModel)jEvidenceTable.getModel();
         
         if (jEvidenceTable.getSelectedRowCount() == 1){
@@ -472,6 +396,22 @@ public class EvidencePortal extends javax.swing.JFrame {
 
     private void createEvidenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvidenceActionPerformed
 
+        if(ValidationHelper.isEmptyOrNullString(jCaseId.getText())) {
+                JOptionPane.showMessageDialog(this, "Case ID cannot be null.");
+                return;
+        }
+            
+        Map<String, String> idsMap = Stream.of(new String[][] {
+                                { "Case ID",  jCaseId.getText()}
+                            }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
+
+        String invalidId = ValidationHelper.getInvalidNumericId(idsMap);
+
+        if (!invalidId.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please Enter a Valid Numeric " + invalidId);
+            return;
+        }
+        
         Integer caseId = Integer.parseInt(jCaseId.getText());
         String desc = jDescription.getText();
         String imagePath = jImagePath.getName();
@@ -538,6 +478,22 @@ public class EvidencePortal extends javax.swing.JFrame {
         // TODO add your handling code here:
         resetAllFields();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Login obj = new Login();
+        obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        CaptainMenu obj = new CaptainMenu();
+        obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
