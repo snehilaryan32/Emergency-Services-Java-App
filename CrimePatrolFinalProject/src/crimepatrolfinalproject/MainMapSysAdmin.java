@@ -179,12 +179,12 @@ public class MainMapSysAdmin extends javax.swing.JFrame {
         jAddLocation.setText("Add Location");
         jAddLocation.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+//                 jButton1MouseClicked(evt);
             }
         });
         jAddLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+//                 jButton1ActionPerformed(evt);
             }
         });
 
