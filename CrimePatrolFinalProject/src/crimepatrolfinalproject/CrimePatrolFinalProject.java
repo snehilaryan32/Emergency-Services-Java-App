@@ -45,7 +45,7 @@ public class CrimePatrolFinalProject {
         
         S3BucketOperations.downloadS3Object("TestImage.png");
         
-        Login obj = new Login(); 
+        Login obj = new Login();
         obj.setVisible(true);
         obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         
