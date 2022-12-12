@@ -21,7 +21,7 @@ Fire Truck Operations,
 End User
 
 
-Dataused used are:
+Database used used are:
 
 Snowflake for storing application database.
 AWS for storing images.
