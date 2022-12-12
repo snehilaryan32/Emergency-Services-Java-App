@@ -52,6 +52,8 @@ Emergency Fire Dispatcher,
 For better understanding below is the component diagram.
 
 [Component Diagram](https://user-images.githubusercontent.com/114356277/206962316-d60b332e-61b5-4fe3-8ee5-ca25f37a0938.png)
+
+
 <img width="678" alt="image" src="https://user-images.githubusercontent.com/98195578/206963795-b6eb1617-e23e-4ade-bbb0-ddbc5276b507.png">
 
 
