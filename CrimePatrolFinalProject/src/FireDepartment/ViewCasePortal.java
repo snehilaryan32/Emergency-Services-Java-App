@@ -274,7 +274,7 @@ public class ViewCasePortal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackButtonActionPerformed
-        PoliceDept obj = new PoliceDept(); 
+        CaptainMenu obj = new CaptainMenu(); 
         obj.setVisible(true);
         obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         dispose();
