@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import model.Citizen;
 import model.Community;
 import model.Location;
@@ -44,8 +45,9 @@ public class CrimePatrolFinalProject {
         
         S3BucketOperations.downloadS3Object("TestImage.png");
         
-        Login obj = new Login(); 
+        Login obj = new Login();
         obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
         
         SendNotification.sendEmailNotification("NEW MEDICAL CASE", "Hello from java", "snehil.aryan7823@gmail.com");
         
