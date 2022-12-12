@@ -43,10 +43,13 @@ public class CitizenMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel2.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 102, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Citizen Menu");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 33, -1, -1));
 
         jLogOut.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLogOut.setForeground(new java.awt.Color(255, 102, 0));
@@ -57,30 +60,9 @@ public class CitizenMenu extends javax.swing.JFrame {
                 jLogOutActionPerformed(evt);
             }
         });
+        jPanel1.add(jLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(901, 18, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(324, 324, 324)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLogOut)
-                .addGap(66, 66, 66))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLogOut)))
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jViewNearbyCases.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jViewNearbyCases.setForeground(new java.awt.Color(255, 102, 0));
@@ -96,6 +78,7 @@ public class CitizenMenu extends javax.swing.JFrame {
                 jViewNearbyCasesActionPerformed(evt);
             }
         });
+        jPanel2.add(jViewNearbyCases, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 142, 265, -1));
 
         jCitizenPersonalDetailsButton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jCitizenPersonalDetailsButton.setForeground(new java.awt.Color(255, 102, 0));
@@ -111,6 +94,7 @@ public class CitizenMenu extends javax.swing.JFrame {
                 jCitizenPersonalDetailsButtonActionPerformed(evt);
             }
         });
+        jPanel2.add(jCitizenPersonalDetailsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(557, 146, 325, 62));
 
         jViewLawyers.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jViewLawyers.setForeground(new java.awt.Color(255, 102, 0));
@@ -126,6 +110,7 @@ public class CitizenMenu extends javax.swing.JFrame {
                 jViewLawyersActionPerformed(evt);
             }
         });
+        jPanel2.add(jViewLawyers, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 283, 265, 62));
 
         jButton4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 102, 0));
@@ -141,35 +126,7 @@ public class CitizenMenu extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(187, 187, 187)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jViewNearbyCases, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                    .addComponent(jViewLawyers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(105, 105, 105)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCitizenPersonalDetailsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
-                .addGap(218, 218, 218))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jViewNearbyCases)
-                    .addComponent(jCitizenPersonalDetailsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jViewLawyers, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(159, Short.MAX_VALUE))
-        );
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(557, 283, 325, 62));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

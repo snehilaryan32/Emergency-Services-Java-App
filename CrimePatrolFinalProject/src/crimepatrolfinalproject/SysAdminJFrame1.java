@@ -4,6 +4,7 @@
  */
 package crimepatrolfinalproject;
 
+import FireDepartment.FireStationPortal;
 import LegalDepartment.LegalDeptAdmin;
 import MedicalDepartment.DoctorManagementPortal;
 import MedicalDepartment.HospitalPortal;
@@ -47,6 +48,7 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         manageHospitalBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         manageHospitalBtn.setForeground(new java.awt.Color(0, 0, 204));
@@ -57,6 +59,7 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
                 manageHospitalBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(manageHospitalBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 469, -1, -1));
 
         manageCommAdminsBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         manageCommAdminsBtn.setForeground(new java.awt.Color(0, 0, 204));
@@ -67,6 +70,7 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
                 manageCommAdminsBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(manageCommAdminsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 691, 298, -1));
 
         manageFireStationBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         manageFireStationBtn.setForeground(new java.awt.Color(0, 0, 204));
@@ -77,6 +81,7 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
                 manageFireStationBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(manageFireStationBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(719, 469, -1, -1));
 
         managePoliceBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         managePoliceBtn.setForeground(new java.awt.Color(0, 0, 204));
@@ -88,6 +93,7 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
                 managePoliceBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(managePoliceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 469, 298, -1));
 
         manageHospitalsBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         manageHospitalsBtn.setForeground(new java.awt.Color(0, 0, 204));
@@ -98,6 +104,7 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
                 manageHospitalsBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(manageHospitalsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 691, 298, -1));
 
         manageEncountersBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         manageEncountersBtn.setForeground(new java.awt.Color(0, 0, 204));
@@ -108,11 +115,13 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
                 manageEncountersBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(manageEncountersBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(719, 691, 314, -1));
 
         jLabel1.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("SYSTEM ADMIN OPERATIONS");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 6, -1, -1));
 
         homePageBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         homePageBtn.setForeground(new java.awt.Color(0, 0, 204));
@@ -123,61 +132,11 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
                 homePageBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(homePageBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1015, 0, -1, -1));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/police-siren-siren.gif"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(manageCommAdminsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(manageHospitalsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(manageEncountersBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(manageHospitalBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(managePoliceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(45, 45, 45)
-                        .addComponent(manageFireStationBtn)))
-                .addContainerGap(88, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(homePageBtn))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addComponent(homePageBtn))
-                .addGap(43, 43, 43)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(147, 147, 147)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(manageHospitalBtn)
-                    .addComponent(managePoliceBtn)
-                    .addComponent(manageFireStationBtn))
-                .addGap(88, 88, 88)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(manageCommAdminsBtn)
-                    .addComponent(manageHospitalsBtn)
-                    .addComponent(manageEncountersBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 90, 363, 232));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -208,6 +167,10 @@ public class SysAdminJFrame1 extends javax.swing.JFrame {
 
     private void manageFireStationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageFireStationBtnActionPerformed
         // TODO add your handling code here:
+        FireStationPortal obj = new FireStationPortal();
+        obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
+        dispose();
     }//GEN-LAST:event_manageFireStationBtnActionPerformed
 
     private void manageCommAdminsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCommAdminsBtnActionPerformed

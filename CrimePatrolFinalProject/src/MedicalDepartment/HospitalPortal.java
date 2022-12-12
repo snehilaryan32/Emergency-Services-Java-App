@@ -225,7 +225,7 @@ public class HospitalPortal extends javax.swing.JFrame {
         }
         
         Map<String, String> idsMap = Stream.of(new String[][] {
-                                    { "Precinct ID",  jLocationId.getText()}
+                                    { "Location ID",  jLocationId.getText()}
                                 }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
         
         String invalidId = ValidationHelper.getInvalidNumericId(idsMap);
@@ -305,7 +305,7 @@ public class HospitalPortal extends javax.swing.JFrame {
         }
         
         Map<String, String> idsMap = Stream.of(new String[][] {
-                                    { "Precinct ID",  jLocationId.getText()}
+                                    { "Location ID",  jLocationId.getText()}
                                 }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
         
         String invalidId = ValidationHelper.getInvalidNumericId(idsMap);

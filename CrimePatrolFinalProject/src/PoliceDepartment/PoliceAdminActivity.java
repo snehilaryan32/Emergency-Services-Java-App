@@ -94,7 +94,7 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 102, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Welcome To Captain Portal");
+        jLabel1.setText("Captain Portal");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 38, 523, -1));
 
         jButton5.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -315,11 +315,11 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(51, 102, 0));
         jLabel13.setText("Gender");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 271, -1, -1));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
 
         jGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
-        jPanel2.add(jGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 268, 89, -1));
-        jPanel2.add(jDob, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 219, -1, -1));
+        jPanel2.add(jGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 89, -1));
+        jPanel2.add(jDob, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 145, -1, -1));
 
