@@ -83,10 +83,13 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel1.setForeground(new java.awt.Color(51, 102, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Welcome To Captain Portal");
 
+        jButton5.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(51, 102, 0));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/backs.png"))); // NOI18N
         jButton5.setText("Back");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,8 +97,13 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(51, 102, 0));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/Home.png"))); // NOI18N
         jButton6.setText("Home");
 
+        jSearchButton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jSearchButton.setForeground(new java.awt.Color(51, 102, 0));
         jSearchButton.setText("Search");
         jSearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +118,8 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 102, 0));
         jLabel5.setText("Search By");
 
         jSearchField.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +135,7 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(190, 190, 190)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
@@ -151,7 +161,7 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -161,12 +171,22 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                     .addComponent(jSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jPanel2.setForeground(new java.awt.Color(51, 102, 0));
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 102, 0));
         jLabel2.setText("Officer ID");
 
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 102, 0));
         jLabel3.setText("Officer Name");
 
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 102, 0));
         jLabel4.setText("Precinct ID");
 
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 102, 0));
         jLabel6.setText("Rank");
 
         jRank.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patrol", "Corporal", "Sergeant", "Detective", "Captain" }));
@@ -189,6 +209,9 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jPoliceTable);
 
+        jCreate.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jCreate.setForeground(new java.awt.Color(51, 102, 0));
+        jCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/addpatient.png"))); // NOI18N
         jCreate.setText("Create");
         jCreate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -201,6 +224,9 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             }
         });
 
+        jUpdate.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jUpdate.setForeground(new java.awt.Color(51, 102, 0));
+        jUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/updatepatient.png"))); // NOI18N
         jUpdate.setText("Update");
         jUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,8 +234,14 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(51, 102, 0));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/cross.png"))); // NOI18N
         jButton3.setText("Reset");
 
+        jDelete.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jDelete.setForeground(new java.awt.Color(51, 102, 0));
+        jDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/deletepatient.png"))); // NOI18N
         jDelete.setText("Delete");
         jDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,10 +261,14 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 102, 0));
         jLabel7.setText("Performance");
 
         jPerformance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Excellent", "Good", "Average", "Poor" }));
 
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 102, 0));
         jLabel8.setText("Email");
 
         jEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -241,6 +277,8 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(51, 102, 0));
         jLabel9.setText("Phone No.");
 
         jPhone.addActionListener(new java.awt.event.ActionListener() {
@@ -249,6 +287,8 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 102, 0));
         jLabel10.setText("Address");
 
         jAddress.addActionListener(new java.awt.event.ActionListener() {
@@ -257,8 +297,12 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(51, 102, 0));
         jLabel11.setText("DOB");
 
+        jLabel12.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(51, 102, 0));
         jLabel12.setText("Blood Group");
 
         jBloodGroup.addActionListener(new java.awt.event.ActionListener() {
@@ -267,6 +311,8 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             }
         });
 
+        jLabel13.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(51, 102, 0));
         jLabel13.setText("Gender");
 
         jGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
@@ -277,18 +323,6 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jCreate)
-                                .addGap(18, 18, 18)
-                                .addComponent(jUpdate))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jDelete)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(94, 94, 94)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,7 +387,18 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jRank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(18, 18, 18)))))))
+                                        .addGap(18, 18, 18))))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton3)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jCreate)
+                                .addGap(18, 18, 18)
+                                .addComponent(jUpdate)))
+                        .addGap(41, 41, 41)
+                        .addComponent(jDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -397,12 +442,11 @@ public class PoliceAdminActivity extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCreate)
-                    .addComponent(jUpdate))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jDelete)
-                    .addComponent(jButton3))
-                .addGap(43, 43, 43))
+                    .addComponent(jUpdate)
+                    .addComponent(jDelete))
+                .addGap(36, 36, 36)
+                .addComponent(jButton3)
+                .addGap(34, 34, 34))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))

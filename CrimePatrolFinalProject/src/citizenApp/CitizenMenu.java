@@ -44,10 +44,13 @@ public class CitizenMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel2.setForeground(new java.awt.Color(255, 102, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Citizen Menu");
 
+        jLogOut.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLogOut.setForeground(new java.awt.Color(255, 102, 0));
+        jLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/cross.png"))); // NOI18N
         jLogOut.setText("Log Out");
         jLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +82,9 @@ public class CitizenMenu extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
+        jViewNearbyCases.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jViewNearbyCases.setForeground(new java.awt.Color(255, 102, 0));
+        jViewNearbyCases.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/map (1).png"))); // NOI18N
         jViewNearbyCases.setText("View Nearby Case");
         jViewNearbyCases.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -91,6 +97,9 @@ public class CitizenMenu extends javax.swing.JFrame {
             }
         });
 
+        jCitizenPersonalDetailsButton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jCitizenPersonalDetailsButton.setForeground(new java.awt.Color(255, 102, 0));
+        jCitizenPersonalDetailsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/updatepatient.png"))); // NOI18N
         jCitizenPersonalDetailsButton.setText("Update Personal Details");
         jCitizenPersonalDetailsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -103,6 +112,9 @@ public class CitizenMenu extends javax.swing.JFrame {
             }
         });
 
+        jViewLawyers.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jViewLawyers.setForeground(new java.awt.Color(255, 102, 0));
+        jViewLawyers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/lawyer.png"))); // NOI18N
         jViewLawyers.setText("View Lawyers");
         jViewLawyers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -115,6 +127,9 @@ public class CitizenMenu extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 102, 0));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/111siren.png"))); // NOI18N
         jButton4.setText("View Emergency Resources");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -134,12 +149,12 @@ public class CitizenMenu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(187, 187, 187)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jViewNearbyCases, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jViewLawyers, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                .addGap(160, 160, 160)
+                    .addComponent(jViewNearbyCases, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                    .addComponent(jViewLawyers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(105, 105, 105)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCitizenPersonalDetailsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jCitizenPersonalDetailsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
                 .addGap(218, 218, 218))
         );
         jPanel2Layout.setVerticalGroup(
@@ -147,13 +162,13 @@ public class CitizenMenu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(142, 142, 142)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jViewNearbyCases, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jViewNearbyCases)
                     .addComponent(jCitizenPersonalDetailsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(71, 71, 71)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jViewLawyers, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

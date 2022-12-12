@@ -120,7 +120,7 @@ public class HospitalPortal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(hospitalJTable);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 154, 628, 263));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 628, 263));
 
         hospCreateBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         hospCreateBtn.setForeground(new java.awt.Color(0, 204, 255));
@@ -131,7 +131,7 @@ public class HospitalPortal extends javax.swing.JFrame {
                 hospCreateBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(hospCreateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 429, -1, 43));
+        getContentPane().add(hospCreateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 429, 150, 60));
 
         hospUpdateBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         hospUpdateBtn.setForeground(new java.awt.Color(0, 204, 255));
@@ -142,7 +142,7 @@ public class HospitalPortal extends javax.swing.JFrame {
                 hospUpdateBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(hospUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 429, -1, 43));
+        getContentPane().add(hospUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 429, 150, 60));
 
         hospDeleteBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         hospDeleteBtn.setForeground(new java.awt.Color(0, 204, 255));
@@ -153,7 +153,7 @@ public class HospitalPortal extends javax.swing.JFrame {
                 hospDeleteBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(hospDeleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 429, -1, 43));
+        getContentPane().add(hospDeleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 429, 140, 60));
 
         hospResetBtn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         hospResetBtn.setForeground(new java.awt.Color(0, 204, 255));
@@ -164,7 +164,7 @@ public class HospitalPortal extends javax.swing.JFrame {
                 hospResetBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(hospResetBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(787, 429, -1, 43));
+        getContentPane().add(hospResetBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(787, 429, 130, 60));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 204, 255));
