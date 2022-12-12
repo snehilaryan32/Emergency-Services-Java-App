@@ -225,6 +225,10 @@ public class Login extends javax.swing.JFrame {
                 obj.setVisible(true);
                 dispose();
             } 
+            
+            else if(userName.equals("sysadmin")){
+                
+            }
                 
             
             else if(Integer.parseInt(userName) < 2000000){
