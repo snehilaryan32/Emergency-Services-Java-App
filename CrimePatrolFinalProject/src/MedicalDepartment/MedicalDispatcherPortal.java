@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputListener;
 import javax.swing.table.DefaultTableModel;
@@ -224,6 +225,11 @@ public class MedicalDispatcherPortal extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon2/siren.png"))); // NOI18N
 
@@ -415,6 +421,14 @@ public class MedicalDispatcherPortal extends javax.swing.JFrame {
         
         addWaypoint(new MyWaypoint("Test 0999", event, new GeoPosition(lat, longitude)));
     }//GEN-LAST:event_jHospitalTableMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        SysAdminJFrame1 obj = new SysAdminJFrame1();
+        obj.setVisible(true);
+        obj.setExtendedState(JFrame.MAXIMIZED_BOTH );
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

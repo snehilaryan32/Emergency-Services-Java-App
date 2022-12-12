@@ -16,6 +16,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +25,7 @@ import model.Hospital;
 import model.Location;
 import utilPackage.Helper;
 import utilPackage.SendNotification;
+import utilPackage.ValidationHelper;
 
 /**
  *
@@ -187,7 +190,7 @@ public class HospitalPortal extends javax.swing.JFrame {
                 homePageBtn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(homePageBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(815, 52, -1, 38));
+        getContentPane().add(homePageBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 140, 60));
 
         jLabel3.setFont(new java.awt.Font("Helvetica", 1, 40)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 153, 0));
@@ -200,6 +203,39 @@ public class HospitalPortal extends javax.swing.JFrame {
 
     private void hospCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospCreateBtnActionPerformed
         // TODO add your handling code here:
+        
+        if(ValidationHelper.isEmptyOrNullString(hospitalNameTextField.getText())) {
+            JOptionPane.showMessageDialog(this, "Hospital Name Case cannot be Empty.");
+            return;
+        }
+        
+        if(ValidationHelper.isEmptyOrNullString(jLocationId.getText())) {
+            JOptionPane.showMessageDialog(this, "Loccation ID cannot be empty.");
+            return;
+        }
+        
+        if(ValidationHelper.isEmptyOrNullString(jEmailId.getText())) {
+            JOptionPane.showMessageDialog(this, "Email ID cannot be left empty.");
+            return;
+        }
+        
+        if(ValidationHelper.isEmptyOrNullString(jContactNum.getText())) {
+            JOptionPane.showMessageDialog(this, "Contact Number cannot be left empty.");
+            return;
+        }
+        
+        Map<String, String> idsMap = Stream.of(new String[][] {
+                                    { "Precinct ID",  jLocationId.getText()}
+                                }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
+        
+        String invalidId = ValidationHelper.getInvalidNumericId(idsMap);
+        
+        if (!invalidId.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please Enter a Valid Numeric " + invalidId);
+            return;
+        }
+        
+        
         String hospitalName = hospitalNameTextField.getText();
         Integer locationId = Integer.parseInt(jLocationId.getText());
         String email = jEmailId.getText();
@@ -247,6 +283,38 @@ public class HospitalPortal extends javax.swing.JFrame {
 
     private void hospUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospUpdateBtnActionPerformed
         // TODO add your handling code here:
+        
+        if(ValidationHelper.isEmptyOrNullString(hospitalNameTextField.getText())) {
+            JOptionPane.showMessageDialog(this, "Hospital Name Case cannot be Empty.");
+            return;
+        }
+        
+        if(ValidationHelper.isEmptyOrNullString(jLocationId.getText())) {
+            JOptionPane.showMessageDialog(this, "Loccation ID cannot be empty.");
+            return;
+        }
+        
+        if(ValidationHelper.isEmptyOrNullString(jEmailId.getText())) {
+            JOptionPane.showMessageDialog(this, "Email ID cannot be left empty.");
+            return;
+        }
+        
+        if(ValidationHelper.isEmptyOrNullString(jContactNum.getText())) {
+            JOptionPane.showMessageDialog(this, "Contact Number cannot be left empty.");
+            return;
+        }
+        
+        Map<String, String> idsMap = Stream.of(new String[][] {
+                                    { "Precinct ID",  jLocationId.getText()}
+                                }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
+        
+        String invalidId = ValidationHelper.getInvalidNumericId(idsMap);
+        
+        if (!invalidId.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please Enter a Valid Numeric " + invalidId);
+            return;
+        }
+        
         DefaultTableModel tblModel = (DefaultTableModel)hospitalJTable.getModel();
         
         
