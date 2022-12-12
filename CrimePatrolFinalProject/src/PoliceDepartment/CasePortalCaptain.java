@@ -38,9 +38,9 @@ public class CasePortalCaptain extends javax.swing.JFrame {
     public CasePortalCaptain() {
         initComponents();
         try {
-          
+
             List<Case> objList = Helper.getResultSet(Case.class, "case");
-            
+
             for(Case i : objList){
                 Integer iD = i.getCaseId(); 
                 Integer precinctId = i.getPrecinctId();
